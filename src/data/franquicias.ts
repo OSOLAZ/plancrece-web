@@ -1,0 +1,1410 @@
+// Catálogo de franquicias de PlanCrece.
+// DATOS ORIENTATIVOS: inversión y nº de unidades proceden de información publicada
+// por las propias franquicias y directorios sectoriales; pueden variar.
+// PlanCrece NO tiene relación comercial con estas marcas.
+
+export type SectorFranquicia =
+  | 'viajes'
+  | 'salud'
+  | 'formacion'
+  | 'retail'
+  | 'hosteleria'
+  | 'servicios'
+  | 'automocion'
+  | 'inmobiliaria'
+
+export interface Franquicia {
+  slug: string
+  nombre: string
+  sector: SectorFranquicia
+  actividad: string
+  inversion: number | null // euros, orientativa
+  unidades: number | null
+  descripcion: string[]
+  incluye: string[]
+  encaja: string[]
+  revisar: string[]
+}
+
+export const SECTORES: { id: SectorFranquicia; label: string }[] = [
+  { id: 'viajes', label: 'Viajes' },
+  { id: 'salud', label: 'Salud y belleza' },
+  { id: 'formacion', label: 'Formación' },
+  { id: 'retail', label: 'Retail y alimentación' },
+  { id: 'hosteleria', label: 'Hostelería' },
+  { id: 'servicios', label: 'Servicios' },
+  { id: 'automocion', label: 'Automoción' },
+  { id: 'inmobiliaria', label: 'Inmobiliaria y seguros' },
+]
+
+export const sectorLabel = (s: SectorFranquicia) => SECTORES.find((x) => x.id === s)!.label
+
+export function formatInversion(n: number | null): string {
+  if (n === null) return 'A consultar'
+  return n.toLocaleString('es-ES') + ' €'
+}
+
+export const FRANQUICIAS: Franquicia[] = [
+  {
+    slug: 'halcon-viajes',
+    nombre: 'Halcón Viajes',
+    sector: 'viajes',
+    actividad: 'Agencia de viajes',
+    inversion: 4500,
+    unidades: 254,
+    descripcion: [
+      'Halcón Viajes es una de las redes de agencias de viajes más conocidas de España, con décadas de marca detrás y un modelo de franquicia pensado para entrar con una inversión inicial contenida.',
+      'El negocio consiste en vender viajes combinando el mostrador físico con los canales online de la central: la marca aporta acuerdos con mayoristas, tecnología de reservas y campañas nacionales. El franquiciado aporta la relación con el cliente local.',
+    ],
+    incluye: [
+      'Uso de la marca y campañas de marketing nacionales',
+      'Acceso a acuerdos con mayoristas y touroperadores',
+      'Plataforma tecnológica de reservas',
+      'Formación inicial y acompañamiento comercial',
+    ],
+    encaja: [
+      'Perfiles comerciales con trato directo al público',
+      'Personas del sector turístico que quieren independizarse',
+      'Quien busca baja inversión inicial y gestión ligera',
+    ],
+    revisar: [
+      'Márgenes reales por tipo de producto tras comisiones de la central',
+      'Competencia online directa en tu zona y papel del local físico',
+      'Exclusividad de zona y condiciones de salida del contrato',
+    ],
+  },
+  {
+    slug: 'naturhouse',
+    nombre: 'Naturhouse',
+    sector: 'salud',
+    actividad: 'Nutrición y dietética',
+    inversion: 11570,
+    unidades: 2300,
+    descripcion: [
+      'Naturhouse es una de las cadenas de centros de nutrición y dietética con más presencia internacional, con un modelo basado en consulta personalizada más venta de producto propio.',
+      'Es de las franquicias con inversión de entrada más baja del sector salud, precisamente porque el local y el equipamiento necesarios son sencillos. El negocio vive de la recurrencia del cliente y de la capacidad del equipo para retenerlo.',
+    ],
+    incluye: [
+      'Marca consolidada y publicidad nacional',
+      'Método de consulta y formación del equipo',
+      'Gama de productos propios con margen',
+      'Software de gestión de clientes',
+    ],
+    encaja: [
+      'Perfiles con orientación al cliente y al trato cercano',
+      'Profesionales de la nutrición que quieren montar su centro',
+      'Quien busca un local pequeño con costes fijos bajos',
+    ],
+    revisar: [
+      'Peso de la venta de producto frente a la consulta en los ingresos reales',
+      'Saturación de centros de la propia marca en tu ciudad',
+      'Requisitos sanitarios y de titulación del personal en tu comunidad',
+    ],
+  },
+  {
+    slug: 'kumon',
+    nombre: 'Kumon',
+    sector: 'formacion',
+    actividad: 'Centros de enseñanza con metodología propia',
+    inversion: 15000,
+    unidades: 210,
+    descripcion: [
+      'Kumon es la franquicia de centros de aprendizaje de matemáticas y lectura con una metodología japonesa propia, presente en decenas de países y con un modelo de centro muy estandarizado.',
+      'El negocio es de matrícula recurrente: los alumnos se quedan años, no meses. La inversión inicial es moderada y el local no necesita ubicación comercial premium, lo que baja los costes fijos.',
+    ],
+    incluye: [
+      'Metodología propia registrada y materiales',
+      'Formación intensiva del orientador',
+      'Marca internacional con presencia consolidada',
+      'Acompañamiento pedagógico continuo',
+    ],
+    encaja: [
+      'Perfiles con vocación educativa y paciencia de largo plazo',
+      'Maestros y profesionales de la educación que quieren su centro',
+      'Zonas residenciales con densidad de familias con hijos',
+    ],
+    revisar: [
+      'Tiempo real hasta cubrir costes: la matrícula crece despacio al principio',
+      'Competencia de academias locales con precios más bajos',
+      'Dedicación exigida: la metodología requiere implicación directa del franquiciado',
+    ],
+  },
+  {
+    slug: 'general-optica',
+    nombre: 'General Óptica',
+    sector: 'salud',
+    actividad: 'Ópticas',
+    inversion: 110000,
+    unidades: 85,
+    descripcion: [
+      'General Óptica es una de las marcas ópticas de referencia en España, con un modelo que combina producto de gama media-alta y servicio optométrico profesional.',
+      'Es una franquicia de inversión alta: local comercial en buena ubicación, equipamiento de gabinete y stock de monturas. A cambio, el ticket medio y los márgenes del sector óptico están entre los mejores del retail especializado.',
+    ],
+    incluye: [
+      'Marca de reconocimiento nacional',
+      'Colecciones y condiciones de compra de la central',
+      'Formación técnica y comercial',
+      'Apoyo en la elección y acondicionamiento del local',
+    ],
+    encaja: [
+      'Ópticos-optometristas que quieren su propio negocio con marca',
+      'Inversores con capacidad para una inversión de seis cifras',
+      'Ubicaciones comerciales consolidadas en ciudades medias y grandes',
+    ],
+    revisar: [
+      'Coste real total: obra, equipamiento de gabinete y stock inicial',
+      'Competencia de cadenas low-cost que presionan los precios',
+      'Rentabilidad histórica de tiendas comparables a tu ubicación',
+    ],
+  },
+  {
+    slug: 'mail-boxes-etc',
+    nombre: 'Mail Boxes Etc.',
+    sector: 'servicios',
+    actividad: 'Envíos, diseño gráfico e impresión',
+    inversion: 45000,
+    unidades: 250,
+    descripcion: [
+      'Mail Boxes Etc. es una red internacional de centros de servicios para pymes y particulares: envíos, embalaje, impresión y servicios de oficina en un mismo mostrador.',
+      'Su fuerza está en el cliente empresa: contratos recurrentes con pymes de la zona que externalizan su logística y su impresión. Un modelo de servicios con ingresos diversificados.',
+    ],
+    incluye: [
+      'Marca internacional y acuerdos con transportistas',
+      'Formación operativa y comercial',
+      'Sistemas de gestión y tarificación',
+      'Apoyo en captación de clientes empresa',
+    ],
+    encaja: [
+      'Perfiles comerciales cómodos vendiendo a empresas',
+      'Zonas con tejido de pymes y polígonos cercanos',
+      'Quien busca servicios recurrentes más que venta puntual',
+    ],
+    revisar: [
+      'Margen real de los envíos tras acuerdos de la central',
+      'Peso del ecommerce: cómo evoluciona la demanda en tu zona',
+      'Inversión total con obra y equipamiento de impresión',
+    ],
+  },
+  {
+    slug: 'mobalpa',
+    nombre: 'Mobalpa',
+    sector: 'retail',
+    actividad: 'Cocinas, muebles a medida y baños',
+    inversion: 300000,
+    unidades: 350,
+    descripcion: [
+      'Mobalpa es una marca francesa de mobiliario de cocina y hogar con red internacional de tiendas, posicionada en el segmento medio-alto de cocinas a medida.',
+      'Es una de las inversiones más altas de este catálogo: tienda-exposición grande, montaje de cocinas de muestra y equipo comercial especializado. El ticket medio por proyecto compensa, pero el ciclo de venta es largo.',
+    ],
+    incluye: [
+      'Marca y catálogo de producto propio',
+      'Formación de diseñadores comerciales',
+      'Herramientas de diseño 3D y presupuestación',
+      'Apoyo logístico y de instalación',
+    ],
+    encaja: [
+      'Profesionales del mueble, la decoración o las reformas',
+      'Inversores con capacidad para exposición de gran superficie',
+      'Ciudades con mercado de reforma de vivienda activo',
+    ],
+    revisar: [
+      'Coste total real: alquiler de superficie, exposición y equipo',
+      'Competencia de las grandes superficies de bricolaje y cocinas',
+      'Ciclo de venta y tesorería: se cobra por proyectos, no por impulso',
+    ],
+  },
+  {
+    slug: 'eroski',
+    nombre: 'EROSKI',
+    sector: 'retail',
+    actividad: 'Supermercados y alimentación',
+    inversion: null,
+    unidades: 628,
+    descripcion: [
+      'EROSKI es una de las principales cadenas de supermercados de España, con modelo cooperativo y una red de supermercados franquiciados especialmente fuerte en el norte peninsular.',
+      'La alimentación es el sector de demanda más estable que existe: el cliente compra cada semana. La contrapartida son los márgenes finos y una operativa intensiva: personal, logística, frescos.',
+    ],
+    incluye: [
+      'Marca con alta notoriedad y surtido propio',
+      'Central de compras y logística de gran escala',
+      'Formación y sistemas de gestión de tienda',
+      'Programa de fidelización de clientes',
+    ],
+    encaja: [
+      'Perfiles con experiencia en gestión de equipos y retail',
+      'Ubicaciones con tránsito peatonal y población de proximidad',
+      'Quien acepta márgenes bajos a cambio de estabilidad',
+    ],
+    revisar: [
+      'Inversión total y condiciones concretas del modelo franquiciado',
+      'Márgenes reales por familia de producto',
+      'Competencia de discount y supermercados cercanos',
+    ],
+  },
+  {
+    slug: 'devuelving',
+    nombre: 'Devuelving',
+    sector: 'servicios',
+    actividad: 'Franquicia online',
+    inversion: 3695,
+    unidades: 237,
+    descripcion: [
+      'Devuelving es una franquicia de modelo online: el franquiciado opera tiendas de comercio electrónico apoyándose en la infraestructura y los acuerdos de la central, sin necesidad de local físico.',
+      'Es de las inversiones más bajas del catálogo, con la lógica contrapartida: sin local ni activos físicos, el negocio depende por completo de la ejecución comercial del franquiciado.',
+    ],
+    incluye: [
+      'Plataforma de ecommerce y catálogo',
+      'Formación en venta online',
+      'Soporte de la central',
+      'Marca y materiales comerciales',
+    ],
+    encaja: [
+      'Perfiles digitales cómodos vendiendo por internet',
+      'Quien busca empezar con muy poca inversión',
+      'Personas que quieren compatibilizar con otra actividad',
+    ],
+    revisar: [
+      'Qué aporta exactamente la central frente a montarlo por tu cuenta',
+      'Resultados medios reales de franquiciados activos',
+      'Costes recurrentes mensuales y condiciones de permanencia',
+    ],
+  },
+  {
+    slug: 'nautalia',
+    nombre: 'NAUTALIA Viajes',
+    sector: 'viajes',
+    actividad: 'Agencia de viajes',
+    inversion: 12000,
+    unidades: 42,
+    descripcion: [
+      'Nautalia es una red de agencias de viajes con crecimiento sostenido en los últimos años, que combina oficinas físicas con un fuerte componente de venta digital.',
+      'Su propuesta suele incluir formación comercial intensiva y soporte de producto, pensada también para perfiles que vienen de fuera del sector turístico.',
+    ],
+    incluye: [
+      'Marca y campañas comerciales',
+      'Acuerdos con mayoristas y compañías',
+      'Formación de producto y venta',
+      'Herramientas de reserva y gestión',
+    ],
+    encaja: [
+      'Perfiles comerciales con buena red de contactos local',
+      'Quien busca sector viajes con acompañamiento cercano',
+      'Profesionales del turismo que quieren su propia agencia',
+    ],
+    revisar: [
+      'Comisiones netas por tipo de viaje tras la estructura de la central',
+      'Apoyo real en los primeros 12 meses, no solo en la apertura',
+      'Cláusulas de exclusividad y de salida',
+    ],
+  },
+  {
+    slug: 'speed-queen',
+    nombre: 'Speed Queen',
+    sector: 'servicios',
+    actividad: 'Lavanderías autoservicio',
+    inversion: 120000,
+    unidades: 700,
+    descripcion: [
+      'Speed Queen es el fabricante de lavandería industrial que opera también como franquicia de lavanderías autoservicio, uno de los formatos de "negocio sin empleados" más extendidos.',
+      'La realidad del modelo: sin empleados no significa sin trabajo — limpieza diaria, mantenimiento y reposición. La ubicación (densidad, estudiantes, turismo, vivienda pequeña) decide el 80% del resultado.',
+    ],
+    incluye: [
+      'Maquinaria industrial de la propia marca',
+      'Proyecto de local e instalación',
+      'Formación operativa y de mantenimiento',
+      'Sistemas de pago y monitorización remota',
+    ],
+    encaja: [
+      'Inversores que buscan un negocio de gestión ligera',
+      'Zonas densas con alta rotación poblacional',
+      'Perfiles que combinan esto con otra actividad profesional',
+    ],
+    revisar: [
+      'Ventas diarias reales de tiendas en ubicaciones comparables',
+      'Costes de agua, luz y mantenimiento en la cuenta de explotación',
+      'Competencia de otras lavanderías en un radio de 1 km',
+    ],
+  },
+  {
+    slug: 'larome',
+    nombre: "L'ARÔME",
+    sector: 'retail',
+    actividad: 'Perfumería',
+    inversion: 16999,
+    unidades: 100,
+    descripcion: [
+      "L'ARÔME es una franquicia de perfumería con un modelo de tienda pequeña y producto de equivalencia, que busca ubicaciones de alto tránsito con inversión contenida.",
+      'La perfumería de equivalencia vive del margen por unidad y de la repetición de compra: el cliente que encuentra su fragancia vuelve. El local puede ser pequeño, lo que contiene los costes fijos.',
+    ],
+    incluye: [
+      'Marca y surtido de perfumería',
+      'Proyecto de tienda y mobiliario',
+      'Formación de producto y venta',
+      'Campañas y materiales promocionales',
+    ],
+    encaja: [
+      'Perfiles comerciales con gusto por el trato al público',
+      'Ubicaciones con tránsito peatonal alto',
+      'Quien busca retail de inversión media-baja',
+    ],
+    revisar: [
+      'Ventas medias por tienda y rotación real del producto',
+      'Competencia de perfumerías de equivalencia en la zona',
+      'Condiciones de compra obligada a la central',
+    ],
+  },
+  {
+    slug: 'haagen-dazs',
+    nombre: 'Häagen-Dazs',
+    sector: 'hosteleria',
+    actividad: 'Heladería - cafetería',
+    inversion: 125000,
+    unidades: 51,
+    descripcion: [
+      'Häagen-Dazs es la marca de helado premium por excelencia, con tiendas-cafetería en ubicaciones prime de ciudades y zonas turísticas.',
+      'El modelo exige localización de primer nivel: el concepto vive del impulso y del turismo. Estacionalidad marcada fuera de zonas turísticas y costes de local altos.',
+    ],
+    incluye: [
+      'Marca premium internacional',
+      'Producto y cadena de frío gestionada',
+      'Diseño de tienda y formación',
+      'Campañas de marketing globales',
+    ],
+    encaja: [
+      'Ubicaciones turísticas o comerciales de primer nivel',
+      'Perfiles con experiencia en hostelería',
+      'Inversores cómodos con negocio estacional',
+    ],
+    revisar: [
+      'Ventas de invierno reales en ubicaciones no turísticas',
+      'Coste del alquiler en ubicación prime y su peso en la cuenta',
+      'Rentabilidad histórica de tiendas comparables',
+    ],
+  },
+  {
+    slug: 'donpiso',
+    nombre: 'donpiso',
+    sector: 'inmobiliaria',
+    actividad: 'Intermediación inmobiliaria',
+    inversion: 25000,
+    unidades: 69,
+    descripcion: [
+      'donpiso es una inmobiliaria con larga trayectoria en España, especialmente conocida en Cataluña, con modelo de oficina física de intermediación en compraventa y alquiler.',
+      'La intermediación inmobiliaria es un negocio de honorarios altos y costes fijos moderados que depende por completo de la captación: quien consigue inmuebles en exclusiva, vende.',
+    ],
+    incluye: [
+      'Marca con trayectoria y cartera compartida',
+      'CRM y herramientas de valoración',
+      'Formación de agentes',
+      'Apoyo jurídico y de marketing',
+    ],
+    encaja: [
+      'Perfiles comerciales con red de contactos en su ciudad',
+      'Agentes inmobiliarios que quieren marca y estructura',
+      'Mercados de vivienda con transacción activa',
+    ],
+    revisar: [
+      'Reparto de honorarios con la central y mínimos exigidos',
+      'Cartera real compartida en tu zona, no la promesa',
+      'Competencia de otras redes y portales en tu mercado',
+    ],
+  },
+  {
+    slug: 'racc-start',
+    nombre: 'RACC Start',
+    sector: 'formacion',
+    actividad: 'Autoescuela',
+    inversion: 30000,
+    unidades: 70,
+    descripcion: [
+      'RACC Start es la autoescuela del RACC: combina la enseñanza tradicional del carnet con plataforma digital de aprendizaje y la marca de una institución muy conocida en movilidad.',
+      'La autoescuela es un negocio de demanda recurrente (cada año hay nuevos candidatos) y de operativa sencilla: profesores, vehículo y aula. La marca ayuda en un sector muy fragmentado.',
+    ],
+    incluye: [
+      'Marca RACC y su notoriedad',
+      'Plataforma digital de aprendizaje',
+      'Formación y materiales didácticos',
+      'Soporte operativo y comercial',
+    ],
+    encaja: [
+      'Profesores de formación vial que quieren su escuela',
+      'Zonas con población joven y pocas autoescuelas',
+      'Perfiles que valoran una marca institucional fuerte',
+    ],
+    revisar: [
+      'Coste de vehículos y seguros en la inversión total',
+      'Competencia y precios de autoescuelas cercanas',
+      'Población joven real en el área de influencia',
+    ],
+  },
+  {
+    slug: 'adaix',
+    nombre: 'Adaix',
+    sector: 'inmobiliaria',
+    actividad: 'Agencia inmobiliaria',
+    inversion: 14000,
+    unidades: 52,
+    descripcion: [
+      'Adaix es una red de agencias inmobiliarias con presencia nacional y un modelo de franquicia de entrada asequible, orientado a quien quiere montar su agencia con estructura pero sin grandes inversiones.',
+      'Su propuesta gira en torno a la formación del agente y las herramientas de captación: en inmobiliaria, la metodología de captación vale más que el local.',
+    ],
+    incluye: [
+      'Marca y cartera compartida',
+      'Formación comercial y jurídica',
+      'CRM y herramientas de captación',
+      'Acompañamiento en la apertura',
+    ],
+    encaja: [
+      'Perfiles comerciales que empiezan en el sector',
+      'Quien busca inmobiliaria con inversión moderada',
+      'Ciudades medias con mercado de vivienda activo',
+    ],
+    revisar: [
+      'Qué porcentaje de honorarios se queda la central',
+      'Apoyo real durante el primer año de actividad',
+      'Zonas de exclusividad y competencia interna de la red',
+    ],
+  },
+  {
+    slug: 'interdomicilio',
+    nombre: 'Interdomicilio',
+    sector: 'servicios',
+    actividad: 'Servicios a domicilio',
+    inversion: 30000,
+    unidades: 80,
+    descripcion: [
+      'Interdomicilio es una de las franquicias veteranas de servicios a domicilio en España: limpieza, cuidado de personas, mantenimiento del hogar, gestionados desde una oficina central.',
+      'El sector tiene viento a favor: hogares con menos tiempo y población que envejece. El negocio es gestión de equipos y confianza, con ingresos recurrentes por contrato.',
+    ],
+    incluye: [
+      'Marca con trayectoria en el sector',
+      'Metodología de selección y gestión de personal',
+      'Formación y sistemas de gestión',
+      'Apoyo comercial y de captación de clientes',
+    ],
+    encaja: [
+      'Perfiles gestores cómodos coordinando equipos',
+      'Quien busca un sector con demanda estructural creciente',
+      'Ciudades con población envejecida y renta media-alta',
+    ],
+    revisar: [
+      'Márgenes tras salarios y seguros del personal',
+      'Rotación de empleados y su coste real',
+      'Marco laboral y obligaciones como empleador',
+    ],
+  },
+  {
+    slug: 'recoletos',
+    nombre: 'Recoletos Consultores',
+    sector: 'inmobiliaria',
+    actividad: 'Correduría de seguros',
+    inversion: null,
+    unidades: 40,
+    descripcion: [
+      'Recoletos Consultores es una franquicia para montar una correduría de seguros con independencia: el franquiciado vende seguros de varias compañías apoyándose en la estructura y los acuerdos de la central.',
+      'El seguro es un negocio de cartera: las renovaciones generan ingresos recurrentes año tras año. Los primeros años se construye; después, la cartera trabaja.',
+    ],
+    incluye: [
+      'Acceso a convenios con aseguradoras',
+      'Formación técnica en productos de seguros',
+      'Herramientas de tarificación y gestión',
+      'Soporte en la constitución de la correduría',
+    ],
+    encaja: [
+      'Perfiles comerciales con paciencia para construir cartera',
+      'Profesionales del seguro que quieren independizarse',
+      'Quien busca ingresos recurrentes a largo plazo',
+    ],
+    revisar: [
+      'Reparto de comisiones con la central, en alta y en renovación',
+      'Propiedad de la cartera si dejas la red',
+      'Tiempo realista hasta vivir de las renovaciones',
+    ],
+  },
+  {
+    slug: 'wayalia',
+    nombre: '#Wayalia',
+    sector: 'servicios',
+    actividad: 'Cuidado de personas mayores a domicilio',
+    inversion: 15900,
+    unidades: 40,
+    descripcion: [
+      '#Wayalia es una franquicia especializada en cuidado de personas mayores a domicilio: selección de cuidadores, gestión de servicios y acompañamiento a las familias.',
+      'Está en el centro de la mayor tendencia demográfica de España: más mayores, viviendo más años, queriendo vivir en casa. La confianza y la calidad de la selección de personal son el producto.',
+    ],
+    incluye: [
+      'Marca y metodología de selección de cuidadores',
+      'Plataforma de gestión de servicios',
+      'Formación y protocolos de calidad',
+      'Apoyo comercial y de marketing local',
+    ],
+    encaja: [
+      'Perfiles con sensibilidad social y capacidad de gestión',
+      'Quien busca un sector con demanda garantizada por demografía',
+      'Ciudades con población envejecida y oferta desprofesionalizada',
+    ],
+    revisar: [
+      'Marco legal del empleo de hogar y su evolución',
+      'Márgenes tras el coste del personal cuidador',
+      'Proceso de selección: la calidad del servicio depende de él',
+    ],
+  },
+  {
+    slug: 'masqrenting',
+    nombre: 'MásQRenting',
+    sector: 'servicios',
+    actividad: 'Renting de vehículos y bienes de equipo',
+    inversion: 4000,
+    unidades: 18,
+    descripcion: [
+      'MásQRenting es una franquicia de intermediación de renting: el franquiciado asesora a empresas y autónomos en el alquiler de vehículos y equipamiento, cobrando comisiones de las operaciones.',
+      'Con una de las inversiones más bajas del catálogo, es un negocio puramente comercial: sin local obligatorio, sin stock, todo depende de la capacidad de prospección.',
+    ],
+    incluye: [
+      'Acuerdos con proveedores de renting',
+      'Formación de producto y comercial',
+      'Herramientas de comparación y gestión',
+      'Marca y materiales de venta',
+    ],
+    encaja: [
+      'Comerciales con agenda de contactos empresa',
+      'Quien busca bajísima inversión y sin local',
+      'Perfiles que ya trabajan con pymes y autónomos',
+    ],
+    revisar: [
+      'Comisiones medias por operación y tiempo de cobro',
+      'Exclusividad de proveedores y condiciones reales',
+      'Resultados medios de franquiciados en su primer año',
+    ],
+  },
+  {
+    slug: 'jijonenca',
+    nombre: 'Jijonenca',
+    sector: 'hosteleria',
+    actividad: 'Heladerías y turrones',
+    inversion: null,
+    unidades: 1100,
+    descripcion: [
+      'Jijonenca es una de las marcas artesanas de helado y turrón con más historia de España, con una red de establecimientos que la convierte en un clásico de la franquicia alimentaria.',
+      'El modelo combina tienda de heladería con venta de turrón y dulces: dos temporadas que se complementan y suavizan la estacionalidad típica del helado.',
+    ],
+    incluye: [
+      'Marca artesana con décadas de recorrido',
+      'Producto propio: helados, turrones, dulces',
+      'Proyecto de tienda y formación',
+      'Apoyo logístico y comercial',
+    ],
+    encaja: [
+      'Ubicaciones con tránsito turístico o comercial',
+      'Perfiles de hostelería o alimentación',
+      'Quien valora una marca tradicional consolidada',
+    ],
+    revisar: [
+      'Condiciones de compra de producto y margen real',
+      'Estacionalidad de tu ubicación concreta',
+      'Competencia de heladerías artesanas independientes',
+    ],
+  },
+  {
+    slug: 'yves-rocher',
+    nombre: 'Yves Rocher',
+    sector: 'salud',
+    actividad: 'Cosmética y estética',
+    inversion: 35000,
+    unidades: 94,
+    descripcion: [
+      'Yves Rocher es la marca francesa de cosmética vegetal con presencia mundial, cuyas tiendas combinan venta de producto con cabina de tratamientos estéticos.',
+      'Es retail de belleza con recurrencia: la clienta fiel compra cada mes. La cabina de tratamientos añade margen de servicio al margen de producto.',
+    ],
+    incluye: [
+      'Marca internacional y catálogo propio',
+      'Formación en producto y tratamientos',
+      'Diseño de tienda y merchandising',
+      'Campañas y programa de fidelización',
+    ],
+    encaja: [
+      'Perfiles del mundo de la belleza y la cosmética',
+      'Ubicaciones comerciales con público femenino recurrente',
+      'Quien busca retail con componente de servicio',
+    ],
+    revisar: [
+      'Rentabilidad de tiendas en ubicaciones similares a la tuya',
+      'Peso real de la cabina de tratamientos en los ingresos',
+      'Competencia online de la propia marca',
+    ],
+  },
+  {
+    slug: 'farmatural',
+    nombre: 'Farmatural',
+    sector: 'salud',
+    actividad: 'Parafarmacia, dietética y herbolario',
+    inversion: 20000,
+    unidades: 42,
+    descripcion: [
+      'Farmatural es una franquicia de parafarmacia y herbolario: productos de salud natural, dietética y complementos, en un formato de tienda asesora.',
+      'El sector del bienestar natural crece con la preocupación por la salud preventiva. La clave del modelo es el asesoramiento: el cliente paga por la recomendación, no solo por el producto.',
+    ],
+    incluye: [
+      'Marca y surtido de parafarmacia',
+      'Formación de producto',
+      'Proyecto de tienda',
+      'Apoyo comercial y promocional',
+    ],
+    encaja: [
+      'Perfiles con interés por la salud y el trato asesor',
+      'Ubicaciones de proximidad con población fiel',
+      'Quien busca retail de salud sin ser farmacia',
+    ],
+    revisar: [
+      'Competencia de farmacias con secciones de parafarmacia',
+      'Márgenes por familia de producto',
+      'Normativa de productos sanitarios y complementos',
+    ],
+  },
+  {
+    slug: 'euromaster',
+    nombre: 'Euromaster',
+    sector: 'automocion',
+    actividad: 'Talleres de mantenimiento integral del vehículo',
+    inversion: null,
+    unidades: 408,
+    descripcion: [
+      'Euromaster es la red de talleres de neumáticos y mantenimiento del grupo Michelin, una de las marcas técnicas más reconocidas de la posventa del automóvil en Europa.',
+      'La posventa del automóvil es un sector de demanda estable: el parque de vehículos envejece y necesita mantenimiento. El modelo requiere nave, equipamiento y equipo técnico.',
+    ],
+    incluye: [
+      'Marca técnica de primer nivel',
+      'Condiciones de compra del grupo',
+      'Formación técnica del personal',
+      'Sistemas de gestión de taller',
+    ],
+    encaja: [
+      'Profesionales del taller que quieren marca y estructura',
+      'Inversores con nave y acceso a vehículos rodados',
+      'Zonas industriales con parque automovilístico alto',
+    ],
+    revisar: [
+      'Inversión total con nave, equipamiento y señalética',
+      'Competencia de talleres low-cost y concesionarios',
+      'Acuerdos con flotas y aseguradoras de la zona',
+    ],
+  },
+  {
+    slug: 'feu-vert',
+    nombre: 'Feu Vert',
+    sector: 'automocion',
+    actividad: 'Reparación rápida del automóvil',
+    inversion: 100000,
+    unidades: 106,
+    descripcion: [
+      'Feu Vert es la cadena francesa de centros de reparación rápida: neumáticos, frenos, mantenimiento y distribuidor de recambio, con décadas de presencia en España.',
+      'Su formato combina taller con tienda de recambios, lo que diversifica ingresos. Requiere inversión alta en nave y equipamiento, pero el ticket medio y la frecuencia de visita son sólidos.',
+    ],
+    incluye: [
+      'Marca consolidada en posventa del automóvil',
+      'Central de compras y logística de recambios',
+      'Formación técnica y comercial',
+      'Herramientas de gestión y cita previa',
+    ],
+    encaja: [
+      'Profesionales de la mecánica con ambición empresarial',
+      'Ubicaciones con acceso rodado y población de vehículos alta',
+      'Inversores que buscan un sector técnico y estable',
+    ],
+    revisar: [
+      'Cuenta de explotación real de centros comparables',
+      'Peso de la tienda de recambio frente al taller',
+      'Competencia de cadenas de mantenimiento rápido cercanas',
+    ],
+  },
+  {
+    slug: 'amorino',
+    nombre: 'Amorino',
+    sector: 'hosteleria',
+    actividad: 'Boutiques de helado artesanal',
+    inversion: 200000,
+    unidades: 242,
+    descripcion: [
+      'Amorino es la cadena internacional de boutiques de gelato artesanal famosa por su helado en forma de flor, con tiendas en las zonas más premium de las grandes ciudades.',
+      'Es hostelería de impulso en ubicación ultra-prime: el modelo solo funciona con tráfico peatonal turístico masivo. Inversión y alquileres altos, ticket y margen también.',
+    ],
+    incluye: [
+      'Marca premium con producto icónico',
+      'Diseño de boutique y proyecto llave en mano',
+      'Formación de equipo y cadena de frío',
+      'Marketing internacional',
+    ],
+    encaja: [
+      'Ubicaciones turísticas de primerísimo nivel',
+      'Inversores con experiencia en hostelería de alto tráfico',
+      'Quien acepta estacionalidad y alquileres prime',
+    ],
+    revisar: [
+      'Ratio ventas/alquiler en ubicaciones comparables',
+      'Ventas fuera de temporada turística',
+      'Costes de personal en un negocio de alta rotación',
+    ],
+  },
+  {
+    slug: 'ben-and-jerrys',
+    nombre: "Ben & Jerry's",
+    sector: 'hosteleria',
+    actividad: 'Heladería',
+    inversion: 35000,
+    unidades: 12,
+    descripcion: [
+      "Ben & Jerry's es la marca estadounidense de helado con personalidad propia, cuyas scoop shops combinan producto premium con una experiencia de marca muy reconocible.",
+      'La marca vende sola entre su público, pero el modelo de tienda depende, como todo el helado, de ubicación y temporada: turismo, ocio y tránsito peatonal.',
+    ],
+    incluye: [
+      'Marca global con comunidad de fans',
+      'Producto y logística de frío',
+      'Diseño de tienda',
+      'Campañas y activaciones de marca',
+    ],
+    encaja: [
+      'Zonas de ocio y turismo con público joven',
+      'Perfiles de hostelería que valoran marca experiencial',
+      'Quien busca un formato de tienda relativamente simple',
+    ],
+    revisar: [
+      'Estacionalidad real fuera de zonas turísticas',
+      'Número de tiendas en España y resultados disponibles',
+      'Coste de ubicaciones de ocio prime',
+    ],
+  },
+  {
+    slug: 'pannus',
+    nombre: 'Pannus',
+    sector: 'hosteleria',
+    actividad: 'Panadería - cafetería',
+    inversion: 60000,
+    unidades: 40,
+    descripcion: [
+      'Pannus es una cadena de panadería-cafetería con obrador propio: pan del día, bollería y servicio de cafetería en formato de barrio y de centro comercial.',
+      'El modelo combina dos negocios: el pan (recurrencia diaria, margen fino) y la cafetería (ticket mayor, margen grueso). La ubicación de proximidad es su terreno natural.',
+    ],
+    incluye: [
+      'Marca y producto de obrador propio',
+      'Formación de panadería y cafetería',
+      'Proyecto de tienda',
+      'Apoyo operativo y comercial',
+    ],
+    encaja: [
+      'Ubicaciones de barrio con tránsito matinal',
+      'Perfiles de hostelería o alimentación',
+      'Quien busca un clásico de proximidad con demanda diaria',
+    ],
+    revisar: [
+      'Márgenes reales: pan frente a cafetería',
+      'Coste de personal de obrador en la cuenta',
+      'Competencia de panaderías y cadenas de café cercanas',
+    ],
+  },
+  {
+    slug: 'guardaya',
+    nombre: 'GuardaYa!',
+    sector: 'servicios',
+    actividad: 'Alquiler de trasteros',
+    inversion: 90000,
+    unidades: null,
+    descripcion: [
+      'GuardaYa! opera en el self-storage: alquiler de trasteros y guardamuebles para particulares y empresas, un sector que crece con la vivienda pequeña y la movilidad.',
+      'Es un negocio inmobiliario de explotación: la inversión va al inmueble y su acondicionamiento; después, los ingresos son alquileres recurrentes con ocupación creciente.',
+    ],
+    incluye: [
+      'Marca y know-how del formato self-storage',
+      'Proyecto de acondicionamiento del inmueble',
+      'Sistemas de seguridad y acceso',
+      'Herramientas de gestión y reserva',
+    ],
+    encaja: [
+      'Inversores con inmueble propio o acceso a naves',
+      'Zonas urbanas densas con vivienda pequeña',
+      'Quien busca ingresos recurrentes con gestión ligera',
+    ],
+    revisar: [
+      'Ocupación media del sector en tu ciudad y curva de maduración',
+      'Coste del inmueble frente a tarifa por metro alquilable',
+      'Competencia de operadores de self-storage cercanos',
+    ],
+  },
+]
+
+const FRANQUICIAS_NUEVAS: Franquicia[] = [
+  {
+    slug: 'dia',
+    nombre: 'DIA',
+    sector: 'retail',
+    actividad: 'Supermercado de proximidad',
+    inversion: 60000,
+    unidades: 2300,
+    descripcion: [
+      'DIA es una de las cadenas de supermercados más presentes en los barrios de España, y su modelo de franquicia está pensado para entrar con poco capital propio: el canon es simbólico y la central ofrece fórmulas de financiación de la inversión.',
+      'El negocio es el supermercado de barrio de toda la vida, pero con el surtido, la logística y las promociones de una gran cadena. El franquiciado gestiona la tienda; la central pone el músculo de compras.',
+    ],
+    incluye: [
+      'Marca y surtido de una cadena nacional',
+      'Logística y aprovisionamiento diario',
+      'Fórmulas de financiación de la inversión',
+      'Formación y acompañamiento en la apertura',
+    ],
+    encaja: [
+      'Quien quiere un negocio de barrio con marca conocida',
+      'Perfiles con experiencia en comercio o gestión de equipos',
+      'Municipios pequeños: aceptan poblaciones desde ~1.000 habitantes',
+    ],
+    revisar: [
+      'Márgenes del súper de proximidad frente a las grandes superficies',
+      'Horarios y dedicación: el comercio alimentario no descansa',
+      'Competencia de Mercadona, Lidl y otros formatos cercanos',
+    ],
+  },
+  {
+    slug: 'alain-afflelou',
+    nombre: 'Alain Afflelou',
+    sector: 'salud',
+    actividad: 'Óptica y audiología',
+    inversion: 20000,
+    unidades: 200,
+    descripcion: [
+      'Alain Afflelou es una de las ópticas más reconocibles de España gracias a décadas de publicidad. Combina óptica y audiología, dos mercados que crecen con el envejecimiento de la población.',
+      'La marca busca tanto profesionales del sector como inversores, y ofrece distintas fórmulas de entrada según el perfil y el local disponible.',
+    ],
+    incluye: [
+      'Marca líder con campañas nacionales constantes',
+      'Doble línea de negocio: óptica y audiología',
+      'Condiciones de compra de grupo',
+      'Formación técnica y comercial',
+    ],
+    encaja: [
+      'Ópticos que quieren dar el salto a marca propia con respaldo',
+      'Inversores que buscan un sector sanitario estable',
+      'Zonas con población de mediana y avanzada edad',
+    ],
+    revisar: [
+      'Necesidad de personal titulado (óptico-optometrista)',
+      'Competencia de otras cadenas de óptica en la zona',
+      'Margen real tras las promociones nacionales de la marca',
+    ],
+  },
+  {
+    slug: 'lizarran',
+    nombre: 'Lizarran',
+    sector: 'hosteleria',
+    actividad: 'Taberna de pinchos y tapas',
+    inversion: 140000,
+    unidades: 120,
+    descripcion: [
+      'Lizarran es la taberna de pinchos del grupo Comess (con más de 25 años de trayectoria): un formato de barra con pinchos fríos y calientes que todo el mundo entiende a la primera.',
+      'Pertenecer a un grupo hostelero grande significa cocina central, proveedores negociados y un formato probado en cientos de aperturas.',
+    ],
+    incluye: [
+      'Marca consolidada del grupo Comess',
+      'Producto elaborado en cocina central',
+      'Proyecto integral del local y apertura',
+      'Formación del equipo y apoyo operativo continuo',
+    ],
+    encaja: [
+      'Quien busca hostelería con sistema, no improvisación',
+      'Perfiles comerciales con vocación de trato al público',
+      'Ubicaciones con tráfico peatonal alto',
+    ],
+    revisar: [
+      'Costes de personal: la hostelería vive de la plantilla',
+      'Ticket medio y rotación necesarios para cubrir la estructura',
+      'Competencia de bares de tapas independientes de la zona',
+    ],
+  },
+  {
+    slug: 'kiwoko',
+    nombre: 'Kiwoko',
+    sector: 'retail',
+    actividad: 'Tienda de productos para mascotas',
+    inversion: 70000,
+    unidades: 140,
+    descripcion: [
+      'Kiwoko es la cadena líder de productos para mascotas en España. El sector tiene una de las mejores perspectivas del retail: cada vez hay más mascotas y sus dueños gastan más en ellas, incluso en crisis.',
+      'El modelo combina tienda física con el tirón del canal online del grupo, y la central aporta surtido, logística y campañas de marca.',
+    ],
+    incluye: [
+      'Marca líder del sector mascotas',
+      'Surtido completo: alimentación, accesorios e higiene',
+      'Logística y condiciones de compra del grupo',
+      'Formación en producto y nutrición animal',
+    ],
+    encaja: [
+      'Amantes de los animales con perfil comercial',
+      'Zonas residenciales con alta densidad de mascotas',
+      'Quien busca un sector con demanda creciente y recurrente',
+    ],
+    revisar: [
+      'Competencia del canal online en alimentación recurrente',
+      'Rotación de stock y caducidades de pienso',
+      'Local amplio bien ubicado: es la partida clave',
+    ],
+  },
+  {
+    slug: 'nomasvello',
+    nombre: 'No+Vello',
+    sector: 'salud',
+    actividad: 'Depilación láser y estética',
+    inversion: 30000,
+    unidades: 100,
+    descripcion: [
+      'No+Vello popularizó la depilación láser asequible en España y sigue siendo una de las marcas de estética más extendidas, con un modelo de centro compacto y equipo técnico estandarizado.',
+      'Es un negocio de servicios con clientela recurrente: los tratamientos funcionan por sesiones, lo que da ingresos previsibles una vez construida la cartera.',
+    ],
+    incluye: [
+      'Marca con años de presencia nacional',
+      'Equipamiento tecnológico homologado',
+      'Protocolos de tratamiento y formación',
+      'Marketing y captación de clientes de la central',
+    ],
+    encaja: [
+      'Perfiles comerciales orientados al cliente final',
+      'Quien busca un negocio de servicios con recurrencia',
+      'Zonas urbanas con público joven y adulto',
+    ],
+    revisar: [
+      'Regulación sanitaria del láser en tu comunidad autónoma',
+      'Competencia intensa de clínicas y centros low-cost',
+      'Amortización del equipamiento y su renovación tecnológica',
+    ],
+  },
+  {
+    slug: 'santagloria',
+    nombre: 'Santagloria',
+    sector: 'hosteleria',
+    actividad: 'Panadería-cafetería con obrador',
+    inversion: 140000,
+    unidades: 175,
+    descripcion: [
+      'Santagloria (grupo Foodbox) es una de las panaderías-cafetería que más rápido crece en España: obrador a la vista, cafetería de especialidad y un local cuidado que funciona tanto para el desayuno como para la merienda.',
+      'Su formato se ha convertido en referente del "bakery premium de barrio", con aperturas continuas en las principales ciudades españolas.',
+    ],
+    incluye: [
+      'Marca en plena expansión del grupo Foodbox',
+      'Obrador y recetario centralizados',
+      'Diseño del local y acompañamiento en la apertura',
+      'Formación del equipo y apoyo en la operativa diaria',
+    ],
+    encaja: [
+      'Quien busca hostelería de día, sin noches',
+      'Barrios residenciales con poder adquisitivo medio-alto',
+      'Perfiles gestores con trato cercano al cliente',
+    ],
+    revisar: [
+      'Coste del local en las ubicaciones que funcionan',
+      'Personal de obrador y su curva de aprendizaje',
+      'Competencia de panaderías-cafetería en expansión',
+    ],
+  },
+  {
+    slug: 'remax',
+    nombre: 'RE/MAX',
+    sector: 'inmobiliaria',
+    actividad: 'Agencia inmobiliaria',
+    inversion: 50000,
+    unidades: 160,
+    descripcion: [
+      'RE/MAX es la primera marca mundial de intermediación inmobiliaria, presente en más de 110 países. En España opera desde hace casi tres décadas con un modelo basado en agentes asociados.',
+      'El franquiciado monta la oficina y capta agentes; la marca aporta formación, tecnología, red nacional de contactos y una imagen reconocida internacionalmente.',
+    ],
+    incluye: [
+      'La marca inmobiliaria más conocida del mundo',
+      'Sistema de agentes asociados y formación continua',
+      'Tecnología y herramientas de gestión',
+      'Red nacional e internacional de contactos',
+    ],
+    encaja: [
+      'Perfiles comerciales con dotes de liderazgo de equipos',
+      'Quien conoce el mercado inmobiliario de su zona',
+      'Ciudades con mercado de vivienda activo',
+    ],
+    revisar: [
+      'El modelo depende de captar y retener buenos agentes',
+      'Ciclos del mercado inmobiliario y tipos de interés',
+      'Royalty y canon de publicidad sobre facturación: calcula el punto de equilibrio',
+    ],
+  },
+  {
+    slug: 'granier',
+    nombre: 'Granier',
+    sector: 'retail',
+    actividad: 'Panadería artesana',
+    inversion: 100000,
+    unidades: 350,
+    descripcion: [
+      'Granier es una de las cadenas de panaderías más extendidas de España, con cientos de tiendas y un modelo sencillo: pan artesano de proximidad, sin complicaciones.',
+      'Además del formato tradicional, dispone de un modelo de autoempleo con tiendas de reducidas dimensiones pensado para quien quiere gestionar el negocio en primera persona.',
+    ],
+    incluye: [
+      'Marca consolidada con presencia nacional',
+      'Producto de obrador propio',
+      'Formato de autoempleo con inversión reducida',
+      'Formación y apoyo en la gestión diaria',
+    ],
+    encaja: [
+      'Quien busca autoempleo en un negocio tangible',
+      'Barrios y municipios medianos sin panadería de marca',
+      'Perfiles que valoran la simplicidad operativa',
+    ],
+    revisar: [
+      'Horarios de panadería: el día empieza muy pronto',
+      'Mermas y gestión diaria del producto fresco',
+      'Competencia de panaderías tradicionales y obradores de súper',
+    ],
+  },
+]
+
+FRANQUICIAS.push(...FRANQUICIAS_NUEVAS)
+
+export function getFranquicia(slug: string): Franquicia | undefined {
+  return FRANQUICIAS.find((f) => f.slug === slug)
+}
+
+// ---------------------------------------------------------------------------
+// Web oficial de cada marca (verificada) y cifras clave del modelo.
+// Las cifras son ORIENTATIVAS, recopiladas de fichas públicas de directorios
+// sectoriales (infofranquicias, franquiciator, mundofranquicia, etc.).
+// Un campo null = dato no verificable públicamente → "A consultar con la franquicia".
+
+export const WEB_FRANQUICIA: Record<string, string> = {
+  'halcon-viajes': 'https://www.halconviajes.com',
+  naturhouse: 'https://www.naturhouse.es',
+  kumon: 'https://www.kumon.es',
+  'general-optica': 'https://www.generaloptica.es',
+  'mail-boxes-etc': 'https://www.mbe.es',
+  mobalpa: 'https://www.mobalpa.es',
+  eroski: 'https://www.eroski.es',
+  devuelving: 'https://www.devuelving.com',
+  nautalia: 'https://www.nautaliaviajes.com',
+  'speed-queen': 'https://www.speedqueen.es',
+  larome: 'https://www.larome.fr',
+  'haagen-dazs': 'https://www.haagen-dazs.es',
+  donpiso: 'https://www.donpiso.com',
+  'racc-start': 'https://raccautoescuela.es',
+  adaix: 'https://www.adaix.com',
+  interdomicilio: 'https://www.interdomicilio.com',
+  recoletos: 'https://www.recoletosconsultores.com',
+  wayalia: 'https://wayalia.com',
+  masqrenting: 'https://www.masqrenting.es',
+  jijonenca: 'https://www.jijonenca.com',
+  'yves-rocher': 'https://www.yves-rocher.es',
+  farmatural: 'https://www.farmatural.com',
+  euromaster: 'https://www.euromaster.es',
+  'feu-vert': 'https://www.feuvert.es',
+  amorino: 'https://www.amorino.com',
+  'ben-and-jerrys': 'https://www.benjerry.com',
+  pannus: 'https://www.pannus.es',
+  guardaya: 'https://www.guardaya.com',
+  dia: 'https://www.dia.es',
+  'alain-afflelou': 'https://www.afflelou.es',
+  lizarran: 'https://www.lizarran.es',
+  kiwoko: 'https://www.kiwoko.com',
+  nomasvello: 'https://www.nomasvello.com',
+  santagloria: 'https://www.santagloria.com',
+  remax: 'https://www.remax.es',
+  granier: 'https://www.granier-pansartisans.com',
+}
+
+export interface CifrasClave {
+  canonEntrada: string | null // pago inicial por usar la marca
+  royalty: string | null // cuota periódica sobre ventas
+  canonPublicidad: string | null // aportación a la publicidad común
+  duracionContrato: string | null // años de acuerdo
+  superficie: string | null // tamaño de local habitual
+  poblacionMinima: string | null // tamaño de ciudad que piden
+}
+
+export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
+  'halcon-viajes': {
+    canonEntrada: '4.500 – 6.000 €',
+    royalty: 'Variable, en torno al 1,5 – 2 % de las ventas',
+    canonPublicidad: null,
+    duracionContrato: '3 años',
+    superficie: '35 – 50 m² aprox.',
+    poblacionMinima: 'No fija un mínimo',
+  },
+  naturhouse: {
+    canonEntrada: '600 €/año',
+    royalty: 'No hay',
+    canonPublicidad: null,
+    duracionContrato: '5 años renovables',
+    superficie: 'Desde 20 m²',
+    poblacionMinima: '20.000 hab.',
+  },
+  kumon: {
+    canonEntrada: '400 – 600 €',
+    royalty: 'Porcentaje sobre matrículas y mensualidades',
+    canonPublicidad: null,
+    duracionContrato: '1 año renovable',
+    superficie: null,
+    poblacionMinima: null,
+  },
+  'general-optica': {
+    canonEntrada: 'No hay',
+    royalty: '3 % sobre ventas',
+    canonPublicidad: null,
+    duracionContrato: '3 – 5 años',
+    superficie: '100 – 120 m²',
+    poblacionMinima: '25.000 hab.',
+  },
+  'mail-boxes-etc': {
+    canonEntrada: '24.000 €',
+    royalty: '6 % sobre ventas',
+    canonPublicidad: '2,5 % + 1,5 % sobre ventas',
+    duracionContrato: '7 años',
+    superficie: 'Desde 50 m²',
+    poblacionMinima: '15.000 hab.',
+  },
+  mobalpa: {
+    canonEntrada: 'No hay',
+    royalty: 'No hay',
+    canonPublicidad: 'En torno al 3 – 5 %',
+    duracionContrato: '5 años',
+    superficie: '200 – 350 m²',
+    poblacionMinima: '80.000 hab.',
+  },
+  eroski: {
+    canonEntrada: 'No hay',
+    royalty: 'En torno al 1,7 % mensual (incluye transporte)',
+    canonPublicidad: null,
+    duracionContrato: '5 años prorrogables',
+    superficie: '150 – 200 m²',
+    poblacionMinima: '1.500 – 2.000 hab.',
+  },
+  devuelving: {
+    canonEntrada: 'Incluido en la inversión inicial',
+    royalty: 'No hay',
+    canonPublicidad: 'No hay',
+    duracionContrato: 'Indefinido',
+    superficie: 'No hace falta local',
+    poblacionMinima: 'Sin mínimo',
+  },
+  nautalia: {
+    canonEntrada: '1.500 – 2.500 €',
+    royalty: 'Desde 150 €/mes',
+    canonPublicidad: null,
+    duracionContrato: '3 años prorrogables',
+    superficie: 'Desde 30 m²',
+    poblacionMinima: '30.000 hab.',
+  },
+  'speed-queen': {
+    canonEntrada: 'No hay',
+    royalty: 'No hay',
+    canonPublicidad: 'No hay',
+    duracionContrato: '5 años',
+    superficie: '50 – 60 m²',
+    poblacionMinima: '10.000 hab.',
+  },
+  larome: {
+    canonEntrada: 'No hay',
+    royalty: 'No hay',
+    canonPublicidad: 'No hay',
+    duracionContrato: '5 años',
+    superficie: 'Desde 20 m²',
+    poblacionMinima: null,
+  },
+  'haagen-dazs': {
+    canonEntrada: '25.000 € (primera tienda; menos en las siguientes)',
+    royalty: 'No hay',
+    canonPublicidad: null,
+    duracionContrato: '5 años',
+    superficie: '45 – 60 m² + terraza',
+    poblacionMinima: '100.000 hab.',
+  },
+  donpiso: {
+    canonEntrada: 'Desde 10.000 € (según zona)',
+    royalty: 'Variable sobre facturación o cuota fija (~600 €/mes)',
+    canonPublicidad: null,
+    duracionContrato: '5 años renovables',
+    superficie: '40 – 50 m²',
+    poblacionMinima: 'No fija un mínimo',
+  },
+  'racc-start': {
+    canonEntrada: '7.000 €',
+    royalty: '4 % sobre facturación',
+    canonPublicidad: '1 – 2,5 % sobre facturación',
+    duracionContrato: '5 años',
+    superficie: 'Desde 90 m²',
+    poblacionMinima: null,
+  },
+  adaix: {
+    canonEntrada: null,
+    royalty: null,
+    canonPublicidad: null,
+    duracionContrato: null,
+    superficie: null,
+    poblacionMinima: null,
+  },
+  interdomicilio: {
+    canonEntrada: '10.900 – 14.900 €',
+    royalty: '3,5 – 5 % sobre ventas',
+    canonPublicidad: '1,5 – 2 % sobre ventas',
+    duracionContrato: '5 años',
+    superficie: 'Desde 15 – 50 m²',
+    poblacionMinima: '40.000 – 50.000 hab.',
+  },
+  recoletos: {
+    canonEntrada: 'No hay',
+    royalty: '290 €/mes',
+    canonPublicidad: 'No hay',
+    duracionContrato: '5 años',
+    superficie: null,
+    poblacionMinima: null,
+  },
+  wayalia: {
+    canonEntrada: '13.900 €',
+    royalty: '375 €/mes + 3,5 % sobre ventas',
+    canonPublicidad: '150 €/mes',
+    duracionContrato: '5 años renovables',
+    superficie: 'Sin mínimo',
+    poblacionMinima: '20.000 – 25.000 hab.',
+  },
+  masqrenting: {
+    canonEntrada: '3.500 €',
+    royalty: 'No hay',
+    canonPublicidad: 'No hay',
+    duracionContrato: '3 años',
+    superficie: 'No hace falta local',
+    poblacionMinima: null,
+  },
+  jijonenca: {
+    canonEntrada: 'No hay',
+    royalty: 'No hay',
+    canonPublicidad: 'No hay',
+    duracionContrato: '5 años',
+    superficie: 'Desde 30 m²',
+    poblacionMinima: null,
+  },
+  'yves-rocher': {
+    canonEntrada: '5.000 €',
+    royalty: 'Canon comercial por explotación',
+    canonPublicidad: 'No hay',
+    duracionContrato: '5 – 7 años',
+    superficie: '50 – 90 m²',
+    poblacionMinima: '60.000 – 70.000 hab.',
+  },
+  farmatural: {
+    canonEntrada: null,
+    royalty: null,
+    canonPublicidad: null,
+    duracionContrato: null,
+    superficie: null,
+    poblacionMinima: null,
+  },
+  euromaster: {
+    canonEntrada: null,
+    royalty: null,
+    canonPublicidad: null,
+    duracionContrato: null,
+    superficie: null,
+    poblacionMinima: null,
+  },
+  'feu-vert': {
+    canonEntrada: 'No hay',
+    royalty: '4,5 % sobre facturación',
+    canonPublicidad: '2,5 % sobre facturación',
+    duracionContrato: '5 años',
+    superficie: '250 – 300 m²',
+    poblacionMinima: '20.000 hab.',
+  },
+  amorino: {
+    canonEntrada: '30.000 €',
+    royalty: 'No hay',
+    canonPublicidad: 'Hasta un 2 % de las ventas',
+    duracionContrato: '5 – 7 años',
+    superficie: 'Desde 30 m²',
+    poblacionMinima: '100.000 hab.',
+  },
+  'ben-and-jerrys': {
+    canonEntrada: null,
+    royalty: null,
+    canonPublicidad: null,
+    duracionContrato: null,
+    superficie: null,
+    poblacionMinima: null,
+  },
+  pannus: {
+    canonEntrada: '15.000 €',
+    royalty: 'No hay',
+    canonPublicidad: 'No hay',
+    duracionContrato: '10 años',
+    superficie: '50 – 150 m²',
+    poblacionMinima: '30.000 hab.',
+  },
+  guardaya: {
+    canonEntrada: null,
+    royalty: null,
+    canonPublicidad: null,
+    duracionContrato: null,
+    superficie: null,
+    poblacionMinima: null,
+  },
+  dia: {
+    canonEntrada: '300 €',
+    royalty: 'No hay',
+    canonPublicidad: 'No hay',
+    duracionContrato: '5 años',
+    superficie: '400 – 500 m²',
+    poblacionMinima: 'Desde 1.000 hab.',
+  },
+  'alain-afflelou': {
+    canonEntrada: null,
+    royalty: null,
+    canonPublicidad: null,
+    duracionContrato: null,
+    superficie: '50 – 80 m² aprox.',
+    poblacionMinima: null,
+  },
+  lizarran: {
+    canonEntrada: '25.000 € aprox.',
+    royalty: '5 % sobre ventas',
+    canonPublicidad: '2 % sobre ventas',
+    duracionContrato: '10 años',
+    superficie: '150 – 200 m²',
+    poblacionMinima: '40.000 hab.',
+  },
+  kiwoko: {
+    canonEntrada: '15.000 € aprox.',
+    royalty: '2 % sobre ventas',
+    canonPublicidad: '1 % sobre ventas',
+    duracionContrato: '5 años',
+    superficie: '200 – 300 m²',
+    poblacionMinima: '30.000 hab.',
+  },
+  nomasvello: {
+    canonEntrada: '9.000 € aprox.',
+    royalty: '7 % sobre ventas',
+    canonPublicidad: '3 % sobre ventas',
+    duracionContrato: '5 años',
+    superficie: '50 – 70 m²',
+    poblacionMinima: '30.000 hab.',
+  },
+  santagloria: {
+    canonEntrada: '25.000 € aprox.',
+    royalty: '4 – 5 % sobre ventas',
+    canonPublicidad: '2 % sobre ventas',
+    duracionContrato: '5 años',
+    superficie: '150 – 200 m²',
+    poblacionMinima: '30.000 hab.',
+  },
+  remax: {
+    canonEntrada: '20.000 €',
+    royalty: '6 % sobre facturación',
+    canonPublicidad: '3 % sobre facturación',
+    duracionContrato: '5 años',
+    superficie: '70 – 120 m²',
+    poblacionMinima: '10.000 hab.',
+  },
+  granier: {
+    canonEntrada: '8.000 €',
+    royalty: 'No hay (formato estándar) o 2 % (autoempleo)',
+    canonPublicidad: 'No hay',
+    duracionContrato: '5 – 10 años',
+    superficie: 'Desde 40 m² (autoempleo) hasta 120 m²',
+    poblacionMinima: '15.000 hab.',
+  },
+}
