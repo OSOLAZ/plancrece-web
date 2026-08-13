@@ -10,7 +10,7 @@ const PASOS = [
     texto:
       'Rellena el formulario (2 minutos). Queremos entender tu idea — y tu situación personal — mejor que nadie. Sin compromiso y sin coste.',
     media: 'imagen' as const,
-    src: '/1.png',
+    src: '/1.webp',
     alt: 'Persona contando su idea de negocio',
     cta: { label: 'Ir al formulario', to: '/contacto' },
   },
@@ -20,7 +20,7 @@ const PASOS = [
     texto:
       'Uno o varios consultores valoran tu idea: si el sector vive un buen momento, los pros y los contras, y si encaja con tu perfil. Si la vemos inviable, te lo decimos con honestidad y te ayudamos a mejorarla o buscar otra. Gratis.',
     media: 'imagen' as const,
-    src: '/2.png',
+    src: '/2.webp',
     alt: 'Consultora analizando documentos con cliente',
   },
   {
@@ -29,7 +29,7 @@ const PASOS = [
     texto:
       'Si la vemos viable, te recomendamos el plan que encaja con tu caso (Estándar o Avanzado) y te enviamos un formulario personalizado con las preguntas exactas que necesitamos para valorar y analizar tu proyecto y encontrar la mejor estrategia para ti.',
     media: 'imagen' as const,
-    src: '/3b.png',
+    src: '/3b.webp',
     alt: 'Plan de empresa listo con gráficos y fotos del negocio',
   },
   {
@@ -38,7 +38,7 @@ const PASOS = [
     texto:
       'Pagas el plan y en unos 7 días (te avisamos si necesita más) lo construimos con los consultores más adecuados para tu sector. Si detectamos alguna ayuda o préstamo que pueda ir bien para ti, te preguntamos durante el proceso.',
     media: 'imagen' as const,
-    src: '/4.png',
+    src: '/4.webp',
     alt: 'Consultores analizando el mercado y construyendo el plan',
   },
   {
@@ -47,7 +47,7 @@ const PASOS = [
     texto:
       'Recibes tu plan de empresa y todo lo que lo acompaña. Es tuyo, en PDF y en formato editable: modifícalo las veces que quieras, sin volver a pagar.',
     media: 'imagen' as const,
-    src: '/5.png',
+    src: '/5.webp',
     alt: 'Persona frente a puertas abiertas: banco, socios, ayudas',
     destacado: true,
     entregables: [
