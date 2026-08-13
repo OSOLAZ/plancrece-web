@@ -39,8 +39,8 @@ const CATEGORIAS = [
         a: 'PDF profesional y versión editable. El plan Inversor añade pitch deck.',
       },
       {
-        q: '¿Cómo protegéis mi idea? ¿Qué es el NDA?',
-        a: 'Antes de que nos cuentes nada firmamos un acuerdo de confidencialidad (NDA): un compromiso legal por escrito de que tu idea, tus datos y tus números nunca salen de nuestras manos. Ni los usamos, ni los compartimos, ni los publicamos.',
+        q: '¿Cómo protegéis mi idea?',
+        a: 'Desde la valoración gratuita tu información se trata como confidencial: solo la usamos para valorar tu proyecto y nunca se comparte, publica ni reutiliza. Si contratas, la confidencialidad queda además por escrito en las condiciones del servicio (NDA).',
       },
       {
         q: '¿Se notará que no he hecho yo el plan?',
@@ -94,7 +94,7 @@ const CATEGORIAS = [
       },
       {
         q: '¿Puedo pedir cambios?',
-        a: 'Sí, cada plan incluye sus rondas de revisión.',
+        a: 'Sí. Antes de entregar, contrastamos el plan contigo y lo cerramos solo cuando lo das por bueno.',
       },
       {
         q: '¿Tengo prisa?',
@@ -115,7 +115,7 @@ const CATEGORIAS = [
       },
       {
         q: '¿Mi idea está segura?',
-        a: 'NDA firmado antes de empezar. Sin excepciones.',
+        a: 'Confidencialidad garantizada desde la valoración gratuita, y por escrito al contratar. Sin excepciones.',
       },
     ],
   },

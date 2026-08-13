@@ -9,7 +9,7 @@ const DATOS = {
   titular: '[NOMBRE O RAZÓN SOCIAL DEL TITULAR]',
   nif: '[NIF/CIF]',
   domicilio: '[DOMICILIO SOCIAL COMPLETO]',
-  email: 'hola@plancrece.com',
+  email: 'clientes@plancrece.com',
   dominio: 'plancrece.com',
   fecha: '[FECHA DE ÚLTIMA ACTUALIZACIÓN]',
 }
@@ -220,7 +220,7 @@ function Condiciones() {
       <Seccion titulo="1. Qué incluye el servicio">
         <p>
           PlanCrece elabora planes de negocio personalizados según el plan
-          contratado (Estándar, Avanzado o Premium), tal y como se describe en
+          contratado (Estándar o Avanzado), tal y como se describe en
           la página de precios vigente en el momento de la contratación. Antes
           de cualquier pago puedes enviar tu idea para una validación
           gratuita: te diremos con sinceridad si le vemos recorrido.
@@ -231,7 +231,7 @@ function Condiciones() {
           <li>Validación gratuita de la idea: respuesta en unos 3 días laborables.</li>
           <li>Tras el encargo y el pago, realizamos una entrevista para recoger la información necesaria.</li>
           <li>El plazo de entrega se confirma por escrito al contratar (habitualmente [PLAZO HABITUAL, p. ej. 7-10 días laborables]).</li>
-          <li>Cada plan incluye las revisiones indicadas en su descripción.</li>
+          <li>Antes de la entrega final, contrastamos el plan contigo y lo cerramos solo cuando lo des por bueno.</li>
         </ul>
       </Seccion>
       <Seccion titulo="3. Entrega y propiedad del plan">
@@ -261,9 +261,9 @@ function Condiciones() {
           personalizado que se entrega completo en formato descargable y
           editable— no cabe su devolución, conforme a la excepción prevista
           en el artículo 103.m) del Real Decreto Legislativo 1/2007 para
-          contenido digital no prestado en soporte material. Las revisiones
-          incluidas en tu plan sirven para ajustar cualquier punto concreto
-          tras la entrega.
+          contenido digital no prestado en soporte material. Precisamente por
+          eso el plan se contrasta contigo antes de la entrega final y no se
+          cierra hasta que lo das por bueno.
         </p>
       </Seccion>
       <Seccion titulo="6. Naturaleza del servicio">

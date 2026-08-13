@@ -33,21 +33,51 @@ import CountUp from '../components/CountUp'
 import ProjectionVisual from '../components/ProjectionVisual'
 
 const CASOS = [
-  { icon: Lightbulb, label: 'Emprendedores con una idea' },
-  { icon: RefreshCw, label: 'Personas en el paro que quieren emprender' },
-  { icon: ClipboardList, label: 'Autónomos que quieren crecer' },
-  { icon: Rocket, label: 'Startups en busca de inversión' },
-  { icon: Store, label: 'Franquiciados antes de abrir' },
-  { icon: Building, label: 'Pymes que se expanden' },
+  { icon: Lightbulb, label: 'Emprendedores con una idea', img: '/negocios/cafeteria.jpg', alt: 'Interior de una cafetería de barrio' },
+  { icon: RefreshCw, label: 'Personas en el paro que quieren emprender', img: '/negocios/panaderia.jpg', alt: 'Panadero amasando en su obrador' },
+  { icon: ClipboardList, label: 'Autónomos que quieren crecer', img: '/negocios/peluqueria.jpg', alt: 'Peluquería en pleno trabajo' },
+  { icon: Rocket, label: 'Startups en busca de inversión', img: '/negocios/bicis.jpg', alt: 'Taller de alquiler y reparación de bicicletas' },
+  { icon: Store, label: 'Franquiciados antes de abrir', img: '/negocios/zapateria.jpg', alt: 'Zapatería tradicional con su mercancía expuesta' },
+  { icon: Building, label: 'Pymes que se expanden', img: '/negocios/taller.jpg', alt: 'Mecánico trabajando en su taller' },
 ]
 
 const VIAS_FINANCIACION = [
-  { icon: Landmark, title: 'Financiación bancaria', text: 'Estructura y ratios que las entidades esperan ver.' },
-  { icon: Building2, title: 'ENISA', text: 'Proyecto innovador con números viables y defendibles.' },
-  { icon: FileText, title: 'Subvenciones y ayudas', text: 'Documento adaptado a las bases de tu convocatoria.' },
-  { icon: RefreshCw, title: 'Capitalización del paro', text: 'Proyecto de viabilidad para justificar tu pago único.' },
-  { icon: Briefcase, title: 'Inversores', text: 'Proyecciones y escenarios que sostienen la negociación.' },
-  { icon: CheckCircle2, title: 'Validación', text: 'Saber si tu idea es viable antes de invertir en ella.' },
+  {
+    icon: Landmark,
+    title: 'Financiación bancaria y préstamos blandos',
+    text: 'Estructura, ratios y previsiones en el formato que las entidades esperan ver — incluidas líneas con condiciones bonificadas, como las ICO.',
+    info: 'Un préstamo blando es un préstamo con condiciones más favorables que las del mercado (tipo de interés bonificado, plazos largos o carencia), normalmente impulsado por entidades públicas como el ICO para apoyar a emprendedores y pymes. Suelen pedir un plan de negocio solvente que demuestre que podrás devolverlo. Concederlo o no es siempre decisión de la entidad.',
+  },
+  {
+    icon: Building2,
+    title: 'Microcréditos',
+    text: 'Para importes más pequeños, hay entidades y programas que valoran el proyecto y la persona, no solo las garantías. Tu plan es el documento que presentan.',
+    info: 'Un microcrédito es un préstamo de importe reducido (habitualmente hasta 25.000 €, según la entidad y el programa) pensado para personas que empiezan y no siempre pueden aportar avales. Algunas entidades los conceden valorando sobre todo la viabilidad del proyecto y el perfil del emprendedor, sujeto a requisitos y análisis de cada entidad.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Capitalización del paro',
+    text: 'Proyecto de viabilidad para justificar tu pago único, redactado con los criterios que se exigen en la solicitud.',
+    info: 'Si estás en paro y tienes prestación pendiente de cobrar, puedes solicitar cobrarla de una sola vez (el "pago único" o capitalización) para invertirla en iniciar tu actividad, siempre que cumplas los requisitos del SEPE. Suele exigirse una memoria o plan de viabilidad que justifique el proyecto: es exactamente el documento que preparamos.',
+  },
+  {
+    icon: FileText,
+    title: 'Ayudas públicas y subvenciones',
+    text: 'Documento adaptado a las bases de tu convocatoria, sin construir el proyecto sobre una ayuda que aún no tienes.',
+    info: 'Las ayudas y subvenciones (estatales, autonómicas o locales) suelen tener convocatorias con plazos, requisitos y gastos elegibles concretos, y muchas se conceden por concurrencia: presentarse no garantiza conseguirla. Por eso nunca construimos un plan contando con una subvención como si fuera segura: analizamos si existe una oportunidad real y adaptamos el documento a las bases.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Inversores',
+    text: 'Proyecciones y escenarios defendibles que sostienen la negociación — y la presentación ejecutiva para contarlo en quince minutos.',
+    info: 'Un inversor aporta dinero a tu proyecto a cambio de una participación, no como un préstamo: gana si el negocio gana. Antes de decidir, examinará tus números, tu mercado y tu capacidad de ejecutar. Un plan con proyecciones defendibles y una presentación clara no garantizan la inversión, pero son la condición para que te tomen en serio.',
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Socios',
+    text: 'El plan y la presentación para explicar tu proyecto con claridad a quien puede aportar capital, experiencia o contactos.',
+    info: 'Un socio no solo puede aportar dinero: también experiencia, contactos, capacidad comercial u operativa. Para convencer a la persona adecuada necesitas explicar tu proyecto con claridad: qué es, cómo gana dinero, qué necesitas y qué ofreces a cambio. Eso es exactamente lo que el plan y la presentación ejecutiva ponen sobre la mesa.',
+  },
 ]
 
 const INCLUYE = [
@@ -69,28 +99,69 @@ const SECTORES = [
   'Franquicias',
 ]
 
-// Testimonios anonimizados: coherentes con el NDA, la confidencialidad
-// se presenta como valor, no como excusa.
+// Testimonios anonimizados con voz humana: sector concreto + motivo + zona amplia,
+// nunca nombre/negocio/ciudad exacta. La anonimización se presenta como prueba de
+// la confidencialidad del servicio, no como excusa.
 const TESTIMONIOS = [
   {
-    cita: 'Presenté el plan a dos bancos. Los dos me pidieron la siguiente reunión.',
-    nombre: 'Fundadora de un ecommerce de cosmética',
-    detalle: 'Zaragoza · Financiación obtenida',
+    cita: 'yo venia con la idea dandome vueltas en la cabeza desde hace un año largo pero de numeros ni idea, eso de las previsiones me sonaba a chino. Hice lo de la valoracion gratis casi por probar y me dijeron cosas muy concretas de mi proyecto, no cosas genericas. Al final pille el plan entero y con eso fui a dos bancos. En el segundo ya llevaba las respuestas preparadas jeje.',
+    nombre: 'Cafetería de especialidad',
+    detalle: 'Financiación bancaria · Andalucía · 2024 · Plan Estándar',
   },
   {
-    cita: 'Necesitaba el plan para una ayuda autonómica. Aprobada a la primera.',
-    nombre: 'Propietario de un taller de bicicletas',
-    detalle: 'Valladolid · Subvención concedida',
+    cita: 'el bar ya lo tengo abierto desde hace años, lo que necesitaba era el papel para pedir la subvencion de aqui. Pense que seria un tramite de rellenar huecos y ya. Pues no, me hicieron preguntas que ni mi gestor me habia planteado en la vida, alguna me incomodo la verdad, pero luego vi que tenia sentido. La subvencion esta presentada, a ver que pasa.',
+    nombre: 'Bar-restaurante',
+    detalle: 'Ayudas y subvenciones · Castilla-La Mancha · 2023 · Plan Avanzado',
   },
   {
-    cita: 'Capitalicé mi paro y el proyecto de viabilidad era el requisito clave. Sin él, no hay pago único.',
-    nombre: 'Socio de un estudio de diseño',
-    detalle: 'Valencia · Pago único concedido',
+    cita: 'vendo ropa online desde 2022 y para lo del kit digital me pedian un monton de cosas. Lo que mas me ha servido es la presentacion esa resumida, porque en la reunion con la entidad de ayudas en un cuarto de hora lo tenian claro, cuando otras veces me ha tocado explicarme mil veces y ni asi. Eso lo pague con gusto.',
+    nombre: 'E-commerce de moda',
+    detalle: 'Kit Digital + financiación · Comunidad Valenciana · 2024 · Plan Avanzado',
   },
   {
-    cita: 'Las proyecciones fueron lo que convenció al inversor. Sin ellas no hay reunión.',
-    nombre: 'Fundadora de una app de logística',
-    detalle: 'Madrid · Ronda cerrada',
+    cita: 'soy fisio y de negocios poca idea, queria montar mi clinica pero el banco me pedia cosas que no sabia ni lo que eran. Lo mejor es que las previsiones me las explicaron hasta que las entendi yo, y cuando el director de la oficina pregunto por el punto de equilibrio supe contestarle sin mirar el papel. eso no tiene precio.',
+    nombre: 'Clínica de fisioterapia',
+    detalle: 'Financiación bancaria · Galicia · 2024 · Plan Avanzado',
+  },
+  {
+    cita: 'pedi presupuesto en una gestoria antes y me ofrecian un plan "tipo" por casi el doble. aqui lo primero que hicieron fue preguntarme media hora de cosas de MI academia, mi zona, la competencia de al lado. se nota mucho la diferencia cuando lees el documento final.',
+    nombre: 'Academia de idiomas',
+    detalle: 'Plan de negocio completo · Madrid · 2023 · Plan Estándar',
+  },
+  {
+    cita: 'el plan me vino bien para ordenar la idea y descarte dos cosas que habrian sido un agujero de dinero. la primera revision tardo algo mas de lo que me esperaba, aunque la segunda llego en dos dias. en general contento.',
+    nombre: 'Estudio de tatuaje',
+    detalle: 'Validación de idea · País Vasco · 2024 · Plan Estándar',
+  },
+  {
+    cita: 'proyecto agricola con transformacion propia, necesitaba el plan para una ayuda leader. conocian la convocatoria mejor que yo y eso que yo llevaba meses leyendomela. presentado en plazo.',
+    nombre: 'Explotación agraria',
+    detalle: 'Ayuda LEADER · Castilla y León · 2023 · Plan Avanzado',
+  },
+  {
+    cita: 'taller de toda la vida, familiar. queria meter el servicio de diagnosis para flotas y mi hermano era el esceptico. el plan le hizo ver los numeros y al final fue el quien dijo vamos a ello. si llego a ser por mi...',
+    nombre: 'Taller mecánico',
+    detalle: 'Expansión de servicios · Murcia · 2024 · Plan Estándar',
+  },
+  {
+    cita: 'tenia una app de reparto de producto local en mente. con la valoracion gratuita me dijeron que parte del modelo no se sostenia antes de gastar un euro en desarrollo. me ahorro meses, literal.',
+    nombre: 'Startup de logística local',
+    detalle: 'Validación de idea · Cataluña · 2024 · Valoración gratuita',
+  },
+  {
+    cita: 'estaba a punto de firmar con una franquicia y pedi la valoracion para contrastar. me señalaron dos clausulas del contrato que yo no habia entendido bien. solo por eso ya merecio la pena escribirles.',
+    nombre: 'Futuro franquiciado',
+    detalle: 'Análisis previo a franquicia · Aragón · 2023 · Valoración gratuita',
+  },
+  {
+    cita: 'no es mi primer negocio, sabia lo que queria: proyecciones serias y un documento presentable para el inversor. entregado en plazo, editable, y sin ninguna marca de quien lo habia preparado. tal cual lo pedi.',
+    nombre: 'Empresa de servicios B2B',
+    detalle: 'Búsqueda de inversor · Madrid · 2024 · Plan Avanzado',
+  },
+  {
+    cita: 'somos dos hermanos con una panaderia artesana y queriamos dar el salto a obrador. el plan nos obligo a pensar cosas que llevabamos años evitando, duele un poco al principio la verdad. pero era lo que necesitabamos.',
+    nombre: 'Panadería artesana',
+    detalle: 'Expansión a obrador · Andalucía · 2025 · Plan Avanzado',
   },
 ]
 
@@ -109,7 +180,7 @@ const FAQ_HOME = [
   },
   {
     q: '¿Mi idea está protegida?',
-    a: 'Firmamos un acuerdo de confidencialidad antes de empezar.',
+    a: 'Desde la valoración gratuita tu información se trata como confidencial: solo se usa para valorar tu proyecto y no se comparte con nadie. Si contratas, la confidencialidad queda por escrito en las condiciones del servicio.',
   },
   {
     q: '¿Garantizáis la financiación?',
@@ -142,6 +213,7 @@ function H2({ children }: { children: React.ReactNode }) {
 export default function Home() {
   const [testimonio, setTestimonio] = useState(0)
   const [faqOpen, setFaqOpen] = useState<number | null>(0)
+  const [viaInfo, setViaInfo] = useState<number | null>(null)
   const swipeStart = useRef<number | null>(null)
 
   return (
@@ -162,6 +234,15 @@ export default function Home() {
               Elaboramos tu plan de negocio con el rigor que exigen bancos, ENISA, inversores y
               convocatorias públicas.
             </p>
+            <div className="mt-5 max-w-xl rounded-xl border-l-4 border-primary bg-white/80 px-4 py-3.5 shadow-sm ring-1 ring-border">
+              <p className="text-sm font-bold uppercase tracking-wide text-[#0B2447]">
+                ¿Crees que sin ahorros no puedes empezar?
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-foreground">
+                No siempre. <strong className="text-[#0B2447]">Pago único · Financiación · Socios · Ayudas.</strong>{' '}
+                Cuéntanos tu situación y analizamos qué camino puede tener sentido.
+              </p>
+            </div>
             <div className="mt-7 lg:hidden">
               <CTAButton />
             </div>
@@ -169,7 +250,12 @@ export default function Home() {
               <CTAButton full={false} />
             </div>
             <p className="mt-3 text-sm text-muted-foreground">
-              Te decimos en 3 días si tu idea es viable · Gratis · NDA firmado
+              Te decimos en 3 días si tu idea es viable · Gratis · Confidencial desde el primer mensaje
+            </p>
+            <p className="mt-3 flex max-w-xl items-start gap-2 text-sm font-medium leading-snug text-[#0B2447]">
+              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+              Tu idea. Tu nombre. Tu plan. — el documento se entrega sin marca de
+              PlanCrece, listo para presentar como tuyo.
             </p>
 
             {/* 3. Barra de credibilidad */}
@@ -193,6 +279,31 @@ export default function Home() {
             <Reveal delay={200} className="mt-8 hidden lg:block">
               <ProjectionVisual />
             </Reveal>
+
+            {/* B3: vídeo ambiente de negocios */}
+            <Reveal delay={280} className="mt-6">
+              <div className="relative max-w-xl overflow-hidden rounded-2xl shadow-md ring-1 ring-border">
+                <video
+                  className="block h-full w-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="/hero-negocios.jpg"
+                  aria-hidden="true"
+                >
+                  <source src="/hero-negocios.mp4" type="video/mp4" />
+                </video>
+                <div
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B2447]/45 via-transparent to-transparent"
+                  aria-hidden="true"
+                />
+                <p className="absolute bottom-3 left-4 right-4 text-[13px] font-medium leading-snug text-white drop-shadow">
+                  Negocios como el tuyo, cada mañana, en cada barrio de España.
+                </p>
+              </div>
+            </Reveal>
           </div>
 
           {/* 2. Formulario */}
@@ -206,11 +317,21 @@ export default function Home() {
       <Section alt>
         <H2>Trabajamos con quien está en tu situación.</H2>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {CASOS.map(({ icon: Icon, label }, i) => (
+          {CASOS.map(({ icon: Icon, label, img, alt }, i) => (
             <Reveal key={label} delay={i * 70}>
-              <div className="flex h-full items-center gap-2.5 rounded-xl bg-white px-4 py-3.5 ring-1 ring-border transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md">
-                <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <span className="text-sm font-medium text-[#0B2447]">{label}</span>
+              <div className="group h-full overflow-hidden rounded-xl bg-white ring-1 ring-border transition-all duration-250 hover:-translate-y-0.5 hover:shadow-md">
+                <div className="aspect-[3/2] overflow-hidden">
+                  <img
+                    src={img}
+                    alt={alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex items-center gap-2.5 px-4 py-3.5">
+                  <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                  <span className="text-sm font-medium text-[#0B2447]">{label}</span>
+                </div>
               </div>
             </Reveal>
           ))}
@@ -229,24 +350,22 @@ export default function Home() {
             Primero validamos, luego construimos
           </p>
           <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">
-            No todas las ideas pasan nuestro filtro. Y eso es bueno para ti.
+            No todas las ideas están listas para presentarse. Y eso es bueno para ti.
           </h2>
-          <ul className="mt-6 space-y-3">
-            {[
-              'Analizamos cada idea con los mismos criterios que usaría un banco',
-              'Solo seguimos adelante cuando los números pueden defenderse',
-              'Si tu idea no es viable, te lo decimos gratis y te explicamos por qué',
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[15px] text-foreground">
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                {item}
-              </li>
-            ))}
-          </ul>
           <p className="mt-6 text-[15px] leading-relaxed text-foreground">
-            Somos estrictos porque nuestra reputación — y tu dinero — dependen de ello. Esa
-            exigencia previa es la razón de que nuestros planes consigan tan buenas tasas de
-            aprobación en préstamos y ayudas.
+            Por experiencia, sabemos que una parte importante de los proyectos necesita madurar
+            antes de invertir en un plan de negocio completo. En nuestra trayectoria profesional,
+            cerca de 4 de cada 10 proyectos necesitaban replantearse o reforzarse antes de estar
+            listos.
+          </p>
+          <p className="mt-4 text-[15px] leading-relaxed text-foreground">
+            No te venderemos un documento si todavía no puede ayudarte. Primero analizamos si tu
+            idea tiene una base suficiente, qué puntos conviene reforzar y qué camino puede tener
+            más sentido.
+          </p>
+          <p className="mt-4 text-[15px] font-medium leading-relaxed text-[#0B2447]">
+            Si creemos que aún no es el momento, te diremos por qué — y qué hacer para que lo sea.
+            Gratis.
           </p>
           <p className="mt-6 border-l-4 border-primary bg-secondary px-4 py-3 text-[15px] font-medium leading-relaxed text-[#0B2447]">
             Nuestro objetivo no es redactar muchos planes de negocio. Es ser la semilla de muchos
@@ -279,20 +398,46 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* 6. Un plan, todas las puertas */}
+      {/* 6. Un plan, preparado para cada puerta */}
       <Section alt>
-        <H2>Un plan, todas las puertas.</H2>
+        <H2>Un plan, preparado para cada puerta.</H2>
+        <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-foreground">
+          No hay dos fuentes de financiación que pidan lo mismo. Adaptamos estructura, ratios y
+          enfoque a los criterios de la vía que encaje contigo.
+        </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {VIAS_FINANCIACION.map(({ icon: Icon, title, text }) => (
+          {VIAS_FINANCIACION.map(({ icon: Icon, title, text, info }, idx) => (
             <div
               key={title}
-              className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-shadow hover:shadow-md"
+              className="relative rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-shadow hover:shadow-md"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-              </span>
+              <div className="flex items-start justify-between gap-2">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setViaInfo(viaInfo === idx ? null : idx)}
+                  aria-expanded={viaInfo === idx}
+                  aria-label={`Qué es: ${title}`}
+                  className="btn-press flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-primary ring-1 ring-border transition-colors hover:bg-primary hover:text-white"
+                >
+                  i
+                </button>
+              </div>
               <h3 className="mt-3 text-base font-bold text-[#0B2447]">{title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-foreground">{text}</p>
+              <div
+                className={`grid transition-all duration-300 ease-out ${
+                  viaInfo === idx ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <p className="mt-3 rounded-lg bg-secondary/70 p-3.5 text-[13px] leading-relaxed text-foreground ring-1 ring-border">
+                    {info}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -325,42 +470,55 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* 7. Bloque desbloqueador — ancla visual de la home */}
+      {/* 7. Cuatro caminos para empezar — ancla visual de la home */}
       <section className="navy-bg py-14 sm:py-20">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-[#6d9bff] sm:text-sm">
             <span className="h-px w-8 bg-[#6d9bff]" aria-hidden="true" />
             La objeción que nadie dice en voz alta
           </p>
           <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-white sm:text-4xl">
-            No necesitas una hipoteca para financiar tu negocio.
+            No necesitas una hipoteca para empezar.
           </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-slate-300 sm:text-base">
+          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-slate-300 sm:text-base">
             Mucha gente renuncia antes de empezar pensando que hace falta una gran entrada o
-            avales, como al comprar una casa.
+            avales, como al comprar una casa. Tu idea no necesita solo un documento: necesita un
+            camino para empezar. Estos son los cuatro que exploramos contigo, según tu situación:
           </p>
-          <p className="mt-5 text-[15px] font-semibold text-white sm:text-base">
-            La realidad es más amplia:
-          </p>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          <ul className="mt-7 grid gap-4 sm:grid-cols-2">
             {[
-              ['Pago único del paro', 'capitalizar tu prestación para arrancar'],
-              ['Préstamos participativos', 'como ENISA, sin avales personales'],
-              ['Ayudas y subvenciones', 'locales, autonómicas y estatales'],
-              ['Líneas ICO y microcréditos', 'diseñadas para pequeños proyectos'],
+              [
+                'Usar tu prestación para empezar',
+                'Si ya tienes una prestación por desempleo pendiente y cumples los requisitos, quizá puedas valorar el pago único para impulsar tu proyecto.',
+              ],
+              [
+                'Pedir financiación para tu proyecto',
+                'Existen préstamos y microcréditos que, según perfil y entidad, pueden no exigir garantía real. Un buen plan ayuda a demostrar viabilidad y capacidad de devolución.',
+              ],
+              [
+                'Empezar acompañado',
+                'Para algunos proyectos, un socio aporta capital, experiencia o capacidad comercial. Te ayudamos a estructurar el proyecto y a explicarlo ante posibles socios o inversores.',
+              ],
+              [
+                'Buscar ayudas que encajen contigo',
+                'Las ayudas y subvenciones pueden complementar la financiación. No construimos un proyecto contando con una subvención como si estuviera garantizada: analizamos si existe una oportunidad real.',
+              ],
             ].map(([title, desc], i) => (
               <Reveal key={title} delay={i * 90}>
-                <li className="flex h-full items-start gap-3 rounded-xl bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur-sm transition-colors duration-250 hover:bg-white/10">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#4ade80]" aria-hidden="true" />
-                  <span className="text-[15px] text-slate-200">
-                    <strong className="text-white">{title}</strong> — {desc}
+                <li className="flex h-full flex-col rounded-xl bg-white/5 p-5 ring-1 ring-white/10 backdrop-blur-sm transition-colors duration-250 hover:bg-white/10">
+                  <span className="flex items-center gap-2.5">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
+                      {i + 1}
+                    </span>
+                    <strong className="text-[15px] font-bold text-white sm:text-base">{title}</strong>
                   </span>
+                  <span className="mt-3 text-sm leading-relaxed text-slate-300">{desc}</span>
                 </li>
               </Reveal>
             ))}
           </ul>
           <p className="mt-7 rounded-xl bg-primary px-5 py-4 text-[15px] font-medium leading-relaxed text-white shadow-lg sm:text-base">
-            Cada vía pide lo mismo: un proyecto bien planteado sobre el papel.{' '}
+            Cada camino pide lo mismo: un proyecto bien planteado sobre el papel.{' '}
             <span className="font-bold">Ahí entra tu plan.</span>
           </p>
           <div className="mt-8">
@@ -480,7 +638,7 @@ export default function Home() {
           {[
             ['Cuéntanos tu idea', 'Formulario de 2 minutos. En menos de 3 días te decimos si es viable, gratis.'],
             ['Si es viable, construimos tu plan', 'Solo si tu idea supera la validación: investigamos, calculamos y redactamos.'],
-            ['Preséntalo con seguridad', 'Entrega en 7 días, con revisiones incluidas.'],
+            ['Preséntalo con seguridad', 'Entrega en 7 días. No se cierra hasta que lo des por bueno.'],
           ].map(([title, text], i) => (
             <Reveal key={title} delay={i * 120}>
               <li className="flex gap-4">
@@ -557,13 +715,80 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* 11c. Diferenciación vs IA genérica */}
+      <Section>
+        <div className="mx-auto max-w-4xl">
+          <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm">
+            <span className="h-px w-8 bg-primary" aria-hidden="true" />
+            La pregunta de moda
+          </p>
+          <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">
+            ¿Y si le pido el plan a una inteligencia artificial?
+          </h2>
+          <p className="mt-4 text-[15px] leading-relaxed text-foreground">
+            Puedes hacerlo, y para empezar a ordenar ideas te puede ayudar. Nosotros mismos usamos
+            herramientas modernas cuando aportan eficiencia. El problema aparece después: un texto
+            generado en minutos, sin análisis ni contexto, tiende a sonar como el de cualquier otro
+            proyecto del mismo sector. Y el día que un banco, un inversor o un técnico de una
+            subvención pregunte <em>¿de dónde sale esta cifra? ¿por qué esta estrategia y no otra?</em>,
+            el plan hay que defenderlo en persona.
+          </p>
+          <p className="mt-4 text-[15px] font-semibold text-[#0B2447]">
+            Tu proyecto no debería sonar como todos los demás.
+          </p>
+          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl bg-white p-6 ring-1 ring-border">
+              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Una respuesta automática
+              </p>
+              <ul className="mt-4 space-y-3">
+                {[
+                  'Estructura genérica, intercambiable entre proyectos',
+                  'Cifras sin contrastar con tu mercado real',
+                  'No conoce tu experiencia, tus recursos ni tu zona',
+                  'Difícil de defender cuando te pregunten en serio',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-[15px] text-muted-foreground">
+                    <X className="mt-0.5 h-5 w-5 shrink-0 text-slate-400" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl bg-white p-6 shadow-md ring-2 ring-primary/20">
+              <p className="text-xs font-bold uppercase tracking-widest text-primary">
+                Un plan trabajado contigo
+              </p>
+              <ul className="mt-4 space-y-3">
+                {[
+                  'Análisis de tu contexto real: sector, zona, competencia',
+                  'Hipótesis y cifras que entiendes y puedes defender',
+                  'Tu experiencia y tu historia como parte del argumento',
+                  'La voz del proyecto es la tuya, no la de una plantilla',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-[15px] font-medium text-[#0B2447]">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="mt-6 border-l-4 border-primary bg-secondary px-4 py-3 text-[15px] font-medium leading-relaxed text-[#0B2447]">
+            La inteligencia artificial puede ayudarte a empezar. Un plan que debes defender necesita
+            criterio, contexto y una voz propia. Llevamos haciendo esto desde 2014 — mucho antes de
+            que existiera la IA generativa.
+          </p>
+        </div>
+      </Section>
+
       {/* 12. Testimonios */}
       <Section alt>
         <H2>Ellos ya presentaron su plan.</H2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/70">
-          Nuestro acuerdo de confidencialidad nos impide publicar nombres ni negocios. Estos
-          clientes aceptaron compartir su experiencia de forma anónima — exactamente la misma
-          discreción que tendrás tú.
+          Cada testimonio pertenece a un cliente real que autorizó compartir su experiencia. No
+          publicamos nombres, negocios ni datos que permitan identificarlos: es la misma
+          discreción con la que trataremos tu proyecto.
         </p>
         <div
           className="mt-6 touch-pan-y sm:hidden"
@@ -630,6 +855,33 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* 12a. Quiénes somos (breve) */}
+      <Section>
+        <div className="mx-auto max-w-3xl">
+          <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm">
+            <span className="h-px w-8 bg-primary" aria-hidden="true" />
+            Quiénes somos
+          </p>
+          <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">
+            Detrás de cada plan hay más que un documento. Hay criterio.
+          </h2>
+          <p className="mt-4 text-[15px] leading-relaxed text-foreground">
+            PlanCrece coordina una red flexible de profesionales con experiencia en análisis de
+            negocio, financiación, viabilidad y sectores concretos. El plan que recibes no lleva
+            nuestra marca: lleva tu nombre.
+          </p>
+          <p className="mt-5">
+            <Link
+              to="/quienes-somos"
+              className="inline-flex items-center gap-2 text-[15px] font-semibold text-primary underline-offset-4 hover:underline"
+            >
+              Conoce cómo trabajamos
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </p>
+        </div>
+      </Section>
+
       {/* 12b. Tu idea es tuya: confidencialidad y marca blanca */}
       <Section>
         <div className="mx-auto max-w-4xl">
@@ -652,12 +904,12 @@ export default function Home() {
                   <FileSignature className="h-5 w-5 text-primary" aria-hidden="true" />
                 </span>
                 <h3 className="mt-3 text-base font-bold text-[#0B2447]">
-                  NDA firmado antes de empezar
+                  Confidencial desde el primer contacto
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-foreground">
-                  Un acuerdo de confidencialidad (NDA) es un compromiso legal por escrito: lo que
-                  nos cuentes no sale de nuestras manos. Lo firmamos contigo antes de hablar de tu
-                  idea, no después.
+                  Lo que nos cuentes en la valoración gratuita solo se usa para valorar tu
+                  proyecto: no se comparte, no se publica, no se reutiliza. Si contratas, la
+                  confidencialidad queda además por escrito en las condiciones del servicio.
                 </p>
               </div>
             </Reveal>
@@ -728,10 +980,10 @@ export default function Home() {
         <H2>Todo por escrito. Sin letra pequeña.</H2>
         <ul className="mt-6 space-y-4">
           {[
-            ['NDA firmado', 'antes de hablar de tu idea'],
+            ['Confidencialidad', 'desde la valoración gratuita, y por escrito al contratar'],
             ['Marca blanca', 'el plan no lleva nuestro logo: es 100 % tuyo'],
             ['Entrega en 7 días', 'o te devolvemos el 20 %'],
-            ['Revisiones incluidas', 'hasta que el plan te convenza'],
+            ['Satisfacción', 'no se cierra hasta que des el plan por bueno'],
           ].map(([title, desc]) => (
             <li key={title} className="flex items-start gap-3">
               <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-[#15803D]" aria-hidden="true" />
@@ -799,7 +1051,7 @@ export default function Home() {
             <CTAButton full={false} className="w-full sm:w-auto" />
           </div>
           <p className="mt-4 text-sm text-slate-400">
-            Validación gratuita · Respuesta en 3 días · NDA firmado
+            Validación gratuita · Respuesta en 3 días · Confidencial
           </p>
         </div>
       </section>

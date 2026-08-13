@@ -19,6 +19,7 @@ export interface Franquicia {
   sector: SectorFranquicia
   actividad: string
   inversion: number | null // euros, orientativa
+  aportePropio: number | null // capital de bolsillo que suele pedirse, orientativo
   unidades: number | null
   descripcion: string[]
   incluye: string[]
@@ -51,6 +52,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'viajes',
     actividad: 'Agencia de viajes',
     inversion: 4500,
+    aportePropio: 3000,
     unidades: 254,
     descripcion: [
       'Halcón Viajes es una de las redes de agencias de viajes más conocidas de España, con décadas de marca detrás y un modelo de franquicia pensado para entrar con una inversión inicial contenida.',
@@ -79,6 +81,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'salud',
     actividad: 'Nutrición y dietética',
     inversion: 11570,
+    aportePropio: 10000,
     unidades: 2300,
     descripcion: [
       'Naturhouse es una de las cadenas de centros de nutrición y dietética con más presencia internacional, con un modelo basado en consulta personalizada más venta de producto propio.',
@@ -107,6 +110,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'formacion',
     actividad: 'Centros de enseñanza con metodología propia',
     inversion: 15000,
+    aportePropio: 8000,
     unidades: 210,
     descripcion: [
       'Kumon es la franquicia de centros de aprendizaje de matemáticas y lectura con una metodología japonesa propia, presente en decenas de países y con un modelo de centro muy estandarizado.',
@@ -135,6 +139,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'salud',
     actividad: 'Ópticas',
     inversion: 110000,
+    aportePropio: 50000,
     unidades: 85,
     descripcion: [
       'General Óptica es una de las marcas ópticas de referencia en España, con un modelo que combina producto de gama media-alta y servicio optométrico profesional.',
@@ -163,6 +168,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'servicios',
     actividad: 'Envíos, diseño gráfico e impresión',
     inversion: 45000,
+    aportePropio: 15000,
     unidades: 250,
     descripcion: [
       'Mail Boxes Etc. es una red internacional de centros de servicios para pymes y particulares: envíos, embalaje, impresión y servicios de oficina en un mismo mostrador.',
@@ -191,6 +197,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'retail',
     actividad: 'Cocinas, muebles a medida y baños',
     inversion: 300000,
+    aportePropio: 80000,
     unidades: 350,
     descripcion: [
       'Mobalpa es una marca francesa de mobiliario de cocina y hogar con red internacional de tiendas, posicionada en el segmento medio-alto de cocinas a medida.',
@@ -219,6 +226,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'retail',
     actividad: 'Supermercados y alimentación',
     inversion: null,
+    aportePropio: null,
     unidades: 628,
     descripcion: [
       'EROSKI es una de las principales cadenas de supermercados de España, con modelo cooperativo y una red de supermercados franquiciados especialmente fuerte en el norte peninsular.',
@@ -247,6 +255,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'servicios',
     actividad: 'Franquicia online',
     inversion: 3695,
+    aportePropio: 3000,
     unidades: 237,
     descripcion: [
       'Devuelving es una franquicia de modelo online: el franquiciado opera tiendas de comercio electrónico apoyándose en la infraestructura y los acuerdos de la central, sin necesidad de local físico.',
@@ -275,6 +284,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'viajes',
     actividad: 'Agencia de viajes',
     inversion: 12000,
+    aportePropio: 6000,
     unidades: 42,
     descripcion: [
       'Nautalia es una red de agencias de viajes con crecimiento sostenido en los últimos años, que combina oficinas físicas con un fuerte componente de venta digital.',
@@ -303,6 +313,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'servicios',
     actividad: 'Lavanderías autoservicio',
     inversion: 120000,
+    aportePropio: 40000,
     unidades: 700,
     descripcion: [
       'Speed Queen es el fabricante de lavandería industrial que opera también como franquicia de lavanderías autoservicio, uno de los formatos de "negocio sin empleados" más extendidos.',
@@ -331,6 +342,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'retail',
     actividad: 'Perfumería',
     inversion: 16999,
+    aportePropio: 10000,
     unidades: 100,
     descripcion: [
       "L'ARÔME es una franquicia de perfumería con un modelo de tienda pequeña y producto de equivalencia, que busca ubicaciones de alto tránsito con inversión contenida.",
@@ -359,6 +371,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'hosteleria',
     actividad: 'Heladería - cafetería',
     inversion: 125000,
+    aportePropio: 100000,
     unidades: 51,
     descripcion: [
       'Häagen-Dazs es la marca de helado premium por excelencia, con tiendas-cafetería en ubicaciones prime de ciudades y zonas turísticas.',
@@ -387,6 +400,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'inmobiliaria',
     actividad: 'Intermediación inmobiliaria',
     inversion: 25000,
+    aportePropio: 10000,
     unidades: 69,
     descripcion: [
       'donpiso es una inmobiliaria con larga trayectoria en España, especialmente conocida en Cataluña, con modelo de oficina física de intermediación en compraventa y alquiler.',
@@ -415,6 +429,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'formacion',
     actividad: 'Autoescuela',
     inversion: 30000,
+    aportePropio: 15000,
     unidades: 70,
     descripcion: [
       'RACC Start es la autoescuela del RACC: combina la enseñanza tradicional del carnet con plataforma digital de aprendizaje y la marca de una institución muy conocida en movilidad.',
@@ -443,6 +458,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'inmobiliaria',
     actividad: 'Agencia inmobiliaria',
     inversion: 14000,
+    aportePropio: 7000,
     unidades: 52,
     descripcion: [
       'Adaix es una red de agencias inmobiliarias con presencia nacional y un modelo de franquicia de entrada asequible, orientado a quien quiere montar su agencia con estructura pero sin grandes inversiones.',
@@ -471,6 +487,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'servicios',
     actividad: 'Servicios a domicilio',
     inversion: 30000,
+    aportePropio: 10000,
     unidades: 80,
     descripcion: [
       'Interdomicilio es una de las franquicias veteranas de servicios a domicilio en España: limpieza, cuidado de personas, mantenimiento del hogar, gestionados desde una oficina central.',
@@ -499,6 +516,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'inmobiliaria',
     actividad: 'Correduría de seguros',
     inversion: null,
+    aportePropio: null,
     unidades: 40,
     descripcion: [
       'Recoletos Consultores es una franquicia para montar una correduría de seguros con independencia: el franquiciado vende seguros de varias compañías apoyándose en la estructura y los acuerdos de la central.',
@@ -527,6 +545,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'servicios',
     actividad: 'Cuidado de personas mayores a domicilio',
     inversion: 15900,
+    aportePropio: 10000,
     unidades: 40,
     descripcion: [
       '#Wayalia es una franquicia especializada en cuidado de personas mayores a domicilio: selección de cuidadores, gestión de servicios y acompañamiento a las familias.',
@@ -555,6 +574,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'servicios',
     actividad: 'Renting de vehículos y bienes de equipo',
     inversion: 4000,
+    aportePropio: 3000,
     unidades: 18,
     descripcion: [
       'MásQRenting es una franquicia de intermediación de renting: el franquiciado asesora a empresas y autónomos en el alquiler de vehículos y equipamiento, cobrando comisiones de las operaciones.',
@@ -583,6 +603,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'hosteleria',
     actividad: 'Heladerías y turrones',
     inversion: null,
+    aportePropio: null,
     unidades: 1100,
     descripcion: [
       'Jijonenca es una de las marcas artesanas de helado y turrón con más historia de España, con una red de establecimientos que la convierte en un clásico de la franquicia alimentaria.',
@@ -611,6 +632,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'salud',
     actividad: 'Cosmética y estética',
     inversion: 35000,
+    aportePropio: 15000,
     unidades: 94,
     descripcion: [
       'Yves Rocher es la marca francesa de cosmética vegetal con presencia mundial, cuyas tiendas combinan venta de producto con cabina de tratamientos estéticos.',
@@ -639,6 +661,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'salud',
     actividad: 'Parafarmacia, dietética y herbolario',
     inversion: 20000,
+    aportePropio: 10000,
     unidades: 42,
     descripcion: [
       'Farmatural es una franquicia de parafarmacia y herbolario: productos de salud natural, dietética y complementos, en un formato de tienda asesora.',
@@ -667,6 +690,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'automocion',
     actividad: 'Talleres de mantenimiento integral del vehículo',
     inversion: null,
+    aportePropio: null,
     unidades: 408,
     descripcion: [
       'Euromaster es la red de talleres de neumáticos y mantenimiento del grupo Michelin, una de las marcas técnicas más reconocidas de la posventa del automóvil en Europa.',
@@ -695,6 +719,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'automocion',
     actividad: 'Reparación rápida del automóvil',
     inversion: 100000,
+    aportePropio: 40000,
     unidades: 106,
     descripcion: [
       'Feu Vert es la cadena francesa de centros de reparación rápida: neumáticos, frenos, mantenimiento y distribuidor de recambio, con décadas de presencia en España.',
@@ -723,6 +748,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'hosteleria',
     actividad: 'Boutiques de helado artesanal',
     inversion: 200000,
+    aportePropio: 60000,
     unidades: 242,
     descripcion: [
       'Amorino es la cadena internacional de boutiques de gelato artesanal famosa por su helado en forma de flor, con tiendas en las zonas más premium de las grandes ciudades.',
@@ -751,6 +777,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'hosteleria',
     actividad: 'Heladería',
     inversion: 35000,
+    aportePropio: 20000,
     unidades: 12,
     descripcion: [
       "Ben & Jerry's es la marca estadounidense de helado con personalidad propia, cuyas scoop shops combinan producto premium con una experiencia de marca muy reconocible.",
@@ -779,6 +806,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'hosteleria',
     actividad: 'Panadería - cafetería',
     inversion: 60000,
+    aportePropio: 25000,
     unidades: 40,
     descripcion: [
       'Pannus es una cadena de panadería-cafetería con obrador propio: pan del día, bollería y servicio de cafetería en formato de barrio y de centro comercial.',
@@ -807,6 +835,7 @@ export const FRANQUICIAS: Franquicia[] = [
     sector: 'servicios',
     actividad: 'Alquiler de trasteros',
     inversion: 90000,
+    aportePropio: 30000,
     unidades: null,
     descripcion: [
       'GuardaYa! opera en el self-storage: alquiler de trasteros y guardamuebles para particulares y empresas, un sector que crece con la vivienda pequeña y la movilidad.',
@@ -838,6 +867,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'retail',
     actividad: 'Supermercado de proximidad',
     inversion: 60000,
+    aportePropio: 30000,
     unidades: 2300,
     descripcion: [
       'DIA es una de las cadenas de supermercados más presentes en los barrios de España, y su modelo de franquicia está pensado para entrar con poco capital propio: el canon es simbólico y la central ofrece fórmulas de financiación de la inversión.',
@@ -866,6 +896,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'salud',
     actividad: 'Óptica y audiología',
     inversion: 20000,
+    aportePropio: 10000,
     unidades: 200,
     descripcion: [
       'Alain Afflelou es una de las ópticas más reconocibles de España gracias a décadas de publicidad. Combina óptica y audiología, dos mercados que crecen con el envejecimiento de la población.',
@@ -894,6 +925,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'hosteleria',
     actividad: 'Taberna de pinchos y tapas',
     inversion: 140000,
+    aportePropio: 50000,
     unidades: 120,
     descripcion: [
       'Lizarran es la taberna de pinchos del grupo Comess (con más de 25 años de trayectoria): un formato de barra con pinchos fríos y calientes que todo el mundo entiende a la primera.',
@@ -922,6 +954,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'retail',
     actividad: 'Tienda de productos para mascotas',
     inversion: 70000,
+    aportePropio: 30000,
     unidades: 140,
     descripcion: [
       'Kiwoko es la cadena líder de productos para mascotas en España. El sector tiene una de las mejores perspectivas del retail: cada vez hay más mascotas y sus dueños gastan más en ellas, incluso en crisis.',
@@ -950,6 +983,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'salud',
     actividad: 'Depilación láser y estética',
     inversion: 30000,
+    aportePropio: 12000,
     unidades: 100,
     descripcion: [
       'No+Vello popularizó la depilación láser asequible en España y sigue siendo una de las marcas de estética más extendidas, con un modelo de centro compacto y equipo técnico estandarizado.',
@@ -978,6 +1012,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'hosteleria',
     actividad: 'Panadería-cafetería con obrador',
     inversion: 140000,
+    aportePropio: 50000,
     unidades: 175,
     descripcion: [
       'Santagloria (grupo Foodbox) es una de las panaderías-cafetería que más rápido crece en España: obrador a la vista, cafetería de especialidad y un local cuidado que funciona tanto para el desayuno como para la merienda.',
@@ -1006,6 +1041,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'inmobiliaria',
     actividad: 'Agencia inmobiliaria',
     inversion: 50000,
+    aportePropio: 15000,
     unidades: 160,
     descripcion: [
       'RE/MAX es la primera marca mundial de intermediación inmobiliaria, presente en más de 110 países. En España opera desde hace casi tres décadas con un modelo basado en agentes asociados.',
@@ -1034,6 +1070,7 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     sector: 'retail',
     actividad: 'Panadería artesana',
     inversion: 100000,
+    aportePropio: 40000,
     unidades: 350,
     descripcion: [
       'Granier es una de las cadenas de panaderías más extendidas de España, con cientos de tiendas y un modelo sencillo: pan artesano de proximidad, sin complicaciones.',

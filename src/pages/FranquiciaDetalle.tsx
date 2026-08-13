@@ -1,7 +1,8 @@
 import { Link, Navigate, useParams } from 'react-router'
-import { ArrowLeft, Check, AlertTriangle, ExternalLink, Info, Users } from 'lucide-react'
+import { ArrowLeft, Check, AlertTriangle, ExternalLink, Info, Users, Wallet, Landmark, Store, Calculator } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import FranquiciaForm from '../components/FranquiciaForm'
+import SimuladorCapital from '../components/SimuladorCapital'
 import {
   CIFRAS_FRANQUICIA,
   FRANQUICIAS,
@@ -47,60 +48,97 @@ export default function FranquiciaDetalle() {
             </Link>
           </Reveal>
 
-          {/* Cabecera de la ficha */}
+          {/* Hero de la ficha: marca en grande sobre fondo navy */}
           <Reveal delay={80}>
-            <header className="mt-6 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
-              <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-                <div className="flex h-24 w-40 shrink-0 items-center justify-center rounded-xl bg-secondary/50 p-3">
+            <header className="relative mt-6 overflow-hidden rounded-2xl bg-gradient-to-br from-[#0B2447] via-[#123058] to-[#1D4ED8] p-6 text-white shadow-xl sm:p-10">
+              <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/5" aria-hidden="true" />
+              <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-white/5" aria-hidden="true" />
+              <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:items-start sm:text-left">
+                <div className="flex h-32 w-52 shrink-0 items-center justify-center rounded-2xl bg-white p-4 shadow-lg">
                   <img
                     src={`/franquicias/${f.slug}.png`}
                     alt={`Logotipo de ${f.nombre}`}
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
-                <div>
-                  <span className="inline-flex rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700">
+                <div className="flex-1">
+                  <span className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/25">
                     {sectorLabel(f.sector)}
                   </span>
-                  <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-[#0B2447] sm:text-3xl">
+                  <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
                     Franquicia {f.nombre}
                   </h1>
-                  <p className="mt-1 text-sm text-foreground/70">{f.actividad}</p>
+                  <p className="mt-2 text-base text-white/75">{f.actividad}</p>
                 </div>
               </div>
-              <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-5 sm:grid-cols-3">
-                <div>
-                  <dt className="text-xs text-foreground/50">Inversión orientativa</dt>
-                  <dd className="mt-1 text-lg font-bold text-[#0B2447]">{formatInversion(f.inversion)}</dd>
+
+              {/* Cifras en tarjetas de color */}
+              <dl className="relative mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <div className="rounded-xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-sm">
+                  <dt className="flex items-center gap-1.5 text-xs text-white/70">
+                    <Landmark className="h-3.5 w-3.5" aria-hidden="true" />
+                    Inversión orientativa
+                  </dt>
+                  <dd className="mt-1.5 text-xl font-extrabold sm:text-2xl">{formatInversion(f.inversion)}</dd>
                 </div>
-                <div>
-                  <dt className="text-xs text-foreground/50">Unidades</dt>
-                  <dd className="mt-1 text-lg font-bold text-[#0B2447]">
+                <div className="rounded-xl bg-emerald-400/20 p-4 ring-1 ring-emerald-300/30 backdrop-blur-sm">
+                  <dt className="flex items-center gap-1.5 text-xs text-emerald-100">
+                    <Wallet className="h-3.5 w-3.5" aria-hidden="true" />
+                    Capital propio orientativo
+                  </dt>
+                  <dd className="mt-1.5 text-xl font-extrabold text-emerald-300 sm:text-2xl">{formatInversion(f.aportePropio)}</dd>
+                </div>
+                <div className="col-span-2 rounded-xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-sm sm:col-span-1">
+                  <dt className="flex items-center gap-1.5 text-xs text-white/70">
+                    <Store className="h-3.5 w-3.5" aria-hidden="true" />
+                    Establecimientos
+                  </dt>
+                  <dd className="mt-1.5 text-xl font-extrabold sm:text-2xl">
                     {f.unidades !== null ? f.unidades.toLocaleString('es-ES') : 'A consultar'}
                   </dd>
-                </div>
-                <div className="col-span-2 sm:col-span-1">
-                  <dt className="text-xs text-foreground/50">Sector</dt>
-                  <dd className="mt-1 text-lg font-bold text-[#0B2447]">{sectorLabel(f.sector)}</dd>
                 </div>
               </dl>
             </header>
           </Reveal>
 
-          {/* Descripción */}
+          {/* Descripción con fondo suave */}
           <Reveal delay={120}>
-            <div className="mt-8 space-y-5">
-              {f.descripcion.map((p, i) => (
-                <p key={i} className="text-base leading-relaxed text-foreground/85">
-                  {p}
-                </p>
-              ))}
+            <div className="mt-8 rounded-2xl bg-gradient-to-b from-blue-50/70 to-white p-6 ring-1 ring-blue-100 sm:p-8">
+              <h2 className="text-lg font-bold text-[#0B2447]">El concepto</h2>
+              <div className="mt-3 space-y-4">
+                {f.descripcion.map((p, i) => (
+                  <p key={i} className="text-base leading-relaxed text-foreground/85">
+                    {p}
+                  </p>
+                ))}
+              </div>
             </div>
           </Reveal>
 
+          {/* Simulador de financiación con la inversión precargada */}
+          {f.inversion !== null && (
+            <Reveal delay={140}>
+              <section className="mt-10 overflow-hidden rounded-2xl shadow-xl ring-1 ring-border">
+                <div className="bg-gradient-to-r from-[#0B2447] to-[#1D4ED8] px-6 py-5 sm:px-8">
+                  <h2 className="flex items-center gap-2.5 text-xl font-bold text-white">
+                    <Calculator className="h-6 w-6 text-emerald-400" aria-hidden="true" />
+                    ¿Cómo financiarías tu franquicia de {f.nombre}?
+                  </h2>
+                  <p className="mt-1.5 text-sm text-white/75">
+                    Pon lo que tienes hoy y te decimos exactamente cuánto te falta y cómo
+                    conseguirlo: banco, socio, pago único, ayudas. En lenguaje claro, sin tecnicismos.
+                  </p>
+                </div>
+                <div className="bg-white p-6 sm:p-8">
+                  <SimuladorCapital inversionNecesaria={f.inversion} nombreFranquicia={f.nombre} />
+                </div>
+              </section>
+            </Reveal>
+          )}
+
           {/* Cifras clave del modelo */}
           {cifras && (
-            <Reveal delay={140}>
+            <Reveal delay={160}>
               <section className="mt-10 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
                 <h2 className="text-lg font-bold text-[#0B2447]">Las cifras que conviene conocer</h2>
                 <p className="mt-1.5 text-sm leading-relaxed text-foreground/65">

@@ -96,7 +96,7 @@ export default function BlogArticulo() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <p className="mt-3 text-xs text-white/70">
-                Respuesta en menos de 3 días laborables · NDA firmado · Sin compromiso
+                Respuesta en menos de 3 días laborables · Confidencial · Sin compromiso
               </p>
             </div>
           </Reveal>

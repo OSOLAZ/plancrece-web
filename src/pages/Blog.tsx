@@ -187,7 +187,7 @@ export default function Blog() {
             </h2>
             <p className="mt-4 text-base text-white/80">
               Envíanos tu idea y en menos de 3 días laborables te diremos si es viable. Gratis, con
-              NDA firmado y sin compromiso.
+              Confidencial y sin compromiso.
             </p>
             <Link
               to="/#formulario"

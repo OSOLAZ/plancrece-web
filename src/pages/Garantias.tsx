@@ -19,12 +19,12 @@ const GARANTIAS = [
   {
     icon: ShieldCheck,
     titulo: 'Satisfacción garantizada',
-    texto: 'Revisiones hasta que des el plan por bueno. No se cierra hasta que tú lo cierres.',
+    texto: 'Trabajamos el plan contigo antes de entregarlo: no se cierra hasta que tú lo des por bueno.',
   },
   {
     icon: Lock,
     titulo: 'Confidencialidad total',
-    texto: 'NDA firmado antes de hablar de tu idea. Sin excepciones.',
+    texto: 'Tu idea se trata como confidencial desde la valoración gratuita, y por escrito al contratar. Sin excepciones.',
   },
   {
     icon: Clock,

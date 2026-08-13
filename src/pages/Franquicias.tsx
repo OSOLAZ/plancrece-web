@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router'
-import { ArrowRight, Store, Info } from 'lucide-react'
+import { ArrowRight, Store, Info, Wallet, MapPin, Calculator } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import {
   FRANQUICIAS,
@@ -16,6 +16,15 @@ const RANGOS = [
   { id: 'media', label: '10.000 – 30.000 €', test: (n: number | null) => n !== null && n >= 10000 && n <= 30000 },
   { id: 'alta', label: '30.000 – 100.000 €', test: (n: number | null) => n !== null && n > 30000 && n <= 100000 },
   { id: 'premium', label: 'Más de 100.000 €', test: (n: number | null) => n !== null && n > 100000 },
+] as const
+
+// Filtro por capital propio: lo que el emprendedor necesita de su bolsillo.
+const RANGOS_APORTE = [
+  { id: 'cualquiera', label: 'Cualquier capital propio', test: (_: number | null) => true },
+  { id: 'hasta-5k', label: 'Hasta 5.000 €', test: (n: number | null) => n !== null && n <= 5000 },
+  { id: 'hasta-10k', label: 'Hasta 10.000 €', test: (n: number | null) => n !== null && n <= 10000 },
+  { id: 'hasta-30k', label: '10.000 – 30.000 €', test: (n: number | null) => n !== null && n > 10000 && n <= 30000 },
+  { id: 'mas-30k', label: 'Más de 30.000 €', test: (n: number | null) => n !== null && n > 30000 },
 ] as const
 
 function Tarjeta({ f, delay = 0 }: { f: Franquicia; delay?: number }) {
@@ -47,11 +56,18 @@ function Tarjeta({ f, delay = 0 }: { f: Franquicia; delay?: number }) {
                 {formatInversion(f.inversion)}
               </span>
               {f.unidades !== null && (
-                <span className="text-xs text-foreground/55">
+                <span className="flex items-center gap-1 text-xs text-foreground/55">
+                  <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                   {f.unidades.toLocaleString('es-ES')} establecimientos
                 </span>
               )}
             </div>
+            {f.aportePropio !== null && (
+              <p className="mt-2.5 flex items-center gap-1.5 rounded-lg bg-emerald-50 px-2.5 py-1.5 text-xs font-semibold text-emerald-800 ring-1 ring-emerald-100">
+                <Wallet className="h-3.5 w-3.5 shrink-0 text-emerald-600" aria-hidden="true" />
+                Capital propio orientativo: {formatInversion(f.aportePropio)}
+              </p>
+            )}
             <p className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-primary opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100">
               Ver ficha
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -66,13 +82,15 @@ function Tarjeta({ f, delay = 0 }: { f: Franquicia; delay?: number }) {
 export default function Franquicias() {
   const [sector, setSector] = useState<SectorFranquicia | 'todos'>('todos')
   const [rango, setRango] = useState<(typeof RANGOS)[number]['id']>('todas')
+  const [aporte, setAporte] = useState<(typeof RANGOS_APORTE)[number]['id']>('cualquiera')
 
   const filtradas = useMemo(() => {
     const r = RANGOS.find((x) => x.id === rango)!
+    const a = RANGOS_APORTE.find((x) => x.id === aporte)!
     return FRANQUICIAS.filter(
-      (f) => (sector === 'todos' || f.sector === sector) && r.test(f.inversion)
+      (f) => (sector === 'todos' || f.sector === sector) && r.test(f.inversion) && a.test(f.aportePropio)
     )
-  }, [sector, rango])
+  }, [sector, rango, aporte])
 
   return (
     <>
@@ -123,7 +141,10 @@ export default function Franquicias() {
                   </button>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por inversión">
+              <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filtrar por inversión total">
+                <span className="w-full text-xs font-semibold uppercase tracking-wide text-foreground/50 sm:w-auto">
+                  Inversión total:
+                </span>
                 {RANGOS.map((r) => (
                   <button
                     key={r.id}
@@ -139,6 +160,39 @@ export default function Franquicias() {
                   </button>
                 ))}
               </div>
+              <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filtrar por capital propio">
+                <span className="w-full text-xs font-semibold uppercase tracking-wide text-foreground/50 sm:w-auto">
+                  Capital propio:
+                </span>
+                {RANGOS_APORTE.map((a) => (
+                  <button
+                    key={a.id}
+                    type="button"
+                    onClick={() => setAporte(a.id)}
+                    className={`btn-press rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
+                      aporte === a.id
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-white text-foreground/70 ring-1 ring-border hover:bg-secondary'
+                    }`}
+                  >
+                    {a.label}
+                  </button>
+                ))}
+              </div>
+              {/* Puente al simulador de capital */}
+              <Link
+                to="/financiacion"
+                className="group flex items-center gap-3 rounded-xl bg-[#0B2447] px-4 py-3 text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                <Calculator className="h-5 w-5 shrink-0 text-emerald-400" aria-hidden="true" />
+                <span className="flex-1 text-sm leading-snug">
+                  <strong className="font-semibold">¿No sabes con cuánto puedes empezar?</strong>{' '}
+                  <span className="text-white/75">
+                    Suma tus ahorros, tu posible pago único y otros recursos en 1 minuto.
+                  </span>
+                </span>
+                <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -169,10 +223,10 @@ export default function Franquicias() {
               <Info className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
               <p>
                 PlanCrece no tiene relación comercial con las marcas mostradas ni percibe comisión
-                alguna de ellas. La información (inversión, número de unidades) es orientativa y
-                procede de datos publicados por las propias franquicias y directorios sectoriales;
-                puede haber variado. Antes de firmar cualquier contrato, verifica las condiciones
-                directamente con la franquicia.
+                alguna de ellas. La información (inversión, capital propio, número de unidades) es
+                orientativa y procede de datos publicados por las propias franquicias y directorios
+                sectoriales; puede haber variado. Antes de firmar cualquier contrato, verifica las
+                condiciones directamente con la franquicia.
               </p>
             </div>
           </Reveal>

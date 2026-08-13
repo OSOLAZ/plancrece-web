@@ -26,11 +26,11 @@ export default function Contacto() {
               <ul className="mt-5 space-y-4">
                 <li>
                   <a
-                    href="mailto:hola@plancrece.com"
+                    href="mailto:clientes@plancrece.com"
                     className="flex items-center gap-3 text-[15px] font-medium text-[#0B2447] hover:text-primary"
                   >
                     <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
-                    hola@plancrece.com
+                    clientes@plancrece.com
                   </a>
                 </li>
                 <li className="flex items-center gap-3 text-[15px] text-foreground">
@@ -46,10 +46,10 @@ export default function Contacto() {
                 Confidencial
               </p>
               <p className="mt-2 text-[15px] leading-relaxed text-foreground">
-                Firmamos NDA antes de hablar de tu idea.
+                Tu información se trata como confidencial desde el primer mensaje.
               </p>
               <p className="mt-4 text-[15px] leading-relaxed text-foreground">
-                Todo el proceso se gestiona por escrito: tendrás cada propuesta, plazo y revisión
+                Todo el proceso se gestiona por escrito: tendrás cada propuesta y plazo
                 documentados.
               </p>
             </div>

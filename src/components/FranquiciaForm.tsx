@@ -1,14 +1,27 @@
 import { useState } from 'react'
-import { Check, Loader2, MapPin, User, Mail, Wallet, FileText } from 'lucide-react'
+import { Link } from 'react-router'
+import { Check, Loader2, MapPin, User, Mail, Wallet, FileText, HandCoins } from 'lucide-react'
+import { enviarFormulario, EMAIL_CONTACTO } from '../config'
 
-type Status = 'idle' | 'sending' | 'sent'
+type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const INVERSIONES = [
   '',
+  '0 € (lo financiaría todo)',
   'Menos de 10.000 €',
   '10.000 – 30.000 €',
   '30.000 – 100.000 €',
   'Más de 100.000 €',
+]
+
+// Situación de financiación: campo opcional que nos ayuda a ordenar el siguiente paso.
+const SITUACIONES = [
+  '',
+  'Tengo ahorros',
+  'Estoy en paro y quiero valorar el pago único',
+  'Necesitaría financiación',
+  'Busco un socio o inversor',
+  'Aún no lo tengo claro',
 ]
 
 interface Campos {
@@ -16,10 +29,11 @@ interface Campos {
   email: string
   ubicacion: string
   inversion: string
+  situacion: string
   perfil: string
 }
 
-const VACIO: Campos = { nombre: '', email: '', ubicacion: '', inversion: '', perfil: '' }
+const VACIO: Campos = { nombre: '', email: '', ubicacion: '', inversion: '', situacion: '', perfil: '' }
 
 export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
   const [campos, setCampos] = useState<Campos>(VACIO)
@@ -39,6 +53,8 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
         return v ? '' : 'Selecciona un rango'
       case 'perfil':
         return v.trim().length >= 30 ? '' : 'Cuéntanos un poco más (mín. 30 caracteres)'
+      default:
+        return ''
     }
   }
 
@@ -55,7 +71,17 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
     setTouched({ nombre: true, email: true, ubicacion: true, inversion: true, perfil: true })
     if (!valido) return
     setStatus('sending')
-    setTimeout(() => setStatus('sent'), 1200)
+    enviarFormulario(`Interés en franquicia: ${franquicia}`, {
+      Franquicia: franquicia,
+      Nombre: campos.nombre,
+      Email: campos.email,
+      Ubicación: campos.ubicacion,
+      'Inversión disponible': campos.inversion,
+      'Situación de financiación': campos.situacion || '(no indicada)',
+      Perfil: campos.perfil,
+    })
+      .then(() => setStatus('sent'))
+      .catch(() => setStatus('error'))
   }
 
   if (status === 'sent') {
@@ -159,6 +185,20 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
             ))}
           </select>
         ))}
+        {campo('situacion', 'Tu situación de financiación (opcional)', HandCoins, (
+          <select
+            id="ff-situacion"
+            value={campos.situacion}
+            onChange={set('situacion')}
+            className={`${cls('situacion')} ${campos.situacion ? '' : 'text-foreground/50'}`}
+          >
+            {SITUACIONES.map((op) => (
+              <option key={op} value={op}>
+                {op || 'Elige la que más se acerque'}
+              </option>
+            ))}
+          </select>
+        ))}
       </div>
       <div className="mt-5">
         {campo('perfil', 'Tu perfil: experiencia y situación', FileText, (
@@ -182,11 +222,24 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
           className="mt-0.5 h-5 w-5 rounded border-border accent-primary"
         />
         <span>
-          He leído y acepto la política de privacidad. Mis datos se usan solo para responder a esta
-          solicitud.
+          He leído y acepto la{' '}
+          <Link
+            to="/legal/privacidad"
+            className="font-medium text-primary underline-offset-4 hover:underline"
+          >
+            política de privacidad
+          </Link>
+          . Mis datos se usan solo para responder a esta solicitud.
         </span>
       </label>
 
+      {status === 'error' && (
+        <p className="mb-4 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm text-destructive">
+          No se ha podido enviar. Inténtalo de nuevo o escríbenos a{' '}
+          <a href={`mailto:${EMAIL_CONTACTO}`} className="font-semibold underline">{EMAIL_CONTACTO}</a>.
+        </p>
+      )}
+      
       <button
         type="submit"
         disabled={status === 'sending'}

@@ -28,8 +28,10 @@ export default function Footer() {
               <li><Link to="/precios" className="hover:text-white">Precios</Link></li>
               <li><Link to="/garantias" className="hover:text-white">Garantías</Link></li>
               <li><Link to="/blog" className="hover:text-white">Blog</Link></li>
-              <li><Link to="/comunidad" className="hover:text-white">Comunidad</Link></li>
+              <li><Link to="/comunidad" className="hover:text-white">Foro</Link></li>
+              <li><Link to="/quienes-somos" className="hover:text-white">Quiénes somos</Link></li>
               <li><Link to="/franquicias" className="hover:text-white">Franquicias</Link></li>
+              <li><Link to="/financiacion" className="hover:text-white">¿Con cuánto puedes empezar?</Link></li>
               <li><Link to="/faq" className="hover:text-white">Preguntas frecuentes</Link></li>
               <li><Link to="/contacto" className="hover:text-white">Contacto</Link></li>
             </ul>
@@ -40,7 +42,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-[#6d9bff]" aria-hidden="true" />
-                <a href="mailto:hola@plancrece.com" className="hover:text-white">hola@plancrece.com</a>
+                <a href="mailto:clientes@plancrece.com" className="hover:text-white">clientes@plancrece.com</a>
               </li>
               <li className="text-slate-400">Respuesta en menos de 3 días laborables</li>
             </ul>

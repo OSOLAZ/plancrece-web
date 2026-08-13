@@ -7,8 +7,9 @@ const NAV = [
   { to: '/precios', label: 'Precios' },
   { to: '/garantias', label: 'Garantías' },
   { to: '/blog', label: 'Blog' },
-  { to: '/comunidad', label: 'Comunidad' },
+  { to: '/comunidad', label: 'Foro' },
   { to: '/franquicias', label: 'Franquicias' },
+  { to: '/financiacion', label: 'Financiación' },
   { to: '/faq', label: 'FAQ' },
   { to: '/contacto', label: 'Contacto' },
 ]
