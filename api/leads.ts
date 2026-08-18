@@ -128,6 +128,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // 2) Confirmación automática al lead (best-effort: nunca tumba el envío principal)
+  // Email transaccional: describe el proceso del servicio solicitado, sin promoción.
   if (emailCliente) {
     try {
       await enviarEmail(apiKey, {
@@ -137,11 +138,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         subject: 'Hemos recibido tu solicitud — PlanCrece',
         html:
           `<p>Hola${nombre ? ` ${escapeHtml(nombre)}` : ''},</p>` +
-          `<p>Confirmamos que hemos recibido tu solicitud correctamente. ` +
-          `El equipo de PlanCrece la revisará y te contactará lo antes posible.</p>` +
-          `<p>Si necesitas escribirnos antes, responde a este email o escribe a ` +
-          `<a href="mailto:clientes@plancrece.com">clientes@plancrece.com</a>.</p>` +
-          `<p>— Equipo PlanCrece</p>` +
+          `<p>Confirmamos que hemos recibido tu solicitud correctamente.</p>` +
+          `<p><strong>¿Qué va a pasar ahora?</strong></p>` +
+          `<p>Nuestro equipo analizará la información que nos has enviado y en un plazo ` +
+          `máximo de <strong>3 días laborables</strong> recibirás nuestra valoración:</p>` +
+          `<ul>` +
+          `<li>Si vemos potencial, te explicaremos por qué y qué opciones tienes para desarrollarlo.</li>` +
+          `<li>Si creemos que no es viable, también te lo diremos con honestidad, explicándote ` +
+          `los principales motivos y, cuando sea posible, qué alternativas podrías plantearte.</li>` +
+          `<li>Y si nos falta información para darte un veredicto claro, te escribiremos ` +
+          `pidiéndote algún dato adicional.</li>` +
+          `</ul>` +
+          `<p>Tu solicitud es gratuita, confidencial y sin compromiso.</p>` +
+          `<p>Si necesitas añadir o corregir algo antes de nuestra respuesta, responde ` +
+          `directamente a este email.</p>` +
+          `<p>— Equipo PlanCrece<br>` +
+          `<a href="mailto:clientes@plancrece.com">clientes@plancrece.com</a> · ` +
+          `<a href="https://plancrece.com">plancrece.com</a></p>` +
           `<p style="color:#888;font-size:12px">Has recibido este email porque enviaste ` +
           `un formulario en plancrece.com.</p>`,
       })
