@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# PlanCrece Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Web comercial de PlanCrece: comparador de franquicias, simulador de financiación,
+blog y captación de leads.
 
-Currently, two official plugins are available:
+Stack: Vite 7 + React 19 + TypeScript, Tailwind CSS, shadcn/ui (Radix),
+react-router 7, react-hook-form + zod. Despliegue en Vercel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Desarrollo
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # desarrollo local (puerto 3000)
+npm run build    # tsc -b && vite build
+npm run lint     # ESLint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Endpoint de leads
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Los formularios (LeadForm, FranquiciaForm) envían a `POST /api/leads`, una
+Vercel Serverless Function (`api/leads.ts`) que:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Valida el payload en servidor con zod
+2. Aplica controles anti-spam (origen permitido, rate limit best-effort, honeypot opcional)
+3. Reenvía el lead por email con Resend
+
+## Variables de entorno
+
+Configurar en Vercel → Settings → Environment Variables (Production + Preview).
+Ver `.env.example` para el formato. Los valores reales nunca se suben al repo.
+
+| Variable | Descripción |
+|---|---|
+| `RESEND_API_KEY` | API key de resend.com (obligatoria) |
+| `LEADS_TO_EMAIL` | Email que recibe los leads (obligatoria) |
+| `LEADS_FROM_EMAIL` | Remitente verificado en Resend; si falta, se usa `onboarding@resend.dev` |
+
+## Ramas y despliegue
+
+- `main` → producción en Vercel
+- Ramas `feat/*` → deploys de preview automáticos para validar antes del merge
