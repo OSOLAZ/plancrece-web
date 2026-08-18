@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowRight, ArrowLeft, Check, Loader2 } from 'lucide-react'
+import { Link } from 'react-router'
 import { enviarFormulario, EMAIL_CONTACTO } from '../config'
 
 interface LeadFormProps {
@@ -211,6 +212,21 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
       noValidate
       className="relative rounded-xl bg-white p-6 shadow-lg ring-1 ring-border sm:p-8"
     >
+      {variant === 'home' && (
+        <div className="mb-6">
+          <h2 className="text-xl font-bold tracking-tight text-[#0B2447] sm:text-2xl">
+            ¿Tu idea de negocio tiene potencial?
+          </h2>
+          <p className="mt-2 text-[15px] leading-relaxed text-foreground">
+            Cuéntanosla en 2 minutos: 3 pasos y nuestro equipo la analizará. En menos de{' '}
+            <strong>3 días laborables</strong> te diremos si vemos potencial y cuál sería el
+            siguiente paso.
+          </p>
+          <p className="mt-2 text-[13px] text-muted-foreground">
+            Gratis · Confidencial · Sin compromiso · Sin llamadas comerciales
+          </p>
+        </div>
+      )}
       {Progreso}
 
       {/* ================= PASO 1: OBJETIVO ================= */}
@@ -373,7 +389,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
               />
               <span className="text-sm text-foreground">
                 He leído y acepto la{' '}
-                <a href="/#/privacidad" className="font-medium text-primary underline">política de privacidad</a>{' '}
+                <Link to="/legal/privacidad" className="font-medium text-primary underline">política de privacidad</Link>{' '}
                 y la confidencialidad de la información que envío
               </span>
             </label>
