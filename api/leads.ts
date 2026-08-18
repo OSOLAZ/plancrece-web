@@ -54,6 +54,22 @@ function escapeHtml(s: string): string {
   )
 }
 
+// Llamada única a Resend; lanza error si el envío no se acepta
+async function enviarEmail(apiKey: string, payload: Record<string, unknown>) {
+  const resp = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+  if (!resp.ok) {
+    const detalle = await resp.text()
+    throw new Error(`Resend ${resp.status}: ${detalle}`)
+  }
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, error: 'Método no permitido' })
@@ -72,10 +88,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
   const { asunto, datos } = parsed.data
 
-  // Si el lead dejó su email, lo usamos como reply_to para responderle directo
-  const emailCliente = Object.values(datos).find((v) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
-  )
+  // Email del lead con validación estricta: se usa para reply_to y confirmación
+  const candidato = Object.values(datos).find((v) => v.includes('@'))
+  const parsedEmail = z.email().safeParse(candidato)
+  const emailCliente = parsedEmail.success ? parsedEmail.data : undefined
+
+  // Primer nombre del lead, si hay un campo "nombre", para personalizar
+  const entradaNombre = Object.entries(datos).find(([k]) => /nombre/i.test(k))
+  const nombre = entradaNombre?.[1]?.trim().split(/\s+/)[0]
 
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.LEADS_TO_EMAIL
@@ -83,6 +103,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error('Faltan RESEND_API_KEY o LEADS_TO_EMAIL')
     return res.status(500).json({ ok: false, error: 'Error de configuración' })
   }
+  const from = process.env.LEADS_FROM_EMAIL || 'PlanCrece Web <onboarding@resend.dev>'
 
   const filas = Object.entries(datos)
     .map(
@@ -92,28 +113,42 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     )
     .join('')
 
+  // 1) Email del lead al equipo (crítico: si falla, el envío falla)
   try {
-    const resp = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: process.env.LEADS_FROM_EMAIL || 'PlanCrece Web <onboarding@resend.dev>',
-        to: [to],
-        subject: asunto,
-        html: `<h2>${escapeHtml(asunto)}</h2><table>${filas}</table>`,
-        ...(emailCliente ? { reply_to: emailCliente } : {}),
-      }),
+    await enviarEmail(apiKey, {
+      from,
+      to: [to],
+      subject: asunto,
+      html: `<h2>${escapeHtml(asunto)}</h2><table>${filas}</table>`,
+      ...(emailCliente ? { reply_to: emailCliente } : {}),
     })
-    if (!resp.ok) {
-      console.error('Resend respondió', resp.status, await resp.text())
-      return res.status(502).json({ ok: false, error: 'No se pudo enviar' })
-    }
-    return res.status(200).json({ ok: true })
   } catch (err) {
     console.error('Error enviando lead:', err)
-    return res.status(500).json({ ok: false, error: 'Error interno' })
+    return res.status(502).json({ ok: false, error: 'No se pudo enviar' })
   }
+
+  // 2) Confirmación automática al lead (best-effort: nunca tumba el envío principal)
+  if (emailCliente) {
+    try {
+      await enviarEmail(apiKey, {
+        from,
+        to: [emailCliente],
+        reply_to: to,
+        subject: 'Hemos recibido tu solicitud — PlanCrece',
+        html:
+          `<p>Hola${nombre ? ` ${escapeHtml(nombre)}` : ''},</p>` +
+          `<p>Confirmamos que hemos recibido tu solicitud correctamente. ` +
+          `El equipo de PlanCrece la revisará y te contactará lo antes posible.</p>` +
+          `<p>Si necesitas escribirnos antes, responde a este email o escribe a ` +
+          `<a href="mailto:clientes@plancrece.com">clientes@plancrece.com</a>.</p>` +
+          `<p>— Equipo PlanCrece</p>` +
+          `<p style="color:#888;font-size:12px">Has recibido este email porque enviaste ` +
+          `un formulario en plancrece.com.</p>`,
+      })
+    } catch (err) {
+      console.error('Confirmación al lead no enviada (el lead sí llegó):', err)
+    }
+  }
+
+  return res.status(200).json({ ok: true })
 }
