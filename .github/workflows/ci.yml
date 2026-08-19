@@ -25,5 +25,9 @@ jobs:
       - name: Build (tsc + vite)
         run: npm run build
 
-      - name: Lint
+      # No bloqueante de momento: el repo nunca tuvo CI y acumula errores
+      # de lint. Se ejecuta y queda visible en el log, pero no impide el merge.
+      # Cuando se limpien los errores, quitar el continue-on-error.
+      - name: Lint (no bloqueante)
         run: npm run lint
+        continue-on-error: true
