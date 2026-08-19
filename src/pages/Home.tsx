@@ -246,12 +246,6 @@ export default function Home() {
             <div className="mt-7 lg:hidden">
               <CTAButton />
             </div>
-            <div className="mt-7 hidden lg:block">
-              <CTAButton full={false} />
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Te decimos en 3 días si tu idea es viable · Gratis · Confidencial desde el primer mensaje
-            </p>
             <p className="mt-3 flex max-w-xl items-start gap-2 text-sm font-medium leading-snug text-[#0B2447]">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
               Tu idea. Tu nombre. Tu plan. — el documento se entrega sin marca de
