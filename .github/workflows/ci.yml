@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm install --no-audit --no-fund
+
+      - name: Build (tsc + vite)
+        run: npm run build
+
+      # No bloqueante de momento: el repo nunca tuvo CI y acumula errores
+      # de lint. Se ejecuta y queda visible en el log, pero no impide el merge.
+      # Cuando se limpien los errores, quitar el continue-on-error.
+      - name: Lint (no bloqueante)
+        run: npm run lint
+        continue-on-error: true
