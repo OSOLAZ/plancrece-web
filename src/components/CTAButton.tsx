@@ -5,9 +5,10 @@ interface CTAButtonProps {
   to?: string
   className?: string
   full?: boolean
+  label?: string
 }
 
-export default function CTAButton({ to = '/#formulario', className = '', full = true }: CTAButtonProps) {
+export default function CTAButton({ to = '/#formulario', className = '', full = true, label = 'Analiza mi idea gratis' }: CTAButtonProps) {
   return (
     <Link
       to={to}
@@ -15,7 +16,7 @@ export default function CTAButton({ to = '/#formulario', className = '', full = 
         full ? 'w-full sm:w-auto' : ''
       } ${className}`}
     >
-      Solicita tu plan
+      {label}
       <ArrowRight className="h-5 w-5 transition-transform duration-250 group-hover:translate-x-1" aria-hidden="true" />
     </Link>
   )
