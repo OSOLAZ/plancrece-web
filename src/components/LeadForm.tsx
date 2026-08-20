@@ -70,6 +70,8 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
   const [form, setForm] = useState<FormState>(cargarBorrador)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
+  // Honeypot anti-bots: los humanos no lo ven (queda vacío); los bots lo rellenan.
+  const [hp, setHp] = useState('')
 
   // Persistir el borrador solo durante la sesión (se borra al cerrar la pestaña)
   useEffect(() => {
@@ -154,7 +156,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
       Nombre: form.nombre,
       Email: form.email,
       'Acepta novedades': form.comercial ? 'Sí' : 'No',
-    })
+    }, hp)
       .then(() => {
         setStatus('sent')
         try { sessionStorage.removeItem(STORAGE_KEY) } catch { /* nada */ }
@@ -212,6 +214,19 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
       noValidate
       className="relative rounded-xl bg-white p-6 shadow-lg ring-1 ring-border sm:p-8"
     >
+      {/* Honeypot: oculto para humanos (lectores de pantalla incluidos); los bots lo rellenan */}
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor={`${variant}-hp`}>No rellenes este campo</label>
+        <input
+          id={`${variant}-hp`}
+          type="text"
+          name="_hp"
+          tabIndex={-1}
+          autoComplete="off"
+          value={hp}
+          onChange={(e) => setHp(e.target.value)}
+        />
+      </div>
       {variant === 'home' && (
         <div className="mb-6">
           <h2 className="text-xl font-bold tracking-tight text-[#0B2447] sm:text-2xl">

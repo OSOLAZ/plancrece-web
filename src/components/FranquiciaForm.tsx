@@ -40,6 +40,8 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
   const [touched, setTouched] = useState<Partial<Record<keyof Campos, boolean>>>({})
   const [privacidad, setPrivacidad] = useState(false)
   const [status, setStatus] = useState<Status>('idle')
+  // Honeypot anti-bots: los humanos no lo ven (queda vacío); los bots lo rellenan.
+  const [hp, setHp] = useState('')
 
   const validate = (k: keyof Campos, v: string): string => {
     switch (k) {
@@ -79,7 +81,7 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
       'Inversión disponible': campos.inversion,
       'Situación de financiación': campos.situacion || '(no indicada)',
       Perfil: campos.perfil,
-    })
+    }, hp)
       .then(() => setStatus('sent'))
       .catch(() => setStatus('error'))
   }
@@ -134,6 +136,19 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
 
   return (
     <form onSubmit={submit} noValidate className="rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
+      {/* Honeypot: oculto para humanos (lectores de pantalla incluidos); los bots lo rellenan */}
+      <div className="sr-only" aria-hidden="true">
+        <label htmlFor="ff-hp">No rellenes este campo</label>
+        <input
+          id="ff-hp"
+          type="text"
+          name="_hp"
+          tabIndex={-1}
+          autoComplete="off"
+          value={hp}
+          onChange={(e) => setHp(e.target.value)}
+        />
+      </div>
       <div className="grid gap-5 sm:grid-cols-2">
         {campo('nombre', 'Tu nombre', User, (
           <input
