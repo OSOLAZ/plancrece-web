@@ -243,9 +243,6 @@ export default function Home() {
                 Cuéntanos tu situación y analizamos qué camino puede tener sentido.
               </p>
             </div>
-            <div className="mt-7 lg:hidden">
-              <CTAButton />
-            </div>
             <p className="mt-3 flex max-w-xl items-start gap-2 text-sm font-medium leading-snug text-[#0B2447]">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
               Tu idea. Tu nombre. Tu plan. — el documento se entrega sin marca de
@@ -987,68 +984,4 @@ export default function Home() {
             </li>
           ))}
         </ul>
-        <div className="mt-8">
-          <CTAButton />
-        </div>
-      </Section>
-
-      {/* 14. FAQ corto */}
-      <Section alt>
-        <H2>Lo que todos preguntan.</H2>
-        <div className="mt-6 space-y-3">
-          {FAQ_HOME.map((item, i) => (
-            <div key={item.q} className="rounded-xl bg-white ring-1 ring-border">
-              <button
-                type="button"
-                className="btn-press flex w-full items-center justify-between gap-3 rounded-xl px-5 py-4 text-left transition-colors hover:bg-slate-50"
-                onClick={() => setFaqOpen(faqOpen === i ? null : i)}
-                aria-expanded={faqOpen === i}
-              >
-                <span className="text-[15px] font-semibold text-[#0B2447]">{item.q}</span>
-                <ChevronDown
-                  className={`h-5 w-5 shrink-0 text-primary transition-transform ${
-                    faqOpen === i ? 'rotate-180' : ''
-                  }`}
-                  aria-hidden="true"
-                />
-              </button>
-              <div
-                className={`grid transition-all duration-300 ease-out ${
-                  faqOpen === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <p className="px-5 pb-4 text-[15px] leading-relaxed text-foreground">{item.a}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="mt-4 text-sm">
-          <Link to="/faq" className="font-medium text-primary underline-offset-4 hover:underline">
-            Ver todas las preguntas
-          </Link>
-        </p>
-      </Section>
-
-      {/* 15. Cierre */}
-      <section className="navy-bg py-14 sm:py-20">
-        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            Tu proyecto merece llegar bien preparado.
-          </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-slate-300 sm:text-base">
-            Valida tu idea gratis: en menos de 3 días sabrás si es viable. Y si no lo es, te
-            diremos por qué — también gratis.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <CTAButton full={false} className="w-full sm:w-auto" />
-          </div>
-          <p className="mt-4 text-sm text-slate-400">
-            Validación gratuita · Respuesta en 3 días · Confidencial
-          </p>
-        </div>
-      </section>
-    </>
-  )
-}
+        <div className="mt
