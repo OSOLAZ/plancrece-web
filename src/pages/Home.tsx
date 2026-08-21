@@ -220,88 +220,89 @@ export default function Home() {
     <>
       {/* 1. Hero */}
       <section className="hero-bg pb-10 pt-10 sm:pb-16 sm:pt-16">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-14">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-x-14 lg:gap-y-0">
           <div>
-            <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm">
-              <span className="h-px w-8 bg-primary" aria-hidden="true" />
-              Consultoría de planes de negocio · España · Desde 2014
-            </p>
-            <h1 className="mt-4 text-[30px] font-extrabold leading-[1.12] tracking-tight text-[#0B2447] sm:text-4xl lg:text-5xl">
-              Consigue la financiación que tu{' '}
-              <span className="text-primary">proyecto</span> necesita.
-            </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
-              Elaboramos tu plan de negocio con el rigor que exigen bancos, ENISA, inversores y
-              convocatorias públicas.
-            </p>
-            <div className="mt-5 max-w-xl rounded-xl border-l-4 border-primary bg-white/80 px-4 py-3.5 shadow-sm ring-1 ring-border">
-              <p className="text-sm font-bold uppercase tracking-wide text-[#0B2447]">
-                ¿Crees que sin ahorros no puedes empezar?
+              <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm">
+                <span className="h-px w-8 bg-primary" aria-hidden="true" />
+                Consultoría de planes de negocio · España · Desde 2014
               </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-foreground">
-                No siempre. <strong className="text-[#0B2447]">Pago único · Financiación · Socios · Ayudas.</strong>{' '}
-                Cuéntanos tu situación y analizamos qué camino puede tener sentido.
+              <h1 className="mt-4 text-[30px] font-extrabold leading-[1.12] tracking-tight text-[#0B2447] sm:text-4xl lg:text-5xl">
+                Consigue la financiación que tu{' '}
+                <span className="text-primary">proyecto</span> necesita.
+              </h1>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
+                Elaboramos tu plan de negocio con el rigor que exigen bancos, ENISA, inversores y
+                convocatorias públicas.
               </p>
             </div>
-            <p className="mt-3 flex max-w-xl items-start gap-2 text-sm font-medium leading-snug text-[#0B2447]">
-              <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-              Tu idea. Tu nombre. Tu plan. — el documento se entrega sin marca de
-              PlanCrece, listo para presentar como tuyo.
-            </p>
-
-            {/* 3. Barra de credibilidad */}
-            <dl className="mt-9 grid grid-cols-3 divide-x divide-border rounded-2xl bg-white shadow-sm ring-1 ring-border">
-              {[
-                { end: 10, suffix: '+', decimals: 0, label: 'años de experiencia' },
-                { end: 3000, suffix: '+', decimals: 0, label: 'planes elaborados' },
-                { end: 4.9, suffix: '/5', decimals: 1, label: 'valoración media' },
-              ].map(({ end, suffix, decimals, label }) => (
-                <div key={label} className="px-3 py-4 text-center sm:px-4 sm:py-5">
-                  <dt className="sr-only">{label}</dt>
-                  <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
-                    <CountUp end={end} suffix={suffix} decimals={decimals} />
-                  </dd>
-                  <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm">{label}</dd>
-                </div>
-              ))}
-            </dl>
-
-            {/* B2: visual de marca (desktop) */}
-            <Reveal delay={200} className="mt-8 hidden lg:block">
-              <ProjectionVisual />
-            </Reveal>
-
-            {/* B3: vídeo ambiente de negocios */}
-            <Reveal delay={280} className="mt-6">
-              <div className="relative max-w-xl overflow-hidden rounded-2xl shadow-md ring-1 ring-border">
-                <video
-                  className="block h-full w-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="/hero-negocios.jpg"
-                  aria-hidden="true"
-                >
-                  <source src="/hero-negocios.mp4" type="video/mp4" />
-                </video>
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B2447]/45 via-transparent to-transparent"
-                  aria-hidden="true"
-                />
-                <p className="absolute bottom-3 left-4 right-4 text-[13px] font-medium leading-snug text-white drop-shadow">
-                  Negocios como el tuyo, cada mañana, en cada barrio de España.
+            {/* 2. Formulario */}
+            <div id="formulario" className="scroll-mt-24 lg:row-span-2">
+              <LeadForm variant="home" />
+            </div>
+            <div>
+              <div className="mt-5 max-w-xl rounded-xl border-l-4 border-primary bg-white/80 px-4 py-3.5 shadow-sm ring-1 ring-border">
+                <p className="text-sm font-bold uppercase tracking-wide text-[#0B2447]">
+                  ¿Crees que sin ahorros no puedes empezar?
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-foreground">
+                  No siempre. <strong className="text-[#0B2447]">Pago único · Financiación · Socios · Ayudas.</strong>{' '}
+                  Cuéntanos tu situación y analizamos qué camino puede tener sentido.
                 </p>
               </div>
-            </Reveal>
-          </div>
+              <p className="mt-3 flex max-w-xl items-start gap-2 text-sm font-medium leading-snug text-[#0B2447]">
+                <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                Tu idea. Tu nombre. Tu plan. — el documento se entrega sin marca de
+                PlanCrece, listo para presentar como tuyo.
+              </p>
 
-          {/* 2. Formulario */}
-          <div id="formulario" className="scroll-mt-24">
-            <LeadForm variant="home" />
+              {/* 3. Barra de credibilidad */}
+              <dl className="mt-9 grid grid-cols-3 divide-x divide-border rounded-2xl bg-white shadow-sm ring-1 ring-border">
+                {[
+                  { end: 10, suffix: '+', decimals: 0, label: 'años de experiencia' },
+                  { end: 3000, suffix: '+', decimals: 0, label: 'planes elaborados' },
+                  { end: 4.9, suffix: '/5', decimals: 1, label: 'valoración media' },
+                ].map(({ end, suffix, decimals, label }) => (
+                  <div key={label} className="px-3 py-4 text-center sm:px-4 sm:py-5">
+                    <dt className="sr-only">{label}</dt>
+                    <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
+                      <CountUp end={end} suffix={suffix} decimals={decimals} />
+                    </dd>
+                    <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm">{label}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              {/* B2: visual de marca (desktop) */}
+              <Reveal delay={200} className="mt-8 hidden lg:block">
+                <ProjectionVisual />
+              </Reveal>
+
+              {/* B3: vídeo ambiente de negocios */}
+              <Reveal delay={280} className="mt-6">
+                <div className="relative max-w-xl overflow-hidden rounded-2xl shadow-md ring-1 ring-border">
+                  <video
+                    className="block aspect-video w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster="/hero-negocios.jpg"
+                    aria-hidden="true"
+                  >
+                    <source src="/hero-negocios.mp4" type="video/mp4" />
+                  </video>
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B2447]/45 via-transparent to-transparent"
+                    aria-hidden="true"
+                  />
+                  <p className="absolute bottom-3 left-4 right-4 text-[13px] font-medium leading-snug text-white drop-shadow">
+                    Negocios como el tuyo, cada mañana, en cada barrio de España.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
           </div>
-        </div>
       </section>
 
       {/* 4. ¿Es tu caso? */}
