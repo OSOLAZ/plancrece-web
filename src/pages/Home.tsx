@@ -222,7 +222,6 @@ export default function Home() {
       <section className="hero-bg pb-10 pt-10 sm:pb-16 sm:pt-16">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-x-14 lg:gap-y-0">
           <div>
-            <div>
               <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm">
                 <span className="h-px w-8 bg-primary" aria-hidden="true" />
                 Consultoría de planes de negocio · España · Desde 2014
@@ -303,6 +302,7 @@ export default function Home() {
                 </div>
               </Reveal>
             </div>
+          </div>
       </section>
 
       {/* 4. ¿Es tu caso? */}
