@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { Link } from 'react-router'
+import { useState } from 'react'
 import { Check, Loader2, MapPin, User, Mail, Wallet, FileText, HandCoins } from 'lucide-react'
 import { enviarFormulario, EMAIL_CONTACTO } from '../config'
 
@@ -15,8 +15,8 @@ const INVERSIONES = [
 ]
 
 // Situación de financiación: campo opcional que nos ayuda a ordenar el siguiente paso.
+// Selección múltiple: el usuario puede marcar varias opciones.
 const SITUACIONES = [
-  '',
   'Tengo ahorros',
   'Estoy en paro y quiero valorar el pago único',
   'Necesitaría financiación',
@@ -29,11 +29,11 @@ interface Campos {
   email: string
   ubicacion: string
   inversion: string
-  situacion: string
+  situacion: string[]
   perfil: string
 }
 
-const VACIO: Campos = { nombre: '', email: '', ubicacion: '', inversion: '', situacion: '', perfil: '' }
+const VACIO: Campos = { nombre: '', email: '', ubicacion: '', inversion: '', situacion: [], perfil: '' }
 
 export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
   const [campos, setCampos] = useState<Campos>(VACIO)
@@ -43,7 +43,8 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
   // Honeypot anti-bots: los humanos no lo ven (queda vacío); los bots lo rellenan.
   const [hp, setHp] = useState('')
 
-  const validate = (k: keyof Campos, v: string): string => {
+  const validate = (k: keyof Campos, v: string | string[]): string => {
+    if (Array.isArray(v)) return ''
     switch (k) {
       case 'nombre':
         return v.trim().length >= 2 ? '' : 'Tu nombre de pila'
@@ -68,6 +69,15 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
   }
   const blur = (k: keyof Campos) => () => setTouched({ ...touched, [k]: true })
 
+  const toggleSituacion = (op: string) => {
+    setCampos({
+      ...campos,
+      situacion: campos.situacion.includes(op)
+        ? campos.situacion.filter((s) => s !== op)
+        : [...campos.situacion, op],
+    })
+  }
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
     setTouched({ nombre: true, email: true, ubicacion: true, inversion: true, perfil: true })
@@ -79,7 +89,7 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
       Email: campos.email,
       Ubicación: campos.ubicacion,
       'Inversión disponible': campos.inversion,
-      'Situación de financiación': campos.situacion || '(no indicada)',
+      'Situación de financiación': campos.situacion.length ? campos.situacion.join(', ') : '(no indicada)',
       Perfil: campos.perfil,
     }, hp)
       .then(() => setStatus('sent'))
@@ -111,7 +121,8 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
   ) => {
     const err = validate(k, campos[k])
     const tocado = touched[k]
-    const ok = tocado && !err && campos[k]
+    const valor = campos[k]
+    const ok = tocado && !err && (Array.isArray(valor) ? valor.length > 0 : valor)
     return (
       <div>
         <label htmlFor={`ff-${k}`} className="mb-1.5 flex items-center gap-1.5 text-sm font-semibold text-[#0B2447]">
@@ -200,19 +211,23 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
             ))}
           </select>
         ))}
-        {campo('situacion', 'Tu situación de financiación (opcional)', HandCoins, (
-          <select
-            id="ff-situacion"
-            value={campos.situacion}
-            onChange={set('situacion')}
-            className={`${cls('situacion')} ${campos.situacion ? '' : 'text-foreground/50'}`}
-          >
+        {campo('situacion', 'Tu situación de financiación (opcional, puedes marcar varias)', HandCoins, (
+          <div id="ff-situacion" className="space-y-2">
             {SITUACIONES.map((op) => (
-              <option key={op} value={op}>
-                {op || 'Elige la que más se acerque'}
-              </option>
+              <label
+                key={op}
+                className="flex cursor-pointer items-center gap-3 rounded-[10px] border border-border bg-white px-4 py-3 text-sm text-foreground transition-colors hover:border-primary"
+              >
+                <input
+                  type="checkbox"
+                  checked={campos.situacion.includes(op)}
+                  onChange={() => toggleSituacion(op)}
+                  className="h-4 w-4 shrink-0 rounded border-border accent-primary"
+                />
+                {op}
+              </label>
             ))}
-          </select>
+          </div>
         ))}
       </div>
       <div className="mt-5">
@@ -254,7 +269,7 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
           <a href={`mailto:${EMAIL_CONTACTO}`} className="font-semibold underline">{EMAIL_CONTACTO}</a>.
         </p>
       )}
-      
+
       <button
         type="submit"
         disabled={status === 'sending'}
