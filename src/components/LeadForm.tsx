@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ArrowRight, ArrowLeft, Check, Loader2 } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowRight, ArrowLeft, Check, Loader2, Lock, Zap, PhoneOff } from 'lucide-react'
 import { Link } from 'react-router'
 import { enviarFormulario, EMAIL_CONTACTO } from '../config'
 
@@ -32,6 +32,13 @@ const OBJETIVOS = [
 // Solo estos objetivos hacen aparecer el año de nacimiento (hay ayudas por edad)
 const OBJETIVOS_CON_EDAD = ['pago-unico', 'ayudas']
 
+// Nombre y tiempo estimado de cada paso: reduce la ansiedad y marca expectativas
+const PASOS = [
+  { nombre: 'Tu situación', tiempo: '30 seg' },
+  { nombre: 'Tu idea', tiempo: '1 min' },
+  { nombre: 'Tus datos', tiempo: '30 seg' },
+]
+
 const STORAGE_KEY = 'plancrece-lead-borrador'
 
 interface FormState {
@@ -62,6 +69,13 @@ function cargarBorrador(): FormState {
     if (raw) return { ...VACIO, ...JSON.parse(raw) }
   } catch { /* borrador corrupto: se ignora */ }
   return VACIO
+}
+
+// Autofocus solo en desktop: en móvil abriría el teclado virtual y forzaría
+// un salto de scroll al cambiar de paso.
+const autofocusDesktop = (el: HTMLElement | null) => {
+  if (!el) return
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) el.focus()
 }
 
 export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
@@ -192,7 +206,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
   const Progreso = (
     <div className="mb-6" aria-hidden="true">
       <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-        Paso {paso} de 3
+        Paso {paso} de 3 · {PASOS[paso - 1].nombre} ({PASOS[paso - 1].tiempo})
       </p>
       <div className="flex gap-1.5">
         {[1, 2, 3].map((n) => (
@@ -230,16 +244,26 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
       {variant === 'home' && (
         <div className="mb-6">
           <h2 className="text-xl font-bold tracking-tight text-[#0B2447] sm:text-2xl">
-            ¿Tu idea de negocio tiene potencial?
+            ¿Tu idea vale la pena? Te lo decimos en 3 días. Gratis.
           </h2>
           <p className="mt-2 text-[15px] leading-relaxed text-foreground">
-            Cuéntanosla en 2 minutos: 3 pasos y nuestro equipo la analizará. En menos de{' '}
-            <strong>3 días laborables</strong> te diremos si vemos potencial y cuál sería el
-            siguiente paso.
+            Más de 3.000 emprendedores ya han validado su idea con nosotros. Cuéntanosla en 2
+            minutos: 3 pasos y nuestro equipo la analizará.
           </p>
-          <p className="mt-2 text-[13px] text-muted-foreground">
-            Gratis · Confidencial · Sin compromiso · Sin llamadas comerciales
-          </p>
+          <ul className="mt-3 flex flex-col gap-1.5 text-[13px] text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-4">
+            <li className="flex items-center gap-1.5">
+              <Lock className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
+              100% confidencial: no compartimos tu idea
+            </li>
+            <li className="flex items-center gap-1.5">
+              <Zap className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
+              Respuesta en 3 días laborables
+            </li>
+            <li className="flex items-center gap-1.5">
+              <PhoneOff className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
+              Sin llamadas comerciales: solo email
+            </li>
+          </ul>
         </div>
       )}
       {Progreso}
@@ -295,6 +319,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
             </label>
             <textarea
               id={`${variant}-idea`}
+              ref={autofocusDesktop}
               rows={4}
               className={`${baseInput} resize-none py-3 ${inputTone(errors.idea, !!touched.idea, form.idea)}`}
               placeholder={
@@ -368,6 +393,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
               id={`${variant}-nombre`}
               type="text"
               autoComplete="given-name"
+              ref={autofocusDesktop}
               className={`${baseInput} ${inputTone(errors.nombre, !!touched.nombre, form.nombre)}`}
               placeholder="Tu nombre de pila"
               value={form.nombre}
@@ -404,8 +430,8 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
               />
               <span className="text-sm text-foreground">
                 He leído y acepto la{' '}
-                <Link to="/legal/privacidad" className="font-medium text-primary underline">política de privacidad</Link>{' '}
-                y la confidencialidad de la información que envío
+                <Link to="/legal/privacidad" className="font-medium text-primary underline">política de privacidad</Link>.
+                Mis datos se usan solo para analizar mi idea y responderte en 3 días.
               </span>
             </label>
             {fieldError('privacidad')}
@@ -463,7 +489,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
             </>
           ) : (
             <>
-              Solicitar orientación confidencial
+              Analizar mi idea gratis
               <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </>
           )}
