@@ -185,7 +185,7 @@ const FAQ_HOME = [
   },
   {
     q: '¿Garantizáis la financiación?',
-    a: 'Nadie honesto puede hacerlo. Garantizamos un plan sólido que maximiza tus opciones.',
+    a: 'Nadie serio puede prometerlo. Lo que sí podemos asegurar es un plan sólido y bien fundamentado que maximiza tus opciones reales.',
   },
 ]
 
