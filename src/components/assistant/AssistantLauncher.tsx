@@ -3,14 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Search } from "lucide-react";
-import type { PageContext } from "@/data/assistant/pageContexts";
 
 export type AssistantLauncherProps = {
-  _pageContext: PageContext;
   onClick: () => void;
 };
 
-export function AssistantLauncher({ _pageContext, onClick }: AssistantLauncherProps) {
+export function AssistantLauncher({ onClick }: AssistantLauncherProps) {
   return (
     <TooltipProvider>
       <Tooltip>
