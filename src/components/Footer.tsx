@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { TrendingUp, Mail, MessagesSquare } from 'lucide-react'
+import { Mail, MessagesSquare } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -8,10 +8,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <TrendingUp className="h-5 w-5 text-white" aria-hidden="true" />
-              </span>
-              <span className="text-lg font-bold text-white">
+              <img src="/brand/plancrece-icon-navy.svg" alt="PlanCrece" className="h-8 w-8" /><span className="text-lg font-bold text-white">
                 Plan<span className="text-[#6d9bff]">Crece</span>
               </span>
             </div>
