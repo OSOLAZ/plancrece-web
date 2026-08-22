@@ -490,8 +490,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
           ) : paso < 3 ? (
             <>
               Continuar
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </>
+              </>
           ) : (
             <>
               Analizar mi idea gratis
