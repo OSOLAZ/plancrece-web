@@ -314,23 +314,28 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
           <p className="text-lg font-bold text-[#0B2447]">Cuéntanos un poco más</p>
 
           <div>
-            <label htmlFor={`${variant}-idea`} className="mb-1.5 block text-sm font-semibold text-[#0B2447]">
-              {sinIdea ? '¿Qué experiencia, intereses o recursos tienes?' : '¿Qué negocio te gustaría montar o qué idea tienes?'}
-            </label>
-            <textarea
-              id={`${variant}-idea`}
-              ref={autofocusDesktop}
-              rows={4}
-              className={`${baseInput} resize-none py-3 ${inputTone(errors.idea, !!touched.idea, form.idea)}`}
-              placeholder={
-                sinIdea
-                  ? 'Qué sabes hacer, qué te gusta, el tiempo del que dispones o qué tipo de negocio te atrae. No necesitas tener una idea definida.'
-                  : 'Cuéntanos qué negocio quieres montar, en qué punto estás y qué opciones te gustaría combinar.'
-              }
-              value={form.idea}
-              onChange={(e) => update('idea', e.target.value)}
-              onBlur={() => blur('idea')}
-            />
+<label htmlFor={`${variant}-idea`} className="mb-1.5 block text-sm font-semibold text-[#0B2447]">
+  {sinIdea ? '¿Qué experiencia, intereses o recursos tienes?' : 'Cuéntanos tu idea de negocio'}
+</label>
+<textarea
+  id={`${variant}-idea`}
+  ref={autofocusDesktop}
+  rows={4}
+  className={`${baseInput} resize-none py-3 ${inputTone(errors.idea, !!touched.idea, form.idea)}`}
+  placeholder={
+    sinIdea
+      ? 'Ej: Soy camarero y sé gestionar equipos, o tengo un local disponible...'
+      : 'Ej: Una cafetería de especialidad con talleres de cata...'
+  }
+  value={form.idea}
+  onChange={(e) => update('idea', e.target.value)}
+  onBlur={() => blur('idea')}
+/>
+{sinIdea && (
+  <p className="text-xs text-slate-500 mt-1">
+    No te preocupes si aún no tienes la idea definida. Cuéntanos de qué sabes y con qué cuentas.
+  </p>
+)}
             {fieldError('idea')}
             <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
               <strong className="font-semibold text-foreground">¿Tienes varias vías en mente?</strong>{' '}
@@ -494,6 +499,10 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
             </>
           )}
         </button>
+<p className="mt-3 text-xs text-center text-slate-500 leading-tight">
+  Un consultor sénior te responderá en 24h laborables. No compartiremos tus datos.
+  Cláusula de confidencialidad incluida. Sin llamadas comerciales agresivas ni spam.
+</p>
       </div>
 
       {paso === 3 && (

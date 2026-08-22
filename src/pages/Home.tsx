@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import {
   Landmark,
+  Clock,
   Building2,
   FileText,
   RefreshCw,
@@ -237,6 +238,24 @@ export default function Home() {
             </div>
             {/* 2. Formulario */}
             <div id="formulario" className="scroll-mt-24 lg:row-span-2">
+  <div className="grid grid-cols-2 gap-3 mb-6">
+    <div className="flex items-start gap-2">
+      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+      <span className="text-xs sm:text-sm text-slate-700 font-medium">Validación gratuita previa</span>
+    </div>
+    <div className="flex items-start gap-2">
+      <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+      <span className="text-xs sm:text-sm text-slate-700 font-medium">Entrega en 7 días con penalización</span>
+    </div>
+    <div className="flex items-start gap-2">
+      <ShieldCheck className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+      <span className="text-xs sm:text-sm text-slate-700 font-medium">Cláusula de confidencialidad incluida</span>
+    </div>
+    <div className="flex items-start gap-2">
+      <FileText className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+      <span className="text-xs sm:text-sm text-slate-700 font-medium">Documento 100% sin nuestra marca</span>
+    </div>
+  </div>
               <LeadForm variant="home" />
             </div>
             <div>
@@ -267,7 +286,9 @@ export default function Home() {
                     <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
                       <CountUp end={end} suffix={suffix} decimals={decimals} />
                     </dd>
-                    <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm">{label}</dd>
+                    <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center sm:text-left">
+              10+ años · +3.000 planes · según datos internos desde 2014
+            </dd>
                   </div>
                 ))}
               </dl>
