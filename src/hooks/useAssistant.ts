@@ -23,6 +23,10 @@ export type AssistantState =
       mockResponse: MockResponse | null;
     };
 
+function generateId(): string {
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+}
+
 export function useAssistant() {
   const [state, setState] = useState<AssistantState>({ status: "closed" });
 
@@ -47,7 +51,7 @@ export function useAssistant() {
       if (prev.status === "closed") return prev;
 
       const userMessage: Message = {
-        id: crypto.randomUUID(),
+        id: generateId(),
         type: "user",
         content,
         timestamp: Date.now(),
@@ -79,7 +83,7 @@ export function useAssistant() {
       if (prev.status === "closed") return prev;
 
       const assistantMessage: Message = {
-        id: crypto.randomUUID(),
+        id: generateId(),
         type: "assistant",
         content,
         timestamp: Date.now(),
