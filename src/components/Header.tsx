@@ -38,10 +38,7 @@ export default function Header() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-            <TrendingUp className="h-5 w-5 text-white" aria-hidden="true" />
-          </span>
-          <span className="text-lg font-bold tracking-tight text-[#0B2447]">
+          <img src="/brand/plancrece-icon.svg" alt="PlanCrece" className="h-8 w-8" /><span className="text-lg font-bold tracking-tight text-[#0B2447]">
             Plan<span className="text-primary">Crece</span>
           </span>
         </Link>
