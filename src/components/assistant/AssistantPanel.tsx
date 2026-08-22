@@ -5,15 +5,17 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
 import { MessageBubble } from "./MessageBubble";
 import { SuggestionChips } from "./SuggestionChips";
 import { ClarificationOptions } from "./ClarificationOptions";
 import { ResultCard } from "./ResultCard";
 import { FallbackView } from "./FallbackView";
-import { AssistantState, Message } from "@/hooks/useAssistant";
-import { PageContext } from "@/data/assistant/pageContexts";
-import { MockResponse, findMockResponse } from "@/data/assistant/mockResponses";
+import type { AssistantState, Message } from "@/hooks/useAssistant";
+import type { PageContext } from "@/data/assistant/pageContexts";
+import type { MockResponse } from "@/data/assistant/mockResponses";
+import { findMockResponse } from "@/data/assistant/mockResponses";
 
 export type AssistantPanelProps = {
   pageContext: PageContext;
@@ -42,7 +44,10 @@ export function AssistantPanel({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -54,63 +59,69 @@ export function AssistantPanel({
     }
   }, [open, state]);
 
-  const resolveAndRespond = useCallback(
-    (query: string) => {
-      setTimeout(() => {
-        const response = findMockResponse(query);
-        if (response) {
-          if (response.response) addAssistantMessage(response.response);
-          setResult(response);
-        } else {
-          addAssistantMessage("No he encontrado informaci\u00f3n oficial sobre eso.");
-          setResult(null);
-        }
-      }, 200);
-    },
-    [addAssistantMessage, setResult]
-  );
-
   const handleSend = useCallback(() => {
     if (!inputValue.trim()) return;
-    const query = inputValue;
-    sendMessage(query);
+    sendMessage(inputValue);
     setInputValue("");
     setSelectedOption(null);
-    resolveAndRespond(query);
-  }, [inputValue, sendMessage, resolveAndRespond]);
+
+    setTimeout(() => {
+      const response = findMockResponse(inputValue);
+      if (response) {
+        if (response.response) {
+          addAssistantMessage(response.response);
+        }
+        setResult(response);
+      } else {
+        addAssistantMessage("No he encontrado información oficial sobre eso.");
+        setResult(null);
+      }
+    }, 200);
+  }, [inputValue, sendMessage, addAssistantMessage, setResult]);
 
   const handleSuggestionClick = useCallback(
     (suggestion: string) => {
       sendMessage(suggestion);
       setSelectedOption(null);
-      resolveAndRespond(suggestion);
-    },
-    [sendMessage, resolveAndRespond]
-  );
 
-  // Fix: capture currentMockResponse before state transitions to searching
-  const handleOptionClick = useCallback(
-    (option: string, currentMockResponse: MockResponse | null) => {
-      setSelectedOption(option);
-      sendMessage(option);
       setTimeout(() => {
-        if (currentMockResponse?.afterSelection) {
-          addAssistantMessage(currentMockResponse.afterSelection.response);
-          setResult(currentMockResponse);
+        const response = findMockResponse(suggestion);
+        if (response) {
+          if (response.response) {
+            addAssistantMessage(response.response);
+          }
+          setResult(response);
         } else {
-          resolveAndRespond(option);
+          addAssistantMessage("No he encontrado información oficial sobre eso.");
+          setResult(null);
         }
       }, 200);
     },
-    [sendMessage, addAssistantMessage, setResult, resolveAndRespond]
+    [sendMessage, addAssistantMessage, setResult]
+  );
+
+  const handleOptionClick = useCallback(
+    (option: string) => {
+      setSelectedOption(option);
+      sendMessage(option);
+
+      setTimeout(() => {
+        addAssistantMessage("Estoy buscando información sobre eso.");
+        if (state.status === "result" && state.mockResponse?.afterSelection) {
+          addAssistantMessage(state.mockResponse.afterSelection.response);
+        }
+        setResult(state.status === "result" ? state.mockResponse : null);
+      }, 200);
+    },
+    [sendMessage, addAssistantMessage, setResult, state]
   );
 
   const handleFallbackOptionClick = useCallback(
     (option: string) => {
-      sendMessage(option);
-      resolveAndRespond(option);
+      sendMessage(`Opciones: ${option}`);
+      addAssistantMessage(`Te redirijo a: ${option}`);
     },
-    [sendMessage, resolveAndRespond]
+    [sendMessage, addAssistantMessage]
   );
 
   const handleClose = useCallback(() => {
@@ -119,23 +130,19 @@ export function AssistantPanel({
     setSelectedOption(null);
   }, [onOpenChange, resetConversation]);
 
-  const renderContent = () => {
+  const renderContent = useCallback(() => {
     if (state.status === "closed") return null;
+
     const messages = state.messages;
-    const currentMockResponse =
-      state.status === "result" ? state.mockResponse : null;
 
     return (
-      <div className="flex flex-col h-full overflow-hidden">
-        <div className="border-b px-4 py-3 shrink-0">
-          <p className="text-sm font-medium">Asistente PlanCrece</p>
-        </div>
+      <div className="flex flex-col h-full">
+        <DialogHeader className="border-b pb-3">
+          <DialogTitle className="text-base">Asistente PlanCrece</DialogTitle>
+        </DialogHeader>
 
-        <ScrollArea className="flex-1 min-h-0">
-          <div
-            ref={scrollRef}
-            className="p-4 space-y-4 overflow-y-auto"
-          >
+        <ScrollArea className="flex-1">
+          <div ref={scrollRef} className="p-4 space-y-4 overflow-y-auto h-full">
             {messages.length === 0 && (
               <div className="space-y-3">
                 <p className="text-sm">{pageContext.greeting}</p>
@@ -150,74 +157,92 @@ export function AssistantPanel({
             )}
 
             {messages.map((message: Message) => (
-              <MessageBubble key={message.id} type={message.type} content={message.content} />
+              <MessageBubble
+                key={message.id}
+                type={message.type}
+                content={message.content}
+              />
             ))}
 
             {state.status === "searching" && (
-              <p className="text-sm text-muted-foreground">Buscando en PlanCrece...</p>
+              <div className="text-sm text-muted-foreground">
+                Buscando en PlanCrece...
+              </div>
             )}
 
-            {state.status === "result" && currentMockResponse && (
+            {state.status === "result" && state.mockResponse && (
               <div className="space-y-3">
-                {currentMockResponse.card && (
+                {state.mockResponse.card && (
                   <ResultCard
-                    title={currentMockResponse.card.title}
-                    description={currentMockResponse.card.description}
-                    cta={currentMockResponse.card.cta}
-                    source={currentMockResponse.card.source}
+                    title={state.mockResponse.card.title}
+                    description={state.mockResponse.card.description}
+                    cta={state.mockResponse.card.cta}
+                    source={state.mockResponse.card.source}
                   />
                 )}
-                {currentMockResponse.cards?.map((card, i) => (
-                  <ResultCard
-                    key={i}
-                    title={card.title}
-                    description={card.description}
-                    cta={card.cta}
-                    source={card.source}
+
+                {state.mockResponse.cards &&
+                  state.mockResponse.cards.map((card, index) => (
+                    <ResultCard
+                      key={index}
+                      title={card.title}
+                      description={card.description}
+                      cta={card.cta}
+                      source={card.source}
+                    />
+                  ))}
+
+                {state.mockResponse.related &&
+                  state.mockResponse.related.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {state.mockResponse.related.map((related, index) => (
+                        <Button
+                          key={index}
+                          variant="secondary"
+                          size="sm"
+                          className="text-xs"
+                        >
+                          {related}
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+
+                {state.mockResponse.options && (
+                  <ClarificationOptions
+                    options={state.mockResponse.options}
+                    onOptionClick={handleOptionClick}
                   />
-                ))}
-                {currentMockResponse.related && currentMockResponse.related.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {currentMockResponse.related.map((r, i) => (
-                      <Button
-                        key={i}
-                        variant="secondary"
-                        size="sm"
-                        className="text-xs"
-                        onClick={() => handleSuggestionClick(r)}
-                      >
-                        {r}
-                      </Button>
-                    ))}
+                )}
+
+                {state.mockResponse.afterSelection && selectedOption && (
+                  <div className="space-y-3">
+                    <ResultCard
+                      title={state.mockResponse.afterSelection.card.title}
+                      description={state.mockResponse.afterSelection.card.description}
+                      cta={state.mockResponse.afterSelection.card.cta}
+                      source={state.mockResponse.afterSelection.card.source}
+                    />
                   </div>
                 )}
-                {currentMockResponse.options && !selectedOption && (
-                  <ClarificationOptions
-                    options={currentMockResponse.options}
-                    onOptionClick={(opt) => handleOptionClick(opt, currentMockResponse)}
-                  />
-                )}
-                {currentMockResponse.afterSelection && selectedOption && (
-                  <ResultCard
-                    title={currentMockResponse.afterSelection.card.title}
-                    description={currentMockResponse.afterSelection.card.description}
-                    cta={currentMockResponse.afterSelection.card.cta}
-                    source={currentMockResponse.afterSelection.card.source}
-                  />
-                )}
-                <Button variant="link" className="h-auto p-0 text-sm" onClick={resetConversation}>
+
+                <Button
+                  variant="link"
+                  className="h-auto p-0 text-sm"
+                  onClick={resetConversation}
+                >
                   Hacer otra pregunta
                 </Button>
               </div>
             )}
 
-            {state.status === "result" && !currentMockResponse && (
+            {state.status === "result" && !state.mockResponse && (
               <FallbackView onOptionClick={handleFallbackOptionClick} />
             )}
           </div>
         </ScrollArea>
 
-        <div className="border-t p-3 shrink-0">
+        <div className="border-t p-3">
           <div className="flex gap-2">
             <Input
               value={inputValue}
@@ -234,7 +259,17 @@ export function AssistantPanel({
         </div>
       </div>
     );
-  };
+  }, [
+    state,
+    pageContext,
+    inputValue,
+    selectedOption,
+    handleSuggestionClick,
+    handleOptionClick,
+    handleFallbackOptionClick,
+    handleSend,
+    resetConversation,
+  ]);
 
   if (isMobile) {
     return (
@@ -251,13 +286,17 @@ export function AssistantPanel({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent
-        className="w-[400px] max-w-none h-[80vh] max-h-none p-0 fixed bottom-20 right-6 top-auto translate-x-0 translate-y-0 left-auto"
-      >
-        <DialogHeader className="sr-only">
-          <DialogTitle>Asistente PlanCrece</DialogTitle>
-        </DialogHeader>
+      <DialogContent className="w-[400px] max-w-none h-[80vh] max-h-none p-0 fixed bottom-20 right-6">
         {renderContent()}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-3 right-3"
+          onClick={handleClose}
+          aria-label="Cerrar asistente"
+        >
+          <X className="h-4 w-4" />
+        </Button>
       </DialogContent>
     </Dialog>
   );
