@@ -1,8 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PlanCrece">
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#2563EB"/>
+  <defs>
+    <radialGradient id="gloss" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="greenGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <circle cx="32" cy="32" r="31.5" fill="#2563EB"/>
+  <circle cx="32" cy="32" r="31.5" fill="url(#gloss)"/>
   <rect x="13" y="38" width="9" height="14" rx="2" fill="#FFFFFF"/>
   <rect x="27" y="31" width="9" height="21" rx="2" fill="#BFDBFE"/>
-  <rect x="41" y="24" width="9" height="28" rx="2" fill="#22C55E"/>
-  <path d="M13 33 L25 21 L31 27 L47 11" fill="none" stroke="#0F172A" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M38 11 H47 V20" fill="none" stroke="#0F172A" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="41" y="24" width="9" height="28" rx="2" fill="#22C55E" filter="url(#greenGlow)"/>
+  <path d="M13 33 L25 21 L31 27 L47 11" fill="none" stroke="#D9AF43" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M38 11 H47 V20" fill="none" stroke="#D9AF43" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
