@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router'
-import { Menu, X, TrendingUp } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const NAV = [
   { to: '/como-funciona', label: 'Cómo funciona' },
