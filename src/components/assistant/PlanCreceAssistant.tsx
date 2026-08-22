@@ -10,10 +10,10 @@ import { useAssistant } from "@/hooks/useAssistant";
 
 export type PlanCreceAssistantProps = {
   page: AssistantPage;
-  mode?: AssistantMode;
+  _mode?: AssistantMode;
 };
 
-export function PlanCreceAssistant({ page, mode = "prototype" }: PlanCreceAssistantProps) {
+export function PlanCreceAssistant({ page, _mode = "prototype" }: PlanCreceAssistantProps) {
   const [panelOpen, setPanelOpen] = useState(false);
   const {
     state,
