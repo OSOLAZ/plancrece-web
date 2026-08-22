@@ -4,16 +4,15 @@ import { useState } from "react";
 import { AssistantLauncher } from "./AssistantLauncher";
 import { AssistantPanel } from "./AssistantPanel";
 import type { PageContext } from "@/data/assistant/pageContexts";
-import type { AssistantPage, AssistantMode } from "@/hooks/useAssistant";
+import type { AssistantPage } from "@/hooks/useAssistant";
 import { pageContexts } from "@/data/assistant/pageContexts";
 import { useAssistant } from "@/hooks/useAssistant";
 
 export type PlanCreceAssistantProps = {
   page: AssistantPage;
-  _mode?: AssistantMode;
 };
 
-export function PlanCreceAssistant({ page, _mode = "prototype" }: PlanCreceAssistantProps) {
+export function PlanCreceAssistant({ page }: PlanCreceAssistantProps) {
   const [panelOpen, setPanelOpen] = useState(false);
   const {
     state,
@@ -42,7 +41,6 @@ export function PlanCreceAssistant({ page, _mode = "prototype" }: PlanCreceAssis
   return (
     <>
       <AssistantLauncher
-        pageContext={pageContext}
         onClick={handleLauncherClick}
       />
       <AssistantPanel
