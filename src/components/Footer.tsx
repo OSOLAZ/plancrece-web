@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { TrendingUp, Mail, MessagesSquare } from 'lucide-react'
+import { Mail, MessagesSquare } from 'lucide-react'
 
 export default function Footer() {
   return (
