@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { TrendingUp, Mail } from 'lucide-react'
+import { TrendingUp, Mail, MessagesSquare } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -51,6 +51,13 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} PlanCrece. Todos los derechos reservados.</p>
+<Link
+  to="/comunidad"
+  className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-xs font-medium text-slate-300 ring-1 ring-white/10 transition-colors hover:bg-white/10 hover:text-white"
+>
+  <MessagesSquare className="h-3.5 w-3.5" aria-hidden="true" />
+  Comunidad activa desde 2014 · +2.500 consultas resueltas
+</Link>
           <div className="flex flex-wrap gap-4">
             <Link to="/legal" className="hover:text-white">Aviso legal</Link>
             <Link to="/legal/privacidad" className="hover:text-white">Privacidad</Link>
