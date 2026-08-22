@@ -154,17 +154,17 @@ export default function Home() {
               <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
                 <dt className="sr-only">años de experiencia</dt>
                 <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl"><CountUp end={17} suffix="+" decimals={0} /></dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center sm:text-left">Asesorando desde 2008</dd>
+                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">Asesorando desde 2008</dd>
               </div>
               <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
                 <dt className="sr-only">planes elaborados</dt>
                 <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl"><CountUp end={3000} suffix="+" decimals={0} /></dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center sm:text-left">+3.000 planes</dd>
+                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">+3.000 planes</dd>
               </div>
               <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
                 <dt className="sr-only">valoración media</dt>
                 <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl"><CountUp end={4.9} suffix="/5" decimals={1} /></dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center sm:text-left">Valoración media</dd>
+                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">Valoración media</dd>
               </div>
             </dl>
 
