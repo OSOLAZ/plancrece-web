@@ -6,11 +6,11 @@ import { Search } from "lucide-react";
 import type { PageContext } from "@/data/assistant/pageContexts";
 
 export type AssistantLauncherProps = {
-  pageContext: PageContext;
+  _pageContext: PageContext;
   onClick: () => void;
 };
 
-export function AssistantLauncher({ pageContext, onClick }: AssistantLauncherProps) {
+export function AssistantLauncher({ _pageContext, onClick }: AssistantLauncherProps) {
   return (
     <TooltipProvider>
       <Tooltip>
