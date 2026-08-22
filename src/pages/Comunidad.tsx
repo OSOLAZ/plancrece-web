@@ -154,17 +154,18 @@ export default function Comunidad() {
               aria-label="Buscar en la comunidad"
             />
           </div>
-          {/* Normas de la comunidad */}
+          {/* Aviso de mantenimiento */}
+            <div className="mx-auto max-w-4xl rounded-xl border border-amber-200 bg-amber-50 px-4 py-3.5 ring-1 ring-amber-100 mb-6">
+              <p className="flex items-start gap-2.5 text-sm leading-relaxed text-amber-900">
+                <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" aria-hidden="true" />
+                <span>
+                  <strong>Foro en modo lectura.</strong> Nuevos registros y publicaciones en pausa temporal por tareas de mantenimiento programado. Estamos mejorando la experiencia de la comunidad.
+                </span>
+              </p>
+            </div>
+            {/* Normas de la comunidad */}
           <div className="mt-4 flex items-start gap-3 rounded-xl border border-primary/15 bg-primary/[0.04] p-4">
             <ShieldCheck
-<div className="mx-auto max-w-4xl rounded-xl border border-amber-200 bg-amber-50 px-4 py-3.5 ring-1 ring-amber-100 mb-6">
-  <p className="flex items-start gap-2.5 text-sm leading-relaxed text-amber-900">
-    <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" aria-hidden="true" />
-    <span>
-      <strong>Foro en modo lectura.</strong> Nuevos registros y publicaciones en pausa temporal por tareas de mantenimiento programado. Estamos mejorando la experiencia de la comunidad.
-    </span>
-  </p>
-</div>
               className="mt-0.5 h-5 w-5 shrink-0 text-primary"
               aria-hidden="true"
             />
