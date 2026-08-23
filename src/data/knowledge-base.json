@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "language": "es",
+  "entries": [
+    {
+      "id": "plan-estandar",
+      "title": "Plan Estándar — 149 €",
+      "source": "Precios.tsx",
+      "price": "149 €",
+      "action": "lead_form",
+      "content": [
+        "Tu plan de empresa completo, listo para presentar.",
+        "Validación previa de la idea incluida.",
+        "Entrega en PDF y Word editable.",
+        "Documento a nombre del cliente, sin marca de PlanCrece."
+      ],
+      "includes": [
+        "Presentación",
+        "Plan de marketing",
+        "Inversiones",
+        "Plan de organización y gestión",
+        "Plan jurídico-fiscal",
+        "Plan económico-financiero",
+        "Valoración"
+      ]
+    },
+    {
+      "id": "plan-avanzado",
+      "title": "Plan Avanzado — 149 €, antes 249 €",
+      "source": "Precios.tsx",
+      "price": "149 €",
+      "previousPrice": "249 €",
+      "validUntil": "2026-12-31",
+      "action": "lead_form",
+      "content": [
+        "Es el plan más elegido.",
+        "Promoción vigente hasta el 31 de diciembre de 2026.",
+        "Incluye todo lo del Plan Estándar.",
+        "Entrega en PDF, Word y PowerPoint editables.",
+        "Documento a nombre del cliente, sin marca de PlanCrece."
+      ],
+      "adds": [
+        "Informe personalizado de ayudas y subvenciones, valorado en 65 €, incluido.",
+        "Presentación personalizada en PowerPoint con guion para bancos y socios.",
+        "Guía orientativa de entidades y líneas de financiación según el caso."
+      ]
+    },
+    {
+      "id": "informe-ayudas-subvenciones",
+      "title": "Informe de ayudas y subvenciones — 65 €",
+      "source": "Precios.tsx",
+      "price": "65 €",
+      "action": "lead_form",
+      "content": [
+        "Está incluido en el Plan Avanzado.",
+        "También se ofrece por separado.",
+        "Si después se contrata el Plan Avanzado, se descuentan los 65 €."
+      ],
+      "includes": [
+        "Análisis personalizado por zona.",
+        "Subvenciones disponibles para el caso.",
+        "Ayudas europeas aplicables.",
+        "Requisitos y plazos detallados.",
+        "Asesoramiento para la solicitud.",
+        "Seguimiento de convocatorias."
+      ]
+    },
+    {
+      "id": "como-funciona",
+      "title": "Cómo funciona",
+      "source": "ComoFunciona.tsx / captura actual de la web",
+      "steps": [
+        {
+          "title": "Cuéntanos tu idea",
+          "content": "Formulario de aproximadamente 2 minutos, sin compromiso y sin coste."
+        },
+        {
+          "title": "Validación honesta",
+          "content": "Uno o varios consultores valoran la idea, el momento del sector, los pros y contras, y si encaja con el perfil del cliente. Si la ven inviable, lo comunican con honestidad y ayudan a mejorarla o buscar otra alternativa. Es gratis.",
+          "action": "lead_form"
+        },
+        {
+          "title": "Tu plan personalizado",
+          "content": "Si la idea es viable, recomiendan el plan adecuado —Estándar o Avanzado— y envían un formulario personalizado.",
+          "action": "lead_form"
+        },
+        {
+          "title": "Construcción",
+          "content": "El plazo habitual es de unos 7 días. Si el proyecto es más complejo, se avisa antes y se entrega una fecha cerrada por escrito."
+        },
+        {
+          "title": "Entrega completa",
+          "content": "El cliente recibe su plan y los materiales incluidos en PDF y formatos editables. Puede modificarlos posteriormente sin volver a pagar."
+        }
+      ]
+    }
+  ],
+  "editorialRules": {
+    "source": "Reglas editoriales proporcionadas para knowledge-base.json v1",
+    "rules": [
+      "No validar ideas automáticamente.",
+      "Si preguntan por validar una idea, explicar que la valoración la realizan consultores de PlanCrece y usar action: lead_form.",
+      "Nunca inventar ni garantizar ayudas, subvenciones o financiación.",
+      "Nunca inventar precios, plazos, promociones o condiciones."
+    ],
+    "fallback": "No tengo información suficiente para responderte con seguridad. Puedes consultar la información oficial de PlanCrece o contactar con el equipo."
+  }
+}
