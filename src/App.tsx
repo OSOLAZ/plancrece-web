@@ -1,5 +1,6 @@
 import { ChatWidget } from './components/ChatWidget';
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import type { FormEvent } from 'react';
 
 function App() {
   const [formData, setFormData] = useState({
