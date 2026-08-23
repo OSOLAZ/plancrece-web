@@ -9,10 +9,6 @@ import { PlanCreceAssistant } from '@/components/assistant/PlanCreceAssistant'
 export default function Home() {
   const leadFormRef = useRef<HTMLDivElement>(null)
 
-  const scrollToLeadForm = () => {
-    leadFormRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <>
       {/* Hero Section */}
@@ -45,8 +41,8 @@ export default function Home() {
 
             <Reveal delay={300}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <CTAButton href="/" variant="primary" size="large" />
-                <CTAButton href="/" variant="secondary" size="large" />
+                <CTAButton variant="primary" size="large" />
+                <CTAButton variant="secondary" size="large" />
               </div>
             </Reveal>
 
@@ -324,7 +320,7 @@ export default function Home() {
               <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
         Ãnete a las mÃ¡s de 3.000 personas que ya confiaron en PlanCrece para su planificaciÃ³n financiera.
               </p>
-              <CTAButton href="/" variant="primary" size="large" />
+              <CTAButton variant="primary" size="large" />
             </div>
           </Reveal>
         </div>
