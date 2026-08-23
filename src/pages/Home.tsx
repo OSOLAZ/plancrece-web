@@ -1,17 +1,13 @@
-import { Link } from 'react-router'
-import { Landmark, Clock, TrendingUp, Users, Shield, CheckCircle, ArrowRight, DollarSign, Percent, FileText, Calendar, Phone, Mail, MapPin, Star, ChevronRight, Sparkles, Target, Zap, Award, Heart, Lightbulb, Briefcase, Home as HomeIcon, Building, PieChart, BarChart3, LineChart, Activity, TrendingDown, ArrowUpRight, ArrowDownRight, RefreshCcw, Repeat, Layers, GitBranch, GitCommit, GitPullRequest, GitMerge, Settings, Sliders, Filter, Search, Menu, X, Plus, Minus, ChevronDown, ChevronUp, ChevronLeft, MoreHorizontal, MoreVertical, Copy, ExternalLink, Download, Upload, Save, Edit, Trash2, Eye, EyeOff, Lock, Unlock, Key, Hash, At, Video, Camera, Image, File, Files, Folder, FolderOpen, Archive, Tag, Tags, Bookmark, Book, Notebook, Pen, Pencil, Eraser, Scissors, Clipboard, Paste, Cut } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
+import { Landmark, Clock, TrendingUp, Users, Shield, Star, ArrowRight, Sparkles, Award, Target, Lightbulb } from 'lucide-react'
 import CTAButton from '../components/CTAButton'
-import ConsultantTip from '../components/ConsultantTip'
 import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
 import CountUp from '../components/CountUp'
-import ProjectionVisual from '../components/ProjectionVisual'
 import { PlanCreceAssistant } from '@/components/assistant/PlanCreceAssistant'
 
 export default function Home() {
   const leadFormRef = useRef<HTMLDivElement>(null)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToLeadForm = () => {
     leadFormRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -54,7 +50,7 @@ export default function Home() {
                   <ArrowRight className="w-5 h-5" />
                 </CTAButton>
                 <CTAButton onClick={() => {}} variant="secondary" size="large">
-                  Ver demostración
+                  Ver demostraciÃ³n
                 </CTAButton>
               </div>
             </Reveal>
@@ -66,7 +62,7 @@ export default function Home() {
                   <div className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
                     <CountUp end={17} duration={2000} suffix="+" />
                   </div>
-                  <div className="text-sm text-gray-300 mt-1 text-center">años de experiencia</div>
+                  <div className="text-sm text-gray-300 mt-1 text-center">aÃ±os de experiencia</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
@@ -78,7 +74,7 @@ export default function Home() {
                   <div className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
                     <CountUp end={4.9} duration={1500} suffix="/5" decimals={1} />
                   </div>
-                  <div className="text-sm text-gray-300 mt-1 text-center">valoración media</div>
+                  <div className="text-sm text-gray-300 mt-1 text-center">valoraciÃ³n media</div>
                 </div>
               </div>
             </Reveal>
@@ -92,10 +88,10 @@ export default function Home() {
           <Reveal>
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#0B2447] mb-4">
-                ¿Por qué elegir PlanCrece?
+                Â ¿Por quÃ© elegir PlanCrece?
               </h2>
               <p className="text-lg text-gray-600">
-                Combinamos experiencia, tecnología y un enfoque personalizado para ofrecerte el mejor servicio.
+                Combinamos experiencia, tecnologÃ¬a y un enfoque personalizado para ofrecerte el mejor servicio.
               </p>
             </div>
           </Reveal>
@@ -107,7 +103,7 @@ export default function Home() {
                   <Award className="w-6 h-6 text-[#A5D659]" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#0B2447] mb-2">Experiencia certificada</h3>
-                <p className="text-gray-600">Más de 17 años asesorando a clientes con situaciones financieras complejas.</p>
+                <p className="text-gray-600">MÃ¡s de 17 aÃ±os asesorando a clientes con situaciones financieras complejas.</p>
               </div>
             </Reveal>
 
@@ -117,7 +113,7 @@ export default function Home() {
                   <Target className="w-6 h-6 text-[#A5D659]" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#0B2447] mb-2">Enfoque personalizado</h3>
-                <p className="text-gray-600">Cada plan se adapta a tus objetivos, perfil de riesgo y circunstancias únicas.</p>
+                <p className="text-gray-600">Cada plan se adapta a tus objetivos, perfil de riesgo y circunstancias Ãnicas.</p>
               </div>
             </Reveal>
 
@@ -127,7 +123,7 @@ export default function Home() {
                   <Shield className="w-6 h-6 text-[#A5D659]" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#0B2447] mb-2">Seguridad y confianza</h3>
-                <p className="text-gray-600">Tu información está protegida y nuestros consejos son 100% independientes.</p>
+                <p className="text-gray-600">Tu informaciÃ³n estÃ¡ protegida y nuestros consejos son 100% independientes.</p>
               </div>
             </Reveal>
 
@@ -147,7 +143,7 @@ export default function Home() {
                   <Users className="w-6 h-6 text-[#A5D659]" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#0B2447] mb-2">Soporte continuo</h3>
-                <p className="text-gray-600">Acompañamiento durante todo el proceso, desde la planificación hasta la ejecución.</p>
+                <p className="text-gray-600">AcompaÃ±amiento durante todo el proceso, desde la planificaciÃ³n hasta la ejecuciÃ³n.</p>
               </div>
             </Reveal>
 
@@ -157,7 +153,7 @@ export default function Home() {
                   <Lightbulb className="w-6 h-6 text-[#A5D659]" />
                 </div>
                 <h3 className="text-xl font-semibold text-[#0B2447] mb-2">Ideas innovadoras</h3>
-                <p className="text-gray-600">Estrategias financieras actualizadas con las últimas tendencias del sector.</p>
+                <p className="text-gray-600">Estrategias financieras actualizadas con las Ãltimas tendencias del sector.</p>
               </div>
             </Reveal>
           </div>
@@ -170,7 +166,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#0B2447] mb-4">
-                Cómo funciona
+                CÃ³mo funciona
               </h2>
               <p className="text-lg text-gray-600">
                 Un proceso simple y transparente en 4 pasos.
@@ -185,7 +181,7 @@ export default function Home() {
                   1
                 </div>
                 <h3 className="text-lg font-semibold text-[#0B2447] mb-2">Consulta inicial</h3>
-                <p className="text-gray-600">Hablamos sobre tus objetivos y situación actual.</p>
+                <p className="text-gray-600">Hablamos sobre tus objetivos y situaciÃ³n actual.</p>
               </div>
             </Reveal>
 
@@ -194,7 +190,7 @@ export default function Home() {
                 <div className="w-16 h-16 bg-[#A5D659] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   2
                 </div>
-                <h3 className="text-lg font-semibold text-[#0B2447] mb-2">Análisis</h3>
+                <h3 className="text-lg font-semibold text-[#0B2447] mb-2">AnÃ¡lisis</h3>
                 <p className="text-gray-600">Estudiamos tu caso e identificamos oportunidades.</p>
               </div>
             </Reveal>
@@ -214,7 +210,7 @@ export default function Home() {
                 <div className="w-16 h-16 bg-[#A5D659] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   4
                 </div>
-                <h3 className="text-lg font-semibold text-[#0B2447] mb-2">Ejecución</h3>
+                <h3 className="text-lg font-semibold text-[#0B2447] mb-2">EjecuciÃ³n</h3>
                 <p className="text-gray-600">Implementamos el plan y hacemos seguimiento.</p>
               </div>
             </Reveal>
@@ -228,7 +224,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#0B2447] mb-4">
-                Comienza tu planificación financiera
+                Comienza tu planificaciÃ³n financiera
               </h2>
               <p className="text-lg text-gray-600">
                 Rellena el formulario y te contactaremos en menos de 24 horas.
@@ -272,7 +268,7 @@ export default function Home() {
                     M
                   </div>
                   <div>
-                    <div className="font-semibold text-[#0B2447]">María G.</div>
+                    <div className="font-semibold text-[#0B2447]">MarÃ¬a G.</div>
                     <div className="text-sm text-gray-500">Emprendedora</div>
                   </div>
                 </div>
@@ -286,14 +282,14 @@ export default function Home() {
                     <Star key={i} className="w-5 h-5 fill-[#FDB813] text-[#FDB813]" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4">"Llevaba años buscando asesoramiento financiero de calidad. Por fin encontré un equipo que realmente se preocupa por mis intereses."</p>
+                <p className="text-gray-700 mb-4">"Llevaba aÃ±os buscando asesoramiento financiero de calidad. Por fin encontrÃ© un equipo que realmente se preocupa por mis intereses."</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-[#A5D659] rounded-full flex items-center justify-center text-white font-semibold">
                     C
                   </div>
                   <div>
                     <div className="font-semibold text-[#0B2447]">Carlos R.</div>
-                    <div className="text-sm text-gray-500">Autónomo</div>
+                    <div className="text-sm text-gray-500">AutÃ³nomo</div>
                   </div>
                 </div>
               </div>
@@ -306,7 +302,7 @@ export default function Home() {
                     <Star key={i} className="w-5 h-5 fill-[#FDB813] text-[#FDB813]" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4">"El plan de jubilación que diseñaron para mí es perfecto. Ahora sé exactamente cómo llegar a mis objetivos."</p>
+                <p className="text-gray-700 mb-4">"El plan de jubilaciÃ³n que diseÃ±aron para mÃ¬ es perfecto. Ahora sÃ© exactamente cÃ³mo llegar a mis objetivos."</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-[#A5D659] rounded-full flex items-center justify-center text-white font-semibold">
                     L
@@ -328,10 +324,10 @@ export default function Home() {
           <Reveal>
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                ¿Listo para tomar el control de tus finanzas?
+                Â ¿Listo para tomar el control de tus finanzas?
               </h2>
               <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-                Únete a las más de 3.000 personas que ya confiaron en PlanCrece para su planificación financiera.
+        Ãnete a las mÃ¡s de 3.000 personas que ya confiaron en PlanCrece para su planificaciÃ³n financiera.
               </p>
               <CTAButton onClick={scrollToLeadForm} variant="primary" size="large">
                 Solicitar consulta gratuita
