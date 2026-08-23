@@ -27,7 +27,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // === Método ===
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    res.status(405).json({ error: 'Método no permitido' });
+    res.status(405).json({ error: 'M étodo no permitido' });
     return;
   }
 
@@ -48,9 +48,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // === Validar editorialRules y fallback ===
-  const { editorialRules, fallback } = knowledgeBase as {
+  const { editorialRules } = knowledgeBase as {
     editorialRules?: unknown;
-    fallback?: unknown;
   };
 
   if (
@@ -64,15 +63,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  if (typeof fallback !== 'string' || !fallback.trim()) {
+  const editorialRulesObj = editorialRules as {
+    rules: string[];
+    fallback?: unknown;
+  };
+
+  if (typeof editorialRulesObj.fallback !== 'string' || !editorialRulesObj.fallback.trim()) {
     res.status(502).json({ error: 'KB_INVALID' });
     return;
   }
 
+  const fallback = editorialRulesObj.fallback;
+
   // === Validar body ===
   const body = req.body;
   if (!body || typeof body !== 'object') {
-    res.status(400).json({ error: 'Entrada inválida' });
+    res.status(400).json({ error: 'Entrada inv álida' });
     return;
   }
 
@@ -83,23 +89,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // === Validar message ===
   if (typeof message !== 'string' || !message.trim()) {
-    res.status(400).json({ error: 'Entrada inválida' });
+    res.status(400).json({ error: 'Entrada inv álida' });
     return;
   }
 
   if (message.length > MAX_MESSAGE_LENGTH) {
-    res.status(400).json({ error: 'Entrada inválida' });
+    res.status(400).json({ error: 'Entrada inv álida' });
     return;
   }
 
   // === Validar history ===
   if (!Array.isArray(history)) {
-    res.status(400).json({ error: 'Entrada inválida' });
+    res.status(400).json({ error: 'Entrada inv álida' });
     return;
   }
 
   if (history.length > MAX_HISTORY_LENGTH) {
-    res.status(400).json({ error: 'Entrada inválida' });
+    res.status(400).json({ error: 'Entrada inv álida' });
     return;
   }
 
@@ -114,23 +120,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       typeof entry.role !== 'string' ||
       typeof entry.content !== 'string'
     ) {
-      res.status(400).json({ error: 'Entrada inválida' });
+      res.status(400).json({ error: 'Entrada inv álida' });
       return;
     }
 
     const role = entry.role as string;
     if (role !== 'user' && role !== 'assistant') {
-      res.status(400).json({ error: 'Entrada inválida' });
+      res.status(400).json({ error: 'Entrada inv álida' });
       return;
     }
 
     if (!entry.content.trim()) {
-      res.status(400).json({ error: 'Entrada inválida' });
+      res.status(400).json({ error: 'Entrada inv álida' });
       return;
     }
 
     if (entry.content.length > MAX_MESSAGE_LENGTH) {
-      res.status(400).json({ error: 'Entrada inválida' });
+      res.status(400).json({ error: 'Entrada inv álida' });
       return;
     }
 
@@ -143,7 +149,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // === Construir contexto de conocimiento (prioridad sobre historial) ===
   let knowledgeContext = '';
-  const excludedKeys = new Set(['editorialRules', 'fallback']);
+  const excludedKeys = new Set(['editorialRules']);
   const knowledgePrefix = 'Conocimiento:\n';
 
   for (const [key, value] of Object.entries(knowledgeBase)) {
@@ -166,7 +172,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   usedLength += knowledgeContext.length;
 
-  // === Incorporar historial (más recientes primero, luego restaurar orden) ===
+  // === Incorporar historial (m ás recientes primero, luego restaurar orden) ===
   const context: Array<{ role: 'user' | 'assistant'; content: string }> = [];
 
   for (let i = validHistory.length - 1; i >= 0 && context.length < MAX_HISTORY_LENGTH; i--) {
