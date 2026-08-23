@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Landmark, Clock, TrendingUp, Users, Shield, Star, ArrowRight, Sparkles, Award, Target, Lightbulb } from 'lucide-react'
+import { TrendingUp, Users, Shield, Star, ArrowRight, Sparkles, Award, Target, Lightbulb } from 'lucide-react'
 import CTAButton from '../components/CTAButton'
 import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
@@ -45,13 +45,8 @@ export default function Home() {
 
             <Reveal delay={300}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <CTAButton onClick={scrollToLeadForm} variant="primary" size="large">
-                  Comienza ahora
-                  <ArrowRight className="w-5 h-5" />
-                </CTAButton>
-                <CTAButton onClick={() => {}} variant="secondary" size="large">
-                  Ver demostraciÃ³n
-                </CTAButton>
+                <CTAButton onClick={scrollToLeadForm} variant="primary" size="large" />
+                <CTAButton onClick={() => {}} variant="secondary" size="large" />
               </div>
             </Reveal>
 
@@ -60,19 +55,19 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 pt-8 border-t border-white/10">
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
-                    <CountUp end={17} duration={2000} suffix="+" />
+                    <CountUp end={17} suffix="+" />
                   </div>
                   <div className="text-sm text-gray-300 mt-1 text-center">aÃ±os de experiencia</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
-                    <CountUp end={3000} duration={2500} suffix="+" />
+                    <CountUp end={3000} suffix="+" />
                   </div>
                   <div className="text-sm text-gray-300 mt-1 text-center">planes elaborados</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl">
-                    <CountUp end={4.9} duration={1500} suffix="/5" decimals={1} />
+                    <CountUp end={4.9} suffix="/5" decimals={1} />
                   </div>
                   <div className="text-sm text-gray-300 mt-1 text-center">valoraciÃ³n media</div>
                 </div>
@@ -329,10 +324,7 @@ export default function Home() {
               <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
         Ãnete a las mÃ¡s de 3.000 personas que ya confiaron en PlanCrece para su planificaciÃ³n financiera.
               </p>
-              <CTAButton onClick={scrollToLeadForm} variant="primary" size="large">
-                Solicitar consulta gratuita
-                <ArrowRight className="w-5 h-5" />
-              </CTAButton>
+              <CTAButton onClick={scrollToLeadForm} variant="primary" size="large" />
             </div>
           </Reveal>
         </div>
