@@ -1,6 +1,5 @@
 import { useRef } from 'react'
-import { TrendingUp, Users, Shield, Star, Sparkles, Award, Target, Lightbulb } from 'lucide-react'
-import CTAButton from '../components/CTAButton'
+import { TrendingUp, Users, Shield, Star, Sparkles, Award, Target, Lightbulb, ArrowRight } from 'lucide-react'
 import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
 import CountUp from '../components/CountUp'
@@ -41,8 +40,13 @@ export default function Home() {
 
             <Reveal delay={300}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <CTAButton variant="primary" size="large" />
-                <CTAButton variant="secondary" size="large" />
+                <button className="px-6 py-3 bg-[#A5D659] text-[#0B2447] rounded-full font-semibold hover:bg-[#7CB84F] transition-colors flex items-center gap-2">
+                  Comienza ahora
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                <button className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold hover:bg-white/20 transition-colors">
+                  Ver demostraciÃ³n
+                </button>
               </div>
             </Reveal>
 
@@ -320,7 +324,10 @@ export default function Home() {
               <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
         Ãnete a las mÃ¡s de 3.000 personas que ya confiaron en PlanCrece para su planificaciÃ³n financiera.
               </p>
-              <CTAButton variant="primary" size="large" />
+              <button className="px-6 py-3 bg-[#A5D659] text-[#0B2447] rounded-full font-semibold hover:bg-[#7CB84F] transition-colors flex items-center gap-2 mx-auto">
+                Solicitar consulta gratuita
+                <ArrowRight className="w-5 h-5" />
+              </button>
             </div>
           </Reveal>
         </div>
