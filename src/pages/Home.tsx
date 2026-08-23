@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { TrendingUp, Users, Shield, Star, ArrowRight, Sparkles, Award, Target, Lightbulb } from 'lucide-react'
+import { TrendingUp, Users, Shield, Star, Sparkles, Award, Target, Lightbulb } from 'lucide-react'
 import CTAButton from '../components/CTAButton'
 import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
@@ -45,8 +45,8 @@ export default function Home() {
 
             <Reveal delay={300}>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <CTAButton onClick={scrollToLeadForm} variant="primary" size="large" />
-                <CTAButton onClick={() => {}} variant="secondary" size="large" />
+                <CTAButton href="/" variant="primary" size="large" />
+                <CTAButton href="/" variant="secondary" size="large" />
               </div>
             </Reveal>
 
@@ -324,7 +324,7 @@ export default function Home() {
               <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
         Ãnete a las mÃ¡s de 3.000 personas que ya confiaron en PlanCrece para su planificaciÃ³n financiera.
               </p>
-              <CTAButton onClick={scrollToLeadForm} variant="primary" size="large" />
+              <CTAButton href="/" variant="primary" size="large" />
             </div>
           </Reveal>
         </div>
