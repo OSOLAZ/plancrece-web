@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import type { KeyboardEvent } from 'react';
+import type { FormEvent, KeyboardEvent } from 'react';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -13,15 +13,15 @@ type QuickAction = {
 };
 
 const QUICK_ACTIONS: QuickAction[] = [
-  { label: ' ¿ Cómo funciona PlanCrece?', message: ' ¿ Cómo funciona PlanCrece?' },
-  { label: ' ¿ Qué incluye el plan?', message: ' ¿ Qué incluye el plan?' },
-  { label: ' ¿ Cuá¡¿nto cuesta?', message: ' ¿ Cuá¡¿nto cuesta?' },
+  { label: '¿Cómo funciona PlanCrece?', message: '¿Cómo funciona PlanCrece?' },
+  { label: '¿Qué incluye el plan?', message: '¿Qué incluye el plan?' },
+  { label: '¿Cuánto cuesta?', message: '¿Cuánto cuesta?' },
   { label: '🚀 Quiero validar mi idea', message: 'Quiero validar mi idea', isPrimary: true },
 ];
 
 const INITIAL_MESSAGE: Message = {
   role: 'assistant',
-  content: 'Hola 👋 Soy el asistente de PlanCrece. Puedo ayudarte con dudas sobre nuestros planes, precios y cámo funciona el servicio.\n\n ¿ Qué quieres saber?',
+  content: 'Hola 👋 Soy el asistente de PlanCrece. Puedo ayudarte con dudas sobre nuestros planes, precios y cómo funciona el servicio.\n\n¿Qué quieres saber?',
 };
 
 export function ChatWidget() {
@@ -87,7 +87,7 @@ export function ChatWidget() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     sendMessage(input);
   };
@@ -118,7 +118,7 @@ export function ChatWidget() {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.71 9.71 0 01-2.68-.38L3 21l1.38-5.34A7.95 7.95 0 013 12c0-4.418-4.03-8 9-8s9 3.582 9 8z"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.71 9.71 0 01-2.68-.38L3 21l1.38-5.34A7.95 7.95 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
           />
         </svg>
       </button>
@@ -133,7 +133,6 @@ export function ChatWidget() {
       aria-label="Chat con el asistente de PlanCrece"
       aria-modal="true"
     >
-      {/* Cabecera */}
       <div className="flex items-center justify-between bg-[#0B2447] px-4 py-3 text-white">
         <h3 className="text-sm font-semibold">Asistente PlanCrece</h3>
         <button
@@ -156,7 +155,6 @@ export function ChatWidget() {
         </button>
       </div>
 
-      {/* Mensajes */}
       <div className="max-h-96 overflow-y-auto bg-gray-50 px-4 py-3">
         {messages.map((msg, idx) => (
           <div
@@ -198,7 +196,6 @@ export function ChatWidget() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Acciones rápidas (solo si no hay mensajes de usuario) */}
       {messages.length === 1 && (
         <div className="border-t border-gray-200 bg-white px-4 py-2">
           <div className="flex flex-wrap gap-2">
@@ -221,7 +218,6 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* Input */}
       <form
         onSubmit={handleSubmit}
         className="border-t border-gray-200 bg-white px-4 py-3"
