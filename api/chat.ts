@@ -220,7 +220,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     res.status(200).json({ reply });
-  } catch {
-    res.status(502).json({ error: 'GROQ_FAILED' });
+  } catch (err: unknown) {
+    const errorObj = err as { message?: string; status?: number; response?: { data?: unknown } };
+    const errorDetails = errorObj.message || 'Error desconocido';
+    const errorStatus = errorObj.status;
+    const errorResponse = errorObj.response?.data;
+
+    console.log('Groq error:', {
+      message: errorDetails,
+      status: errorStatus,
+      response: errorResponse,
+      apiKey: GROQ_API_KEY ? `${GROQ_API_KEY.slice(0, 4)}...` : 'missing',
+    });
+
+    res.status(502).json({ error: 'GROQ_FAILED', details: errorDetails });
   }
 }
