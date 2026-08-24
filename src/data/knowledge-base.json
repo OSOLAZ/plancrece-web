@@ -1,0 +1,35 @@
+{
+  "editorialRules": {
+    "rules": [
+      "Responde siempre en español.",
+      "No inventes datos, precios, plazos, ayudas ni condiciones.",
+      "No prometas resultados ni valides ideas de negocio automáticamente.",
+      "Sé¡¡ claro, cercano y profesional."
+    ],
+    "fallback": "Lo siento, no tengo información suficiente para responder con precisión. Un consultor de PlanCrece puede ayudarte mejor."
+  },
+  "planes": {
+    "basico": {
+      "nombre": "Plan Básico",
+      "precio": "99 €",
+      "descripcion": "Orientaci ón inicial y estructura b ásica del plan."
+    },
+    "avanzado": {
+      "nombre": "Plan Avanzado",
+      "precio": "149 €",
+      "precioAntes": "249 €",
+      "promocionHasta": "31 de diciembre de 2026",
+      "descripcion": "Incluye todo lo del B ásico m ás revisi ón personalizada y gu ía paso a paso."
+    }
+  },
+  "proceso": [
+    "Validaci ón inicial de la idea",
+    "Estructuraci ón del plan",
+    "Revisi ón y ajustes",
+    "Entrega final"
+  ],
+  "contacto": {
+    "email": "hola@plancrece.com",
+    "web": "https://plancrece.com"
+  }
+}
