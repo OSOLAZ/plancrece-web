@@ -145,7 +145,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // === Reservar espacio para reglas y mensaje ===
   const editorialPrompt = editorialRules.rules.join('\n');
-  let usedLength = editorialPrompt.length + message.length;
+  let usedLength = editorialPrompt.length + message.length + 120;
 
   // === Construir formatTonePrompt ===
   const formatTonePrompt = [
@@ -191,12 +191,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const entryObj = { [key]: value };
     const entryJson = JSON.stringify(entryObj, null, 2) + '\n\n';
 
-    const prefixLength = knowledgeContext ? 0 : knowledgePrefix.length;
-    if (usedLength + prefixLength + knowledgeContext.length + entryJson.length > MAX_TOTAL_LENGTH) {
-      continue;
-    }
-
-    if (!knowledgeContext) {
+    if (!knowledgeContext && value !== editorialRules) {
       knowledgeContext = knowledgePrefix;
     }
     knowledgeContext += entryJson;

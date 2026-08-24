@@ -23,7 +23,8 @@ const QUICK_ACTIONS: QuickAction[] = [
 
 const INITIAL_MESSAGE: Message = {
   role: 'assistant',
-  content: 'Los proyectos que cambian una vida suelen empezar con una pregunta.\n\nHazme la tuya y empecemos a dar forma a tu Plan para que pueda CRECER.\n\n ¿ Qué quieres saber?',
+  content: 'Los proyectos que cambian una vida suelen empezar con una pregunta.\n\nHazme la tuya y empecemos a dar forma a tu Plan para que pueda CRECER.\n
+ ¿ Qué quieres saber?',
 };
 
 function formatAssistantMessage(content: string): string {
@@ -158,6 +159,7 @@ export function ChatWidget() {
       aria-label="Chat con el asistente de PlanCrece"
       aria-modal="true"
     >
+      {/* Cabecera */}
       <div className="flex items-center justify-between bg-[#0B2447] px-4 py-3 text-white">
         <h3 className="text-sm font-semibold">Asistente PlanCrece</h3>
         <button
@@ -173,13 +175,14 @@ export function ChatWidget() {
           >
             <path
               fillRule="evenodd"
-              d="M4.293 4.293a1 1 0011.414 0L10 8.586l4.293-4.293a1 1 0111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
               clipRule="evenodd"
             />
           </svg>
         </button>
       </div>
 
+      {/* Mensajes */}
       <div className="max-h-96 overflow-y-auto bg-gray-50 px-4 py-3">
         {messages.map((msg, idx) => (
           <div
@@ -224,6 +227,7 @@ export function ChatWidget() {
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Acciones rápidas (solo si no hay mensajes de usuario) */}
       {messages.length === 1 && (
         <div className="border-t border-gray-200 bg-white px-4 py-2">
           <div className="flex flex-wrap gap-2">
@@ -246,6 +250,7 @@ export function ChatWidget() {
         </div>
       )}
 
+      {/* Input */}
       <form
         onSubmit={handleSubmit}
         className="border-t border-gray-200 bg-white px-4 py-3"
