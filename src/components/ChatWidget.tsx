@@ -1,7 +1,7 @@
 // src/components/ChatWidget.tsx
 
 import { useState, useRef, useEffect } from 'react';
-import type { KeyboardEvent } from 'react';
+import type { FormEvent, KeyboardEvent } from 'react';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -25,6 +25,29 @@ const INITIAL_MESSAGE: Message = {
   role: 'assistant',
   content: 'Los proyectos que cambian una vida suelen empezar con una pregunta.\n\nHazme la tuya y empecemos a dar forma a tu Plan para que pueda CRECER.\n\n ¿ Qué quieres saber?',
 };
+
+function formatAssistantMessage(content: string): string {
+  return content
+    .replace(/(\*\*|__)(.*?)\1/g, '$2')
+    .replace(/`([^`]+)`/g, '$1')
+    .split('\n')
+    .filter((line) => !/^\s*\|?[\s:-]+\|[\s|:-]*$/.test(line))
+    .map((line) => {
+      const withoutHeading = line.replace(/^\s{0,3}#{1,6}\s+/, '');
+      const pipeCount = (withoutHeading.match(/\|/g) ?? []).length;
+
+      if (pipeCount >= 2) {
+        return withoutHeading
+          .split('|')
+          .map((cell) => cell.trim())
+          .filter(Boolean)
+          .join(' · ');
+      }
+
+      return withoutHeading;
+    })
+    .join('\n');
+}
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,7 +112,7 @@ export function ChatWidget() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     sendMessage(input);
   };
@@ -135,7 +158,6 @@ export function ChatWidget() {
       aria-label="Chat con el asistente de PlanCrece"
       aria-modal="true"
     >
-      {/* Cabecera */}
       <div className="flex items-center justify-between bg-[#0B2447] px-4 py-3 text-white">
         <h3 className="text-sm font-semibold">Asistente PlanCrece</h3>
         <button
@@ -158,7 +180,6 @@ export function ChatWidget() {
         </button>
       </div>
 
-      {/* Mensajes */}
       <div className="max-h-96 overflow-y-auto bg-gray-50 px-4 py-3">
         {messages.map((msg, idx) => (
           <div
@@ -172,7 +193,10 @@ export function ChatWidget() {
                   : 'bg-white text-gray-800 shadow'
               }`}
             >
-              {msg.content.split('\n').map((line, i) => (
+              {(msg.role === 'assistant'
+                ? formatAssistantMessage(msg.content)
+                : msg.content
+              ).split('\n').map((line, i) => (
                 <p key={i} className={i > 0 ? 'mt-1' : ''}>
                   {line}
                 </p>
@@ -200,7 +224,6 @@ export function ChatWidget() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Acciones rápidas (solo si no hay mensajes de usuario) */}
       {messages.length === 1 && (
         <div className="border-t border-gray-200 bg-white px-4 py-2">
           <div className="flex flex-wrap gap-2">
@@ -223,7 +246,6 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* Input */}
       <form
         onSubmit={handleSubmit}
         className="border-t border-gray-200 bg-white px-4 py-3"
