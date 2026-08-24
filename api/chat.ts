@@ -7,7 +7,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = 'llama3-70b-8192';
+const GROQ_MODEL = 'openai/gpt-oss-20b';
 
 const MAX_MESSAGE_LENGTH = 1000;
 const MAX_HISTORY_LENGTH = 6;
