@@ -144,8 +144,41 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // === Reservar espacio para reglas y mensaje ===
-  const systemPrompt = editorialRules.rules.join('\n');
-  let usedLength = systemPrompt.length + message.length;
+  const editorialPrompt = editorialRules.rules.join('\n');
+  let usedLength = editorialPrompt.length + message.length;
+
+  // === Construir formatTonePrompt ===
+  const formatTonePrompt = [
+    'FORMATO',
+    '- Responde en español y en texto plano.',
+    '- No uses Markdown: no #, ##, **, tablas con | ni bloques de código.',
+    '- Usa párrafos breves.',
+    '- Usa listas simples con guiones solo cuando ayuden.',
+    '- Para comparar planes, usa etiquetas claras y listas; no tablas.',
+    '',
+    'TONO',
+    '- Tono cercano, profesional, claro y motivador, como un coach práctico.',
+    '- Sé útil y responde primero a las preguntas objetivas.',
+    '- No seas insistente y no uses presión comercial ni urgencia artificial.',
+    '- No inventes datos, plazos, experiencia, número de clientes, ayudas, financiación, condiciones o garantías.',
+    '- No prometas resultados.',
+    '- No valides automáticamente ideas de negocio.',
+    '',
+    'CU ÁNDO RESPONDER Y CU ÁNDO DERIVAR AL FORMULARIO',
+    '- Para preguntas informativas sobre precios, planes, contenidos, proceso o plazos: responde de forma completa usando únicamente el knowledge base. Solo si encaja, termina con una invitaci ón breve y opcional al formulario de validaci ón gratuita y sin compromiso.',
+    '- Para preguntas sobre qué plan conviene a un caso concreto, una idea concreta o una validaci ón: da únicamente orientaci ón general. Explica que la valoraci ón real la realizan los consultores de PlanCrece e invita al formulario de validaci ón gratuita y sin compromiso.',
+    '- Para ayudas, subvenciones o financiaci ón: no garantices resultados; explica que se revisan seg ún el caso.',
+    '- Nunca evites responder una pregunta objetiva para derivar al formulario.',
+    '',
+    'PROMOCI ÓN',
+    '- Menciona la promoci ón del Plan Avanzado solo si el usuario pregunta por precios, compara planes o pide orientaci ón para elegir.',
+    '- Usa exclusivamente los datos existentes en knowledge-base.json:',
+    '- Plan Avanzado: 149 €, antes 249 €, promoci ón vigente hasta el 31 de diciembre de 2026.',
+    '- Explica únicamente los extras relevantes seg ún la consulta.',
+    '- No afirmes que el Plan Avanzado sea el mejor plan para todo el mundo.',
+  ].join('\n');
+
+  const systemPrompt = `${editorialPrompt}\n\n${formatTonePrompt}`;
 
   // === Construir contexto de conocimiento (prioridad sobre historial) ===
   let knowledgeContext = '';
@@ -220,19 +253,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     res.status(200).json({ reply });
-  } catch (err: unknown) {
-    const errorObj = err as { message?: string; status?: number; response?: { data?: unknown } };
-    const errorDetails = errorObj.message || 'Error desconocido';
-    const errorStatus = errorObj.status;
-    const errorResponse = errorObj.response?.data;
-
-    console.log('Groq error:', {
-      message: errorDetails,
-      status: errorStatus,
-      response: errorResponse,
-      apiKey: GROQ_API_KEY ? `${GROQ_API_KEY.slice(0, 4)}...` : 'missing',
-    });
-
-    res.status(502).json({ error: 'GROQ_FAILED', details: errorDetails });
+  } catch {
+    res.status(502).json({ error: 'GROQ_FAILED' });
   }
 }
