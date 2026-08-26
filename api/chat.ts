@@ -1,10 +1,12 @@
 // api/chat.ts
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import type { ChatCompletionMessageParam } from 'groq-sdk';
-import Groq from 'groq-sdk';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import knowledgeBaseData from '../src/data/knowledge-base.json';
+
+type ChatCompletionMessageParam = {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
+};
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = 'openai/gpt-oss-20b';
@@ -13,21 +15,15 @@ const MAX_MESSAGE_LENGTH = 1000;
 const MAX_HISTORY_LENGTH = 6;
 const MAX_TOTAL_LENGTH = 20000;
 
-let _knowledgeBase: Record<string, unknown> | null = null;
-
-function loadKnowledgeBase() {
-  if (_knowledgeBase) return _knowledgeBase;
-  const kbPath = join(process.cwd(), 'src', 'data', 'knowledge-base.json');
-  const raw = readFileSync(kbPath, 'utf-8');
-  _knowledgeBase = JSON.parse(raw);
-  return _knowledgeBase;
+function loadKnowledgeBase(): Record<string, unknown> {
+  return knowledgeBaseData as Record<string, unknown>;
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // === Método ===
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    res.status(405).json({ error: 'M étodo no permitido' });
+    res.status(405).json({ error: 'Método no permitido' });
     return;
   }
 
@@ -78,7 +74,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // === Validar body ===
   const body = req.body;
   if (!body || typeof body !== 'object') {
-    res.status(400).json({ error: 'Entrada inv álida' });
+    res.status(400).json({ error: 'Entrada inválida' });
     return;
   }
 
@@ -89,23 +85,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // === Validar message ===
   if (typeof message !== 'string' || !message.trim()) {
-    res.status(400).json({ error: 'Entrada inv álida' });
+    res.status(400).json({ error: 'Entrada inválida' });
     return;
   }
 
   if (message.length > MAX_MESSAGE_LENGTH) {
-    res.status(400).json({ error: 'Entrada inv álida' });
+    res.status(400).json({ error: 'Entrada inválida' });
     return;
   }
 
   // === Validar history ===
   if (!Array.isArray(history)) {
-    res.status(400).json({ error: 'Entrada inv álida' });
+    res.status(400).json({ error: 'Entrada inválida' });
     return;
   }
 
   if (history.length > MAX_HISTORY_LENGTH) {
-    res.status(400).json({ error: 'Entrada inv álida' });
+    res.status(400).json({ error: 'Entrada inválida' });
     return;
   }
 
@@ -120,23 +116,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       typeof entry.role !== 'string' ||
       typeof entry.content !== 'string'
     ) {
-      res.status(400).json({ error: 'Entrada inv álida' });
+      res.status(400).json({ error: 'Entrada inválida' });
       return;
     }
 
     const role = entry.role as string;
     if (role !== 'user' && role !== 'assistant') {
-      res.status(400).json({ error: 'Entrada inv álida' });
+      res.status(400).json({ error: 'Entrada inválida' });
       return;
     }
 
     if (!entry.content.trim()) {
-      res.status(400).json({ error: 'Entrada inv álida' });
+      res.status(400).json({ error: 'Entrada inválida' });
       return;
     }
 
     if (entry.content.length > MAX_MESSAGE_LENGTH) {
-      res.status(400).json({ error: 'Entrada inv álida' });
+      res.status(400).json({ error: 'Entrada inválida' });
       return;
     }
 
@@ -164,17 +160,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     '- No prometas resultados.',
     '- No valides automáticamente ideas de negocio.',
     '',
-    'CU ÁNDO RESPONDER Y CU ÁNDO DERIVAR AL FORMULARIO',
-    '- Para preguntas informativas sobre precios, planes, contenidos, proceso o plazos: responde de forma completa usando únicamente el knowledge base. Solo si encaja, termina con una invitaci ón breve y opcional al formulario de validaci ón gratuita y sin compromiso.',
-    '- Para preguntas sobre qué plan conviene a un caso concreto, una idea concreta o una validaci ón: da únicamente orientaci ón general. Explica que la valoraci ón real la realizan los consultores de PlanCrece e invita al formulario de validaci ón gratuita y sin compromiso.',
-    '- Para ayudas, subvenciones o financiaci ón: no garantices resultados; explica que se revisan seg ún el caso.',
+    'CUÁNDO RESPONDER Y CUÁNDO DERIVAR AL FORMULARIO',
+    '- Para preguntas informativas sobre precios, planes, contenidos, proceso o plazos: responde de forma completa usando únicamente el knowledge base. Solo si encaja, termina con una invitación breve y opcional al formulario de validación gratuita y sin compromiso.',
+    '- Para preguntas sobre qué plan conviene a un caso concreto, una idea concreta o una validación: da únicamente orientación general. Explica que la valoración real la realizan los consultores de PlanCrece e invita al formulario de validación gratuita y sin compromiso.',
+    '- Para ayudas, subvenciones o financiación: no garantices resultados; explica que se revisan según el caso.',
     '- Nunca evites responder una pregunta objetiva para derivar al formulario.',
     '',
-    'PROMOCI ÓN',
-    '- Menciona la promoci ón del Plan Avanzado solo si el usuario pregunta por precios, compara planes o pide orientaci ón para elegir.',
+    'PROMOCIÓN',
+    '- Menciona la promoción del Plan Avanzado solo si el usuario pregunta por precios, compara planes o pide orientación para elegir.',
     '- Usa exclusivamente los datos existentes en knowledge-base.json:',
-    '- Plan Avanzado: 149 €, antes 249 €, promoci ón vigente hasta el 31 de diciembre de 2026.',
-    '- Explica únicamente los extras relevantes seg ún la consulta.',
+    '- Plan Avanzado: 149 €, antes 249 €, promoción vigente hasta el 31 de diciembre de 2026.',
+    '- Explica únicamente los extras relevantes según la consulta.',
     '- No afirmes que el Plan Avanzado sea el mejor plan para todo el mundo.',
   ].join('\n');
 
@@ -191,6 +187,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const entryObj = { [key]: value };
     const entryJson = JSON.stringify(entryObj, null, 2) + '\n\n';
 
+    const prefixLength = knowledgeContext ? 0 : knowledgePrefix.length;
+
+    if (usedLength + prefixLength + knowledgeContext.length + entryJson.length > MAX_TOTAL_LENGTH) {
+      continue;
+    }
+
     if (!knowledgeContext && value !== editorialRules) {
       knowledgeContext = knowledgePrefix;
     }
@@ -199,7 +201,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   usedLength += knowledgeContext.length;
 
-  // === Incorporar historial (m ás recientes primero, luego restaurar orden) ===
+  // === Incorporar historial (más recientes primero, luego restaurar orden) ===
   const context: Array<{ role: 'user' | 'assistant'; content: string }> = [];
 
   for (let i = validHistory.length - 1; i >= 0 && context.length < MAX_HISTORY_LENGTH; i--) {
@@ -226,19 +228,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   let reply: string;
 
   try {
-    const groq = new Groq({ apiKey: GROQ_API_KEY });
-
-    const completion = await groq.chat.completions.create({
-      model: GROQ_MODEL,
-      messages: groqMessages,
-      temperature: 0.2,
-      max_tokens: 1024,
-      top_p: 1,
-      stream: false,
-      stop: null,
+    const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: GROQ_MODEL,
+        messages: groqMessages,
+        temperature: 0.2,
+        max_tokens: 1024,
+        top_p: 1,
+        stream: false,
+        stop: null,
+      }),
     });
 
-    reply = completion.choices[0]?.message?.content ?? fallback;
+    if (!groqResponse.ok) {
+      res.status(502).json({ error: 'GROQ_FAILED' });
+      return;
+    }
+
+    const completion = (await groqResponse.json()) as {
+      choices?: Array<{ message?: { content?: string | null } | null }>;
+    };
+
+    reply = completion.choices?.[0]?.message?.content ?? fallback;
 
     if (!reply || !reply.trim()) {
       reply = fallback;

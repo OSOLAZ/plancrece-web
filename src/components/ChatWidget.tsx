@@ -15,16 +15,15 @@ type QuickAction = {
 };
 
 const QUICK_ACTIONS: QuickAction[] = [
-  { label: ' ¿ Cómo funciona PlanCrece?', message: ' ¿ Cómo funciona PlanCrece?' },
-  { label: ' ¿ Qué incluye el plan?', message: ' ¿ Qué incluye el plan?' },
-  { label: ' ¿ Cuá¡¿nto cuesta?', message: ' ¿ Cuá¡¿nto cuesta?' },
+  { label: '¿Cómo funciona PlanCrece?', message: '¿Cómo funciona PlanCrece?' },
+  { label: '¿Qué incluye el plan?', message: '¿Qué incluye el plan?' },
+  { label: '¿Cuánto cuesta?', message: '¿Cuánto cuesta?' },
   { label: '🚀 Quiero validar mi idea', message: 'Quiero validar mi idea', isPrimary: true },
 ];
 
 const INITIAL_MESSAGE: Message = {
   role: 'assistant',
-  content: 'Los proyectos que cambian una vida suelen empezar con una pregunta.\n\nHazme la tuya y empecemos a dar forma a tu Plan para que pueda CRECER.\n
- ¿ Qué quieres saber?',
+  content: 'Los proyectos que cambian una vida suelen empezar con una pregunta.\n\nHazme la tuya y empecemos a dar forma a tu Plan para que pueda CRECER.\n\n¿Qué quieres saber?',
 };
 
 function formatAssistantMessage(content: string): string {
