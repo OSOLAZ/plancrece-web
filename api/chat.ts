@@ -1,7 +1,7 @@
 // api/chat.ts
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import knowledgeBaseData from '../src/data/knowledge-base.json';
+import knowledgeBaseData from '../src/data/knowledge-base.json' with { type: 'json' };
 
 type ChatCompletionMessageParam = {
   role: 'system' | 'user' | 'assistant';
