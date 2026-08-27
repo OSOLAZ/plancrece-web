@@ -131,12 +131,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return;
     }
 
-    if (entry.content.length > MAX_MESSAGE_LENGTH) {
+    if (role === 'user' && entry.content.length > MAX_MESSAGE_LENGTH) {
       res.status(400).json({ error: 'Entrada inválida' });
       return;
     }
 
-    validHistory.push({ role: role as 'user' | 'assistant', content: entry.content });
+    // Las respuestas del asistente pueden superar MAX_MESSAGE_LENGTH;
+    // solo las entradas del historial con rol assistant se truncan.
+    const content =
+      role === 'assistant' && entry.content.length > MAX_MESSAGE_LENGTH
+        ? entry.content.slice(0, MAX_MESSAGE_LENGTH)
+        : entry.content;
+
+    validHistory.push({ role: role as 'user' | 'assistant', content });
   }
 
   // === Reservar espacio para reglas y mensaje ===
@@ -173,6 +180,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     '- Da orientación general prudente y comprensible: qué suele influir, qué opciones habituales existen y qué conviene tener en cuenta, sin afirmar nada sobre el caso concreto del usuario.',
     '- Explica qué factores cambian la respuesta personalizada: sector, fase del proyecto, inversión inicial, modelo de negocio y situación personal.',
     '- No prometas financiación, subvenciones, viabilidad, aprobación ni resultados.',
+    '- No inventes ni estimes plazos de respuesta, tiempos de atención, prioridades, disponibilidad, resultados, condiciones comerciales o compromisos del equipo.',
+    '- Si la base de conocimiento no incluye un dato concreto, dilo con naturalidad y ofrece que el equipo podrá concretarlo mediante el formulario o el correo.',
+    '- No uses frases como "te atenderemos con prioridad" ni "normalmente contestamos en X horas" salvo que ese dato figure literalmente en knowledge-base.json.',
     '- Si el usuario ha contado poco de su proyecto, invítale a contarte algo más (idea, sector, fase) antes de sugerir el formulario.',
     '- Después de aportar valor, y solo si encaja de forma natural, termina con una invitación breve y opcional al formulario de validación gratuita, confidencial y sin compromiso, explicando qué recibirá: una valoración inicial de su caso por parte del equipo de PlanCrece.',
     '- Ofrece como alternativa escribir a clientes@plancrece.com.',
