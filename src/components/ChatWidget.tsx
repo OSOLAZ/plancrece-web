@@ -119,21 +119,33 @@ export function ChatWidget() {
 
   const handleQuickAction = (action: QuickAction) => {
     if (action.isPrimary) {
-      if (window.location.pathname === '/') {
-        // Respuesta local inmediata, sin llamar a la API
-        const userMessage: Message = { role: 'user', content: action.message };
-        const assistantMessage: Message = {
-          role: 'assistant',
-          content:
-            'Perfecto. La validación inicial es gratuita, confidencial y sin compromiso. Te llevo al formulario para que puedas contarnos tu proyecto.',
-        };
-        setMessages((prev) => [...prev, userMessage, assistantMessage].slice(-6));
-        requestAnimationFrame(() => {
-          document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' });
-        });
-      } else {
-        window.location.href = '/#formulario';
+      // Respuesta local inmediata, sin llamar a la API.
+      // La app usa HashRouter: la ruta real está en location.hash y
+      // navegar no recarga la página, así que el mensaje persiste.
+      const userMessage: Message = { role: 'user', content: action.message };
+      const assistantMessage: Message = {
+        role: 'assistant',
+        content:
+          'Perfecto. La validación inicial es gratuita, confidencial y sin compromiso. Te llevo al formulario para que puedas contarnos tu proyecto.',
+      };
+      setMessages((prev) => [...prev, userMessage, assistantMessage].slice(-6));
+
+      const hash = window.location.hash;
+      const isHome = hash === '' || hash === '#' || hash === '#/';
+      if (!isHome) {
+        window.location.hash = '#/';
       }
+
+      // Tras el render, scroll suave al formulario (reintentos acotados, sin recarga)
+      const scrollToForm = (attempts: number) => {
+        const target = document.getElementById('formulario');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        } else if (attempts > 0) {
+          requestAnimationFrame(() => scrollToForm(attempts - 1));
+        }
+      };
+      requestAnimationFrame(() => scrollToForm(20));
       return;
     }
     sendMessage(action.message);
