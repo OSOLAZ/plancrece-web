@@ -119,7 +119,21 @@ export function ChatWidget() {
 
   const handleQuickAction = (action: QuickAction) => {
     if (action.isPrimary) {
-      window.location.href = '/';
+      if (window.location.pathname === '/') {
+        // Respuesta local inmediata, sin llamar a la API
+        const userMessage: Message = { role: 'user', content: action.message };
+        const assistantMessage: Message = {
+          role: 'assistant',
+          content:
+            'Perfecto. La validación inicial es gratuita, confidencial y sin compromiso. Te llevo al formulario para que puedas contarnos tu proyecto.',
+        };
+        setMessages((prev) => [...prev, userMessage, assistantMessage].slice(-6));
+        requestAnimationFrame(() => {
+          document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth' });
+        });
+      } else {
+        window.location.href = '/#formulario';
+      }
       return;
     }
     sendMessage(action.message);
