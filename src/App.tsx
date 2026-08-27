@@ -15,29 +15,33 @@ import Comunidad from './pages/Comunidad'
 import QuienesSomos from './pages/QuienesSomos'
 import Hilo from './pages/Hilo'
 import Legal from './pages/Legal'
+import { ChatWidget } from './components/ChatWidget'
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/precios" element={<Precios />} />
-        <Route path="/como-funciona" element={<ComoFunciona />} />
-        <Route path="/garantias" element={<Garantias />} />
-        <Route path="/faq" element={<Faq />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogArticulo />} />
-        <Route path="/franquicias" element={<Franquicias />} />
-        <Route path="/franquicias/:slug" element={<FranquiciaDetalle />} />
-        <Route path="/financiacion" element={<Financiacion />} />
-        <Route path="/comunidad" element={<Comunidad />} />
-        <Route path="/quienes-somos" element={<QuienesSomos />} />
-        <Route path="/comunidad/:slug" element={<Hilo />} />
-        <Route path="/legal/:pagina" element={<Legal />} />
-        <Route path="/legal" element={<Legal />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/precios" element={<Precios />} />
+          <Route path="/como-funciona" element={<ComoFunciona />} />
+          <Route path="/garantias" element={<Garantias />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogArticulo />} />
+          <Route path="/franquicias" element={<Franquicias />} />
+          <Route path="/franquicias/:slug" element={<FranquiciaDetalle />} />
+          <Route path="/financiacion" element={<Financiacion />} />
+          <Route path="/comunidad" element={<Comunidad />} />
+          <Route path="/quienes-somos" element={<QuienesSomos />} />
+          <Route path="/comunidad/:slug" element={<Hilo />} />
+          <Route path="/legal/:pagina" element={<Legal />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+      <ChatWidget />
+    </>
   )
 }
