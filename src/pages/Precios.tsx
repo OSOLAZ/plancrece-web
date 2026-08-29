@@ -20,7 +20,7 @@ const PLANES = [
     id: 'estandar' as const,
     nombre: 'Plan Estándar',
     destacado: false,
-    precio: '149 €',
+    precio: '149 € + IVA',
     precioAntes: null as string | null,
     oferta: null as string | null,
     para: 'Tu plan de empresa completo, listo para presentar.',
@@ -34,8 +34,8 @@ const PLANES = [
     id: 'avanzado' as const,
     nombre: 'Plan Avanzado',
     destacado: true,
-    precio: '149 €',
-    precioAntes: '249 €',
+    precio: '149 € + IVA',
+    precioAntes: '249 € + IVA',
     oferta: 'Celebramos 3.000 planes creados: el Avanzado a precio de Estándar hasta el 31 de diciembre de 2026',
     para: 'El plan y todo lo que necesitas para ir a por la financiación.',
     items: [
@@ -184,7 +184,7 @@ export default function Precios() {
                     <h2 className="text-xl font-bold text-[#0B2447]">
                       Informe personalizado de Ayudas y Subvenciones
                     </h2>
-                    <p className="text-2xl font-extrabold text-[#0B2447]">65 €</p>
+                    <p className="text-2xl font-extrabold text-[#0B2447]">65 € + IVA</p>
                   </div>
                   <p className="mt-2 text-[15px] leading-relaxed text-foreground">
                     Está <strong>incluido en el Plan Avanzado</strong>. También lo
