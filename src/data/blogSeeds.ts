@@ -21,7 +21,7 @@ export const SEEDS: Seed[] = [
       'Los requisitos cambian con el tiempo, pero hay constantes: no haber estado de alta en los años previos (el plazo varía según la convocatoria vigente), no estar en pluriempleo con ciertas condiciones y solicitarla en el momento correcto. Pedirla tarde puede significar perderla entera.',
       'El error más común que vemos es asumir que se aplica automáticamente. No es así: hay que marcarla, justificarla y vigilar las compatibilidades con otras ayudas. Un descuido aquí puede salir caro en forma de reintegro.',
     ],
-    g: '¿Vas a darte de alta para montar tu negocio? Antes de mover un papel, valida tu idea gratis: en menos de 3 días te decimos si es viable.',
+    g: '¿Vas a darte de alta para montar tu negocio? Antes de mover un papel, valida tu idea gratis: te decimos en hasta 3 días laborables si es viable.',
   },
   {
     cat: 'ayudas',
@@ -31,7 +31,7 @@ export const SEEDS: Seed[] = [
       'Hay tres modalidades según el uso que le des: aportación a una sociedad, inversión en tu negocio como autónomo o compensación de cuotas a la Seguridad Social. Cada una tiene sus formularios, sus plazos y sus justificaciones.',
       'Lo que casi nadie te cuenta: la documentación que acredita la viabilidad del proyecto pesa mucho. Un plan de negocio serio no es un adorno, es la pieza que sostiene la solicitud ante cualquier revisión.',
     ],
-    g: '¿Sabías que puedes cobrar tu paro de una sola vez para arrancar? Valida tu idea gratis y te decimos en 3 días si merece la pena dar el paso.',
+    g: '¿Sabías que puedes cobrar tu paro de una sola vez para arrancar? Valida tu idea gratis y te decimos en hasta 3 días laborables si merece la pena dar el paso.',
   },
   {
     cat: 'ayudas',
@@ -71,7 +71,7 @@ export const SEEDS: Seed[] = [
       'Sus líneas suelen distinguir entre jóvenes emprendedores, proyectos de crecimiento y startups con potencial. Los importes varían, pero la condición común es siempre la misma: un proyecto con fundamentos.',
       'Aquí no vale un PDF bonito. ENISA analiza el modelo de negocio, el mercado y las previsiones con lupa. Un plan de negocio defendible no es una ventaja: es el requisito de entrada.',
     ],
-    g: '¿Sabías que hay préstamos públicos sin avales para buenas ideas? Primero lo primero: valida la tuya gratis en menos de 3 días.',
+    g: '¿Sabías que hay préstamos públicos sin avales para buenas ideas? Primero lo primero: valida la tuya gratis, con respuesta en hasta 3 días laborables.',
   },
   {
     cat: 'ayudas',
@@ -101,7 +101,7 @@ export const SEEDS: Seed[] = [
       'En zonas rurales las ayudas suelen ser aún más generosas, porque la prioridad es doble: igualdad y fijación de población. Los requisitos típicos son mayoría de participación femenina en el proyecto y antigüedad limitada de la empresa.',
       'El error frecuente es pedir la ayuda con un proyecto genérico. Estas convocatorias puntúan la solidez del plan: cuanto mejor defendida esté la viabilidad, más arriba quedas en la lista.',
     ],
-    g: '¿Tienes un proyecto entre manos? Valídalo gratis: en menos de 3 días sabrás si es viable y qué puertas puedes tocar.',
+    g: '¿Tienes un proyecto entre manos? Valídalo gratis: en hasta 3 días laborables sabrás si es viable y qué puertas puedes tocar.',
   },
   {
     cat: 'ayudas',
@@ -111,7 +111,7 @@ export const SEEDS: Seed[] = [
       'Las edades de corte varían según la convocatoria: unas dicen menores de 30, otras de 35. Conviene revisar qué te queda disponible antes de cumplir el corte, porque rara vez es retroactivo.',
       'Nuestro consejo si estás en esa franja: aprovecha las ayudas blandas (formación, mentoring, viveros de empresas) aunque no necesites el dinero. El acompañamiento gratuito vale más de lo que parece.',
     ],
-    g: '¿Eres menor de 35 y tienes una idea? Es tu mejor momento para validarla. Gratis, en menos de 3 días.',
+    g: '¿Eres menor de 35 y tienes una idea? Es tu mejor momento para validarla. Gratis, en hasta 3 días laborables.',
   },
   {
     cat: 'ayudas',
@@ -131,7 +131,7 @@ export const SEEDS: Seed[] = [
       'Las convocatorias se suceden a nivel estatal y autonómico, a menudo por orden de llegada. Esto significa que la velocidad importa tanto como la calidad de la solicitud.',
       'La clave está en pedir lo que tu negocio realmente usará. Una herramienta de gestión que nadie abre es una ayuda desperdiciada y, peor aún, una justificación pendiente.',
     ],
-    g: 'Antes de digitalizar nada, asegúrate de que el negocio se sostiene. Validar tu idea es gratis y te respondemos en 3 días.',
+    g: 'Antes de digitalizar nada, asegúrate de que el negocio se sostiene. Validar tu idea es gratis y te respondemos en hasta 3 días laborables.',
   },
   {
     cat: 'ayudas',
@@ -172,7 +172,7 @@ export const SEEDS: Seed[] = [
       'Epígrafe correcto del IAE, obligaciones de IVA según tu actividad, compatibilidad con ayudas que quieras pedir antes o después: cada decisión del alta tiene consecuencias meses después.',
       'El orden importa. Hay ayudas que exigen no estar de alta todavía y otras que exigen estarlo. Tramitar en el orden equivocado puede cerrarte puertas de financiación que no se reabren.',
     ],
-    g: 'Antes del alta, lo esencial: saber si tu idea es viable. Valídala gratis y te respondemos en menos de 3 días.',
+    g: 'Antes del alta, lo esencial: saber si tu idea es viable. Valídala gratis y te respondemos en hasta 3 días laborables.',
   },
   {
     cat: 'normativa',
@@ -242,7 +242,7 @@ export const SEEDS: Seed[] = [
       '¿Cuándo merece la pena? Cuando el nombre es un activo del negocio: vas a invertir en hacerlo conocido, tienes presencia online o piensas crecer más allá de tu barrio.',
       'El caso que duele: el emprendedor que dos años después de triunfar recibe una carta porque otro registró el nombre antes. Por el coste que tiene, registrar pronto es un seguro barato.',
     ],
-    g: '¿Ya tienes hasta nombre para tu idea? Valídala gratis antes de invertir en ella: en 3 días te decimos si es viable.',
+    g: '¿Ya tienes hasta nombre para tu idea? Valídala gratis antes de invertir en ella: te decimos en hasta 3 días laborables si es viable.',
   },
   {
     cat: 'normativa',
@@ -252,7 +252,7 @@ export const SEEDS: Seed[] = [
       'Los errores típicos del pequeño negocio: pedir datos que no necesitas, guardarlos sin protección y usar el correo de clientes para publicidad sin su consentimiento.',
       'Las multas a negocios pequeños existen, aunque rara vez salen en las noticias. Un texto de privacidad correcto en tu web y un consentimiento bien gestionado te cubren el 90% del riesgo.',
     ],
-    g: 'Montar bien desde el principio empieza por validar la idea. Hazlo gratis y te respondemos en menos de 3 días.',
+    g: 'Montar bien desde el principio empieza por validar la idea. Hazlo gratis y te respondemos en hasta 3 días laborables.',
   },
   {
     cat: 'normativa',
@@ -282,7 +282,7 @@ export const SEEDS: Seed[] = [
       'En el IVA, la venta a consumidores de otros países de la UE tiene reglas propias con umbrales y ventanilla única. Y los consumidores tienen 14 días de derecho de desistimiento, te guste o no.',
       'Montar una tienda online es fácil técnicamente. Montarla cumpliendo es otra cosa: reserva una partida para textos legales y asesoría fiscal antes del lanzamiento.',
     ],
-    g: '¿Tu idea es una tienda online? Valídala gratis: en menos de 3 días sabrás si el modelo se sostiene.',
+    g: '¿Tu idea es una tienda online? Valídala gratis: en hasta 3 días laborables sabrás si el modelo se sostiene.',
   },
   // ---------- CONSEJOS ----------
   {
@@ -293,7 +293,7 @@ export const SEEDS: Seed[] = [
       'El error típico es enamorarse de la idea y buscar solo datos que la confirmen. La validación honesta busca lo contrario: los motivos por los que podría fallar, para ver si tienen solución.',
       'Haz números pesimistas, habla con clientes reales antes de montar nada y compara con negocios parecidos que ya existen. Si tras eso la idea sigue en pie, tienes algo.',
     ],
-    g: 'Nosotros hacemos exactamente este análisis, gratis. Envíanos tu idea y en menos de 3 días te diremos si es viable (y si no, por qué).',
+    g: 'Nosotros hacemos exactamente este análisis, gratis. Envíanos tu idea y te diremos en hasta 3 días laborables si es viable (y si no, por qué).',
   },
   {
     cat: 'consejos',
@@ -333,7 +333,7 @@ export const SEEDS: Seed[] = [
       'Otras técnicas probadas: una landing page con lista de espera, preventas con descuento, un fin de semana de prueba en un mercadillo o un servicio manual que simule el negocio final.',
       'La señal que buscas no es "qué buena idea", es dinero o compromiso: reservas, depósitos, correos de gente real. Los elogios no pagan alquileres.',
     ],
-    g: '¿Quieres una segunda opinión profesional sobre tu idea? La nuestra es gratis y llega en menos de 3 días.',
+    g: '¿Quieres una segunda opinión profesional sobre tu idea? La nuestra es gratis y llega en hasta 3 días laborables.',
   },
   {
     cat: 'consejos',
@@ -393,7 +393,7 @@ export const SEEDS: Seed[] = [
       'No siempre es posible (conflicto de interés, tiempo, energía), pero incluso sin lanzar nada puedes preparar el terreno: ahorro acumulado, deudas reducidas, contactos cultivados, números hechos.',
       'Y un apunte financiero: si vas a dejar un empleo, revisa qué ayudas a la reincorporación o capitalización te aplican. El orden de tus decisiones puede valer miles de euros.',
     ],
-    g: '¿Estás empleado y le das vueltas a una idea? Valídala gratis sin moverte de tu silla: respuesta en menos de 3 días.',
+    g: '¿Estás empleado y le das vueltas a una idea? Valídala gratis sin moverte de tu silla: respuesta en hasta 3 días laborables.',
   },
   {
     cat: 'consejos',
@@ -483,7 +483,7 @@ export const SEEDS: Seed[] = [
       'Un análisis honesto a veces concluye que la idea no es viable: mercado insuficiente, márgenes imposibles, momento equivocado. Escucharlo antes de invertir no es una mala noticia, es un ahorro de miles de euros.',
       'Los mejores emprendedores que conocemos coleccionan "noes" tempranos. Cada idea descartada a tiempo libera energía y dinero para la que sí funcionará.',
     ],
-    g: 'Si tu idea no es viable, te diremos por qué. También gratis. Valídala ahora: respuesta en menos de 3 días.',
+    g: 'Si tu idea no es viable, te diremos por qué. También gratis. Valídala ahora: respuesta en hasta 3 días laborables.',
   },
   // ---------- NEGOCIOS RENTABLES ----------
   {

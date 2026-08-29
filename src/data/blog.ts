@@ -254,7 +254,7 @@ const RECIENTES: Reciente[] = [
       'El último filtro es personal: experiencia, dedicación posible, colchón financiero. La misma idea es viable en unas manos y ruina en otras. Por eso nuestro formulario pregunta más que el título de tu proyecto.',
       '¿El resultado? Si tu idea pasa los cuatro filtros, te lo decimos y te proponemos el siguiente paso. Si no, te explicamos por qué, también gratis. Un "no" a tiempo es la mejor noticia que puedes recibir: te ahorra miles de euros y meses de vida.',
     ],
-    gancho: '¿Quieres saber si tu idea pasaría estos cuatro filtros? Envíanosla: en menos de 3 días te decimos si es viable. Gratis y sin compromiso.',
+    gancho: '¿Quieres saber si tu idea pasaría estos cuatro filtros? Envíanosla: te decimos en hasta 3 días laborables si es viable. Gratis y sin compromiso.',
   },
   {
     titulo: 'Las ayudas al emprendimiento que siguen abiertas este año (y sus plazos reales)',
@@ -272,7 +272,7 @@ const RECIENTES: Reciente[] = [
       'Ayuntamientos y diputaciones sacan convocatorias para atraer negocios, sobre todo en municipios pequeños. La competencia es bajísima y las condiciones, sorprendentemente buenas. Es la ayuda con mejor ratio esfuerzo-probabilidad que existe.',
       '¿El problema? Que cada ayuda pide una memoria del proyecto con números defendibles. Y ahí, un plan de negocio serio no es un trámite: es la llave.',
     ],
-    gancho: '¿Sabes qué ayudas puedes pedir para tu idea y tu zona? Empieza por validar tu idea gratis: en menos de 3 días te decimos si es viable.',
+    gancho: '¿Sabes qué ayudas puedes pedir para tu idea y tu zona? Empieza por validar tu idea gratis: te decimos en hasta 3 días laborables si es viable.',
   },
   {
     titulo: 'Capitalizar el paro: las dudas que nos llegan cada semana, resueltas',
@@ -291,7 +291,7 @@ const RECIENTES: Reciente[] = [
       '## ¿Qué documentación pesa más?',
       'La que acredita la viabilidad del proyecto. Una memoria seria con números defendibles sostiene la solicitud ante cualquier revisión. Es el mismo documento que luego te sirve para el banco o para una subvención: el plan de negocio.',
     ],
-    gancho: '¿Sabías que puedes cobrar tu paro de una sola vez para arrancar? Primero valida tu idea gratis: en 3 días te decimos si merece la pena.',
+    gancho: '¿Sabías que puedes cobrar tu paro de una sola vez para arrancar? Primero valida tu idea gratis: te decimos en hasta 3 días laborables si merece la pena.',
   },
   {
     titulo: 'Qué está pidiendo la banca ahora a los nuevos negocios',
@@ -365,7 +365,7 @@ const RECIENTES: Reciente[] = [
       '## Lo que no es',
       'No es una garantía de concesión: nadie honesto puede prometerte una subvención. Es la diferencia entre buscar a ciegas y buscar con mapa. La solicitud, la memoria y los números siguen siendo tuyos (y ahí entra el plan).',
     ],
-    gancho: '¿Quieres saber qué ayudas encajan con tu idea? Empieza por validarla gratis: en menos de 3 días te decimos si es viable.',
+    gancho: '¿Quieres saber qué ayudas encajan con tu idea? Empieza por validarla gratis: te decimos en hasta 3 días laborables si es viable.',
   },
   {
     titulo: 'Cinco señales de que tu idea necesita un ajuste antes de pedir financiación',
@@ -441,7 +441,7 @@ const RECIENTES: Reciente[] = [
       'Porque un plan de negocio que ayuda a abrir un negocio que funciona es la mejor publicidad que existe. Y porque nuestra reputación vale más que cualquier factura: cuando un banco o una administración ve nuestro trabajo, ve proyectos que se sostienen.',
       'Nuestro objetivo no es redactar muchos planes de negocio. Es ser la semilla de muchos negocios que funcionan. Y eso empieza, siempre, por saber decir que no.',
     ],
-    gancho: '¿Quieres saber en qué lado estás? Envíanos tu idea: en menos de 3 días te diremos si es viable. Gratis, y con total sinceridad.',
+    gancho: '¿Quieres saber en qué lado estás? Envíanos tu idea: te diremos en hasta 3 días laborables si es viable. Gratis, y con total sinceridad.',
   },
 ]
 
