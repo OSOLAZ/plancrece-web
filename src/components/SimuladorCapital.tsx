@@ -394,7 +394,8 @@ export default function SimuladorCapital({ inversionNecesaria = 0, nombreFranqui
       <div>
         <h3 className="text-lg font-bold text-[#0B2447]">¿Con cuánto puedes empezar?</h3>
         <p className="mt-1 text-sm text-foreground/70">
-          Suma lo que ya tienes y te diremos exactamente qué te falta y cómo conseguirlo.
+          Suma lo que ya tienes y te diremos qué te falta y cómo conseguirlo.
+          Herramienta orientativa: estimación inicial, no un cálculo definitivo ni una aprobación bancaria.
         </p>
       </div>
 
@@ -486,7 +487,8 @@ export default function SimuladorCapital({ inversionNecesaria = 0, nombreFranqui
       </button>
 
       <p className="text-center text-xs text-foreground/55">
-        Tus números no salen de tu navegador. Solo tú decides si quieres compartirlos después.
+        Tus números no salen de tu navegador: no se guardan ni se comparten.
+        Solo tú decides si quieres compartirlos después. Si quieres una valoración personalizada, completa el formulario de validación.
       </p>
     </div>
   )
