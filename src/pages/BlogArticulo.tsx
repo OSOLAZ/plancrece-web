@@ -96,7 +96,7 @@ export default function BlogArticulo() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <p className="mt-3 text-xs text-white/70">
-                Respuesta en menos de 3 días laborables · Confidencial · Sin compromiso
+                Respuesta en hasta 3 días laborables · Confidencial · Sin compromiso
               </p>
             </div>
           </Reveal>
@@ -145,7 +145,7 @@ export default function BlogArticulo() {
                 <p className="mt-6 rounded-xl bg-secondary/60 px-4 py-3 text-xs leading-relaxed text-foreground/60">
                   Solo los usuarios registrados pueden comentar. Si tienes una idea de negocio y
                   quieres una respuesta directa, usa el formulario de validación: es gratis y
-                  respondemos en menos de 3 días laborables.
+                  respondemos en hasta 3 días laborables.
                 </p>
               </section>
             </Reveal>

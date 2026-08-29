@@ -8,7 +8,7 @@ const CATEGORIAS = [
     items: [
       {
         q: '¿Qué pasa si mi idea no es viable?',
-        a: 'Te lo decimos gratis, en menos de 3 días, y te explicamos el porqué. Preferimos perder un cliente a que pierdas tus ahorros en una idea que no funciona.',
+        a: 'Te lo decimos gratis y te explicamos el porqué. Preferimos perder un cliente a que pierdas tus ahorros en una idea que no funciona.',
       },
       {
         q: '¿Por qué validáis las ideas gratis?',

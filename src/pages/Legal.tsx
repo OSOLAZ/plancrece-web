@@ -228,7 +228,7 @@ function Condiciones() {
       </Seccion>
       <Seccion titulo="2. Proceso y plazos">
         <ul className="list-disc space-y-1 pl-5">
-          <li>Validación gratuita de la idea: respuesta en unos 3 días laborables.</li>
+          <li>Validación gratuita de la idea: respuesta en hasta 3 días laborables.</li>
           <li>Tras el encargo y el pago, realizamos una entrevista para recoger la información necesaria.</li>
           <li>El plazo de entrega se confirma por escrito al contratar (habitualmente [PLAZO HABITUAL, p. ej. 7-10 días laborables]).</li>
           <li>Antes de la entrega final, contrastamos el plan contigo y lo cerramos solo cuando lo des por bueno.</li>
@@ -278,7 +278,7 @@ function Condiciones() {
       <Seccion titulo="7. Contacto y reclamaciones">
         <p>
           Para cualquier incidencia con el servicio puedes escribir a{' '}
-          {DATOS.email}. Respondemos en menos de 3 días laborables.
+          {DATOS.email}. Respondemos en hasta 3 días laborables.
         </p>
       </Seccion>
     </Marco>

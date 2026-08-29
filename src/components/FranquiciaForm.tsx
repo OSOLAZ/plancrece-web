@@ -106,7 +106,7 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
         <h3 className="success-pop mt-4 text-xl font-bold text-[#0B2447]">Solicitud recibida</h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-foreground/80">
           Analizaremos si tu perfil encaja con <strong>{franquicia}</strong> y te responderemos en
-          menos de 3 días laborables. Si encaja, te proponemos el siguiente paso; si no, te diremos
+          hasta 3 días laborables. Si encaja, te proponemos el siguiente paso; si no, te diremos
           por qué. También gratis.
         </p>
       </div>
@@ -285,7 +285,7 @@ export default function FranquiciaForm({ franquicia }: { franquicia: string }) {
         )}
       </button>
       <p className="mt-3 text-xs text-foreground/60">
-        Gratis · Respuesta en menos de 3 días laborables · Sin compromiso
+        Gratis · Respuesta en hasta 3 días laborables · Sin compromiso
       </p>
     </form>
   )

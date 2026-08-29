@@ -253,7 +253,7 @@ export default function ComoFunciona() {
             </h2>
             <p className="mt-4 text-base text-white/80">
               Validarla es gratis. Si encaja, te proponemos el siguiente paso; si no, te explicamos
-              por qué. En menos de 3 días laborables.
+              por qué. En hasta 3 días laborables.
             </p>
             <Link
               to="/contacto"

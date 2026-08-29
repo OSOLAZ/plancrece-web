@@ -186,7 +186,7 @@ export default function Blog() {
               Leer está bien. Saber si tu idea funciona, mejor.
             </h2>
             <p className="mt-4 text-base text-white/80">
-              Envíanos tu idea y en menos de 3 días laborables te diremos si es viable. Gratis, con
+              Envíanos tu idea y te diremos en hasta 3 días laborables si es viable. Gratis, con
               Confidencial y sin compromiso.
             </p>
             <Link

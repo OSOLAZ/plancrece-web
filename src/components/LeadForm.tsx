@@ -192,7 +192,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
         </svg>
         <h3 className="mt-4 text-xl font-bold text-[#0B2447]">Recibido, {form.nombre.split(' ')[0]}</h3>
         <p className="mt-2 text-[15px] leading-relaxed text-foreground">
-          En menos de <strong>3 días laborables</strong> recibirás una primera orientación en tu
+          En hasta <strong>3 días laborables</strong> recibirás una primera orientación en tu
           email — gratis y sin compromiso.
         </p>
         <p className="mt-3 rounded-lg bg-secondary px-4 py-3 text-sm leading-relaxed text-foreground">

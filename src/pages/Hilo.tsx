@@ -217,7 +217,7 @@ export default function Hilo() {
             <h2 className="text-xl font-bold">¿Tienes una duda parecida?</h2>
             <p className="mt-2 max-w-xl text-white/80">
               Si tu caso tiene que ver con la viabilidad de una idea, puedes
-              enviarla para una validación gratuita: en unos 3 días laborables
+              enviarla para una validación gratuita: en hasta 3 días laborables
               te decimos con sinceridad si le vemos recorrido.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
