@@ -244,7 +244,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
       {variant === 'home' && (
         <div className="mb-6">
           <h2 className="text-xl font-bold tracking-tight text-[#0B2447] sm:text-2xl">
-            ¿Tu idea vale la pena? Te lo decimos en 3 días. Gratis.
+            ¿Tu idea vale la pena? Te lo decimos en hasta 3 días laborables. Gratis.
           </h2>
           <p className="mt-2 text-[15px] leading-relaxed text-foreground">
             Más de 3.000 emprendedores ya han validado su idea con nosotros. Cuéntanosla en 2
@@ -257,7 +257,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
             </li>
             <li className="flex items-center gap-1.5">
               <Zap className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
-              Respuesta en 3 días laborables
+              Respuesta en hasta 3 días laborables
             </li>
             <li className="flex items-center gap-1.5">
               <PhoneOff className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
@@ -436,7 +436,7 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
               <span className="text-sm text-foreground">
                 He leído y acepto la{' '}
                 <Link to="/legal/privacidad" className="font-medium text-primary underline">política de privacidad</Link>.
-                Mis datos se usan solo para analizar mi idea y responderte en 3 días.
+                Mis datos se usan solo para analizar mi idea y responderte en hasta 3 días laborables.
               </span>
             </label>
             {fieldError('privacidad')}
@@ -499,14 +499,14 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
           )}
         </button>
 <p className="mt-3 text-xs text-center text-slate-500 leading-tight">
-  Un consultor sénior te responderá en 24h laborables. No compartiremos tus datos.
-  Cláusula de confidencialidad incluida. Sin llamadas comerciales agresivas ni spam.
+  Te responderemos en hasta 3 días laborables. No compartimos tus datos.
+  Cláusula de confidencialidad incluida. No realizamos llamadas comerciales no solicitadas.
 </p>
       </div>
 
       {paso === 3 && (
         <p className="mt-4 text-center text-[13px] text-muted-foreground">
-          Gratis · Sin llamadas · Respuesta en menos de 3 días laborables
+          Gratis · Sin llamadas · Respuesta en hasta 3 días laborables
         </p>
       )}
     </form>

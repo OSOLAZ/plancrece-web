@@ -41,7 +41,7 @@ export default function Footer() {
                 <Mail className="h-4 w-4 text-[#6d9bff]" aria-hidden="true" />
                 <a href="mailto:clientes@plancrece.com" className="hover:text-white">clientes@plancrece.com</a>
               </li>
-              <li className="text-slate-400">Respuesta en menos de 3 días laborables</li>
+              <li className="text-slate-400">Respuesta en hasta 3 días laborables</li>
             </ul>
           </div>
         </div>
