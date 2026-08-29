@@ -162,7 +162,7 @@ export default function Faq() {
             ¿No encuentras la tuya?{' '}
             <Link to="/contacto" className="font-medium text-primary underline-offset-4 hover:underline">
               Escríbenos
-            </Link>
+            </Link>{' '}
             y te responderemos por email.
           </p>
         </div>
