@@ -297,7 +297,7 @@ export default function Home() {
           <H2>Una franquicia es emprender con manual de instrucciones.</H2>
           <p className="mt-4 text-[15px] leading-relaxed text-foreground">Marca, método y proveedores ya probados, a cambio de un canon y parte del margen. Explora nuestro catálogo y comprueba gratis si tu perfil, tu ubicación y tu inversión encajan con la franquicia que te interesa.</p>
           <Link to="/franquicias" className="btn-press mt-6 inline-flex h-12 items-center gap-2 rounded-[10px] bg-primary px-6 text-sm font-semibold text-white transition-colors hover:bg-[#1a45c0]">Explora el catálogo de franquicias<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" /></Link>
-          <p className="mt-3 text-xs text-foreground/60">Sin relación comercial con las marcas · Compatibilidad en 3 días · Gratis</p>
+          <p className="mt-3 text-xs text-foreground/60">Sin relación comercial con las marcas · Compatibilidad en hasta 3 días laborables · Gratis</p>
         </div></Reveal>
         <Reveal delay={120}><div className="grid grid-cols-3 gap-3">
           {['halcon-viajes', 'naturhouse', 'kumon', 'eroski', 'speed-queen', 'yves-rocher'].map((slug, i) => (
@@ -310,7 +310,7 @@ export default function Home() {
 
       <Section><H2>De tu idea a una reunión ganada.</H2>
         <ol className="mt-8 space-y-6">
-          {[['Cuéntanos tu idea', 'Formulario de 2 minutos. En menos de 3 días te decimos si es viable, gratis.'], ['Si es viable, construimos tu plan', 'Solo si tu idea supera la validación: investigamos, calculamos y redactamos.'], ['Preséntalo con seguridad', 'Entrega en 7 días. No se cierra hasta que lo des por bueno.']].map(([title, text], i) => (
+          {[['Cuéntanos tu idea', 'Formulario de 2 minutos. Te decimos en hasta 3 días laborables si es viable, gratis.'], ['Si es viable, construimos tu plan', 'Solo si tu idea supera la validación: investigamos, calculamos y redactamos.'], ['Preséntalo con seguridad', 'Entrega en 7 días. No se cierra hasta que lo des por bueno.']].map(([title, text], i) => (
             <Reveal key={title} delay={i * 120}>
               <li className="flex gap-4">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-white shadow-md ring-4 ring-primary/15">{i + 1}</span>
@@ -446,9 +446,9 @@ export default function Home() {
 
       <section className="navy-bg py-14 sm:py-20"><div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
         <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Tu proyecto merece llegar bien preparado.</h2>
-        <p className="mt-4 text-[15px] leading-relaxed text-slate-300 sm:text-base">Valida tu idea gratis: en menos de 3 días sabrás si es viable. Y si no lo es, te diremos por qué — también gratis.</p>
+        <p className="mt-4 text-[15px] leading-relaxed text-slate-300 sm:text-base">Valida tu idea gratis: en hasta 3 días laborables sabrás si es viable. Y si no lo es, te diremos por qué — también gratis.</p>
         <div className="mt-8 flex justify-center"><CTAButton full={false} className="w-full sm:w-auto" /></div>
-        <p className="mt-4 text-sm text-slate-400">Validación gratuita · Respuesta en 3 días · Confidencial</p>
+        <p className="mt-4 text-sm text-slate-400">Validación gratuita · Respuesta en hasta 3 días laborables · Confidencial</p>
       </div></section>
     </>
   )

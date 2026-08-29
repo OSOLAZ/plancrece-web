@@ -14,7 +14,7 @@ const GARANTIAS = [
     icon: ShieldCheck,
     titulo: 'Validación gratuita y sincera',
     texto:
-      'En menos de 3 días te decimos si tu idea es viable. Si no lo es, te explicamos por qué gratis — aunque no trabajemos juntos.',
+      'En hasta 3 días laborables te decimos si tu idea es viable. Si no lo es, te explicamos por qué gratis — aunque no trabajemos juntos.',
   },
   {
     icon: ShieldCheck,
@@ -34,7 +34,7 @@ const GARANTIAS = [
   {
     icon: MessageCircle,
     titulo: 'Trato directo',
-    texto: 'Hablas con el consultor que elabora tu plan. Respuesta en menos de 24 h laborables.',
+    texto: 'Hablas con el consultor que elabora tu plan, sin intermediarios.',
   },
   {
     icon: FileCheck,

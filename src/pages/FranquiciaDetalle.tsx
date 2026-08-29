@@ -220,7 +220,7 @@ export default function FranquiciaDetalle() {
           <Reveal delay={200}>
             <section id="compatibilidad" className="mt-12 scroll-mt-24">
               <h2 className="text-2xl font-extrabold tracking-tight text-[#0B2447]">
-                ¿Encajas con {f.nombre}? Te lo decimos en 3 días.
+                ¿Encajas con {f.nombre}? Te lo decimos en hasta 3 días laborables.
               </h2>
               <p className="mt-3 max-w-xl text-base leading-relaxed text-foreground/80">
                 Cuéntanos quién eres, dónde la montarías y qué inversión tienes disponible.

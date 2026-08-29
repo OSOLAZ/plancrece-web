@@ -10,7 +10,7 @@ export default function Contacto() {
             Hablemos de tu idea.
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-foreground sm:text-lg">
-            Cuéntanosla y en menos de 3 días laborables te diremos si es viable. Si no lo es, te
+            Cuéntanosla y te diremos en hasta 3 días laborables si es viable. Si no lo es, te
             diremos por qué — también gratis.
           </p>
         </div>
@@ -35,7 +35,7 @@ export default function Contacto() {
                 </li>
                 <li className="flex items-center gap-3 text-[15px] text-foreground">
                   <Clock className="h-5 w-5 text-primary" aria-hidden="true" />
-                  Respuesta en menos de 3 días laborables
+                  Respuesta en hasta 3 días laborables
                 </li>
               </ul>
             </div>

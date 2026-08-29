@@ -242,7 +242,7 @@ export default function Franquicias() {
             </h2>
             <p className="mt-4 text-base text-white/80">
               Elige la franquicia que te interesa y comprueba gratis si tu perfil, tu ubicación y tu
-              inversión disponible encajan con ella. Respuesta en menos de 3 días laborables.
+              inversión disponible encajan con ella. Respuesta en hasta 3 días laborables.
             </p>
             <p className="mt-4 text-sm text-white/60">
               {FRANQUICIAS.length} franquicias analizadas · {SECTORES.length} sectores

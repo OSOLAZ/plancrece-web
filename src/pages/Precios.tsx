@@ -239,7 +239,7 @@ export default function Precios() {
           <div className="mx-auto mt-10 max-w-3xl">
             <ConsultantTip title="Antes de elegir plan, tenlo claro">
               <p>
-                Primero validamos tu idea gratis: en menos de 3 días sabrás si es viable. Si lo
+                Primero validamos tu idea gratis: en hasta 3 días laborables sabrás si es viable. Si lo
                 es, te recomendamos el plan que encaja con tu caso — y si no necesitas el más
                 completo, te lo diremos.
               </p>
