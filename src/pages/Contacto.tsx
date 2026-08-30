@@ -7,11 +7,12 @@ export default function Contacto() {
       <section className="hero-bg py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h1 className="text-3xl font-extrabold tracking-tight text-[#0B2447] sm:text-4xl">
-            Hablemos de tu idea.
+            Contacta con PlanCrece.
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-foreground sm:text-lg">
-            Cuéntanosla y te diremos en hasta 3 días laborables si es viable. Si no lo es, te
-            diremos por qué — también gratis.
+            ¿Tienes una duda, incidencia o consulta general? Escríbenos por email y te
+            responderemos. ¿Quieres validar una idea de negocio? Usa este formulario: te
+            diremos en hasta 3 días laborables si parece viable, gratis y sin compromiso.
           </p>
         </div>
       </section>
@@ -22,7 +23,7 @@ export default function Contacto() {
 
           <aside className="space-y-6">
             <div className="rounded-xl bg-white p-6 ring-1 ring-border sm:p-8">
-              <h2 className="text-lg font-bold text-[#0B2447]">Contacto directo</h2>
+              <h2 className="text-lg font-bold text-[#0B2447]">Consultas generales</h2>
               <ul className="mt-5 space-y-4">
                 <li>
                   <a
