@@ -226,7 +226,10 @@ export default function Franquicias() {
                 alguna de ellas. La información (inversión, capital propio, número de unidades) es
                 orientativa y procede de datos publicados por las propias franquicias y directorios
                 sectoriales; puede haber variado. Antes de firmar cualquier contrato, verifica las
-                condiciones directamente con la franquicia.
+                condiciones directamente con la franquicia. Cifras orientativas procedentes de
+                fuentes públicas (portales especializados en franquicias y comunicaciones de las
+                centrales), consultadas en agosto de 2026. No constituyen garantía de rentabilidad:
+                el resultado real depende de la ubicación, la gestión y las condiciones del mercado.
               </p>
             </div>
           </Reveal>

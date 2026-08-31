@@ -949,35 +949,6 @@ const FRANQUICIAS_NUEVAS: Franquicia[] = [
     ],
   },
   {
-    slug: 'kiwoko',
-    nombre: 'Kiwoko',
-    sector: 'retail',
-    actividad: 'Tienda de productos para mascotas',
-    inversion: 70000,
-    aportePropio: 30000,
-    unidades: 140,
-    descripcion: [
-      'Kiwoko es la cadena líder de productos para mascotas en España. El sector tiene una de las mejores perspectivas del retail: cada vez hay más mascotas y sus dueños gastan más en ellas, incluso en crisis.',
-      'El modelo combina tienda física con el tirón del canal online del grupo, y la central aporta surtido, logística y campañas de marca.',
-    ],
-    incluye: [
-      'Marca líder del sector mascotas',
-      'Surtido completo: alimentación, accesorios e higiene',
-      'Logística y condiciones de compra del grupo',
-      'Formación en producto y nutrición animal',
-    ],
-    encaja: [
-      'Amantes de los animales con perfil comercial',
-      'Zonas residenciales con alta densidad de mascotas',
-      'Quien busca un sector con demanda creciente y recurrente',
-    ],
-    revisar: [
-      'Competencia del canal online en alimentación recurrente',
-      'Rotación de stock y caducidades de pienso',
-      'Local amplio bien ubicado: es la partida clave',
-    ],
-  },
-  {
     slug: 'nomasvello',
     nombre: 'No+Vello',
     sector: 'salud',
@@ -1139,7 +1110,6 @@ export const WEB_FRANQUICIA: Record<string, string> = {
   dia: 'https://www.dia.es',
   'alain-afflelou': 'https://www.afflelou.es',
   lizarran: 'https://www.lizarran.es',
-  kiwoko: 'https://www.kiwoko.com',
   nomasvello: 'https://www.nomasvello.com',
   santagloria: 'https://www.santagloria.com',
   remax: 'https://www.remax.es',
@@ -1153,6 +1123,8 @@ export interface CifrasClave {
   duracionContrato: string | null // años de acuerdo
   superficie: string | null // tamaño de local habitual
   poblacionMinima: string | null // tamaño de ciudad que piden
+  rentabilidad: string | null // rentabilidad orientativa según fuentes públicas
+  recuperacion: string | null // plazo de recuperación orientativo según fuentes públicas
 }
 
 export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
@@ -1163,6 +1135,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '3 años',
     superficie: '35 – 50 m² aprox.',
     poblacionMinima: 'No fija un mínimo',
+    rentabilidad: 'Venta media por agencia: ~900.000 €/año (según la central)',
+    recuperacion: null,
   },
   naturhouse: {
     canonEntrada: '600 €/año',
@@ -1171,6 +1145,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años renovables',
     superficie: 'Desde 20 m²',
     poblacionMinima: '20.000 hab.',
+    rentabilidad: 'Margen neto estimado: 20-30 % (portales especializados)',
+    recuperacion: '1-2 años (estimación de portales)',
   },
   kumon: {
     canonEntrada: '400 – 600 €',
@@ -1179,6 +1155,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '1 año renovable',
     superficie: null,
     poblacionMinima: null,
+    rentabilidad: 'Ingresos de un centro consolidado: 20.000-80.000 €/año (según la central)',
+    recuperacion: null,
   },
   'general-optica': {
     canonEntrada: 'No hay',
@@ -1187,6 +1165,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '3 – 5 años',
     superficie: '100 – 120 m²',
     poblacionMinima: '25.000 hab.',
+    rentabilidad: 'Ingresos anuales estimados: 100.000-300.000 € (portales especializados)',
+    recuperacion: '3-5 años (referencia del sector óptico)',
   },
   'mail-boxes-etc': {
     canonEntrada: '24.000 €',
@@ -1195,6 +1175,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '7 años',
     superficie: 'Desde 50 m²',
     poblacionMinima: '15.000 hab.',
+    rentabilidad: 'Facturación media: ~270.000 €/año; beneficio ~15 % sobre ventas (portales especializados)',
+    recuperacion: '~36 meses (portales especializados)',
   },
   mobalpa: {
     canonEntrada: 'No hay',
@@ -1203,6 +1185,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '200 – 350 m²',
     poblacionMinima: '80.000 hab.',
+    rentabilidad: 'Facturación en el tercer año: ~1,8 M€ (según la central)',
+    recuperacion: '~3 años (según la central)',
   },
   eroski: {
     canonEntrada: 'No hay',
@@ -1211,6 +1195,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años prorrogables',
     superficie: '150 – 200 m²',
     poblacionMinima: '1.500 – 2.000 hab.',
+    rentabilidad: 'Rentabilidad estimada: 16-17 % sobre la inversión (según la central)',
+    recuperacion: '~5 años (según la central)',
   },
   devuelving: {
     canonEntrada: 'Incluido en la inversión inicial',
@@ -1219,6 +1205,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: 'Indefinido',
     superficie: 'No hace falta local',
     poblacionMinima: 'Sin mínimo',
+    rentabilidad: 'Ingresos de franquiciados activos: 3.000-4.000 €/mes (según la central)',
+    recuperacion: '6-12 meses (estimación de portales)',
   },
   nautalia: {
     canonEntrada: '1.500 – 2.500 €',
@@ -1227,6 +1215,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '3 años prorrogables',
     superficie: 'Desde 30 m²',
     poblacionMinima: '30.000 hab.',
+    rentabilidad: 'Facturación prevista el primer año: ~300.000 € (portales especializados)',
+    recuperacion: '~3 años (dato histórico de la central)',
   },
   'speed-queen': {
     canonEntrada: 'No hay',
@@ -1235,6 +1225,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '50 – 60 m²',
     poblacionMinima: '10.000 hab.',
+    rentabilidad: 'ROI del sector de lavanderías autoservicio: 20-35 % anual (según la central)',
+    recuperacion: '18-36 meses (portales especializados)',
   },
   larome: {
     canonEntrada: 'No hay',
@@ -1243,6 +1235,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: 'Desde 20 m²',
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   'haagen-dazs': {
     canonEntrada: '25.000 € (primera tienda; menos en las siguientes)',
@@ -1251,6 +1245,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '45 – 60 m² + terraza',
     poblacionMinima: '100.000 hab.',
+    rentabilidad: 'EBITDA de referencia: ~20 % (según la central)',
+    recuperacion: '~3 años (según la central)',
   },
   donpiso: {
     canonEntrada: 'Desde 10.000 € (según zona)',
@@ -1259,6 +1255,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años renovables',
     superficie: '40 – 50 m²',
     poblacionMinima: 'No fija un mínimo',
+    rentabilidad: 'Facturación media de oficina: ~200.000 €/año (portales especializados)',
+    recuperacion: '~1 año (según la central)',
   },
   'racc-start': {
     canonEntrada: '7.000 €',
@@ -1267,6 +1265,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: 'Desde 90 m²',
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   adaix: {
     canonEntrada: null,
@@ -1275,6 +1275,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: null,
     superficie: null,
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   interdomicilio: {
     canonEntrada: '10.900 – 14.900 €',
@@ -1283,6 +1285,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: 'Desde 15 – 50 m²',
     poblacionMinima: '40.000 – 50.000 hab.',
+    rentabilidad: null,
+    recuperacion: '~2 años (portales especializados)',
   },
   recoletos: {
     canonEntrada: 'No hay',
@@ -1291,6 +1295,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: null,
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   wayalia: {
     canonEntrada: '13.900 €',
@@ -1299,6 +1305,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años renovables',
     superficie: 'Sin mínimo',
     poblacionMinima: '20.000 – 25.000 hab.',
+    rentabilidad: 'Facturación estimada el primer año: 75.000 € (portales especializados)',
+    recuperacion: '~10 meses (estimación de la central vía portales)',
   },
   masqrenting: {
     canonEntrada: '3.500 €',
@@ -1307,6 +1315,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '3 años',
     superficie: 'No hace falta local',
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   jijonenca: {
     canonEntrada: 'No hay',
@@ -1315,6 +1325,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: 'Desde 30 m²',
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   'yves-rocher': {
     canonEntrada: '5.000 €',
@@ -1323,6 +1335,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 – 7 años',
     superficie: '50 – 90 m²',
     poblacionMinima: '60.000 – 70.000 hab.',
+    rentabilidad: 'Beneficio estimado: 15.000-45.000 €/año (5-10 % sobre ventas, portales especializados)',
+    recuperacion: null,
   },
   farmatural: {
     canonEntrada: null,
@@ -1331,6 +1345,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: null,
     superficie: null,
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   euromaster: {
     canonEntrada: null,
@@ -1339,6 +1355,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: null,
     superficie: null,
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   'feu-vert': {
     canonEntrada: 'No hay',
@@ -1347,6 +1365,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '250 – 300 m²',
     poblacionMinima: '20.000 hab.',
+    rentabilidad: 'Facturación estimada: ~1.000.000 €/año; EBITDA ~15 % (portales especializados)',
+    recuperacion: '~5 años (portales especializados)',
   },
   amorino: {
     canonEntrada: '30.000 €',
@@ -1355,6 +1375,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 – 7 años',
     superficie: 'Desde 30 m²',
     poblacionMinima: '100.000 hab.',
+    rentabilidad: 'Retorno estimado: 35-50 % anual (portales especializados)',
+    recuperacion: '2-3 años (estimación de portales)',
   },
   'ben-and-jerrys': {
     canonEntrada: null,
@@ -1363,6 +1385,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: null,
     superficie: null,
     poblacionMinima: null,
+    rentabilidad: 'Ventas ~360.000 €/año; margen neto ~17 % (portales especializados)',
+    recuperacion: '1,5-2 años (según la central)',
   },
   pannus: {
     canonEntrada: '15.000 €',
@@ -1371,6 +1395,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '10 años',
     superficie: '50 – 150 m²',
     poblacionMinima: '30.000 hab.',
+    rentabilidad: 'Ventas estimadas: 400.000-460.000 €/año (portales especializados)',
+    recuperacion: null,
   },
   guardaya: {
     canonEntrada: null,
@@ -1379,6 +1405,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: null,
     superficie: null,
     poblacionMinima: null,
+    rentabilidad: null,
+    recuperacion: null,
   },
   dia: {
     canonEntrada: '300 €',
@@ -1387,6 +1415,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '400 – 500 m²',
     poblacionMinima: 'Desde 1.000 hab.',
+    rentabilidad: 'Rentabilidad del franquiciado: 3-5 % sobre ventas (36.000-60.000 €/año estimados, portales especializados)',
+    recuperacion: '18-24 meses (portales especializados)',
   },
   'alain-afflelou': {
     canonEntrada: null,
@@ -1395,6 +1425,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: null,
     superficie: '50 – 80 m² aprox.',
     poblacionMinima: null,
+    rentabilidad: 'Rentabilidad neta: 10-15 % sobre ventas (72.000-180.000 €/año, portales especializados)',
+    recuperacion: '3-5 años (referencia del sector óptico)',
   },
   lizarran: {
     canonEntrada: '25.000 € aprox.',
@@ -1403,14 +1435,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '10 años',
     superficie: '150 – 200 m²',
     poblacionMinima: '40.000 hab.',
-  },
-  kiwoko: {
-    canonEntrada: '15.000 € aprox.',
-    royalty: '2 % sobre ventas',
-    canonPublicidad: '1 % sobre ventas',
-    duracionContrato: '5 años',
-    superficie: '200 – 300 m²',
-    poblacionMinima: '30.000 hab.',
+    rentabilidad: 'EBITDA de referencia: ~20 % (portales especializados)',
+    recuperacion: '~18 meses (portales especializados)',
   },
   nomasvello: {
     canonEntrada: '9.000 € aprox.',
@@ -1419,6 +1445,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '50 – 70 m²',
     poblacionMinima: '30.000 hab.',
+    rentabilidad: 'Facturación media de centro: 70.000-80.000 €/año (prensa sectorial)',
+    recuperacion: '18-24 meses (portales especializados)',
   },
   santagloria: {
     canonEntrada: '25.000 € aprox.',
@@ -1427,6 +1455,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '150 – 200 m²',
     poblacionMinima: '30.000 hab.',
+    rentabilidad: null,
+    recuperacion: '2,5-3 años según la central; análisis independientes lo sitúan en 4-5 años',
   },
   remax: {
     canonEntrada: '20.000 €',
@@ -1435,6 +1465,8 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 años',
     superficie: '70 – 120 m²',
     poblacionMinima: '10.000 hab.',
+    rentabilidad: 'EBITDA de oficinas consolidadas: 15-18 % (según la central)',
+    recuperacion: '~24 meses (según la central)',
   },
   granier: {
     canonEntrada: '8.000 €',
@@ -1443,5 +1475,7 @@ export const CIFRAS_FRANQUICIA: Record<string, CifrasClave> = {
     duracionContrato: '5 – 10 años',
     superficie: 'Desde 40 m² (autoempleo) hasta 120 m²',
     poblacionMinima: '15.000 hab.',
+    rentabilidad: 'EBITDA 12-28 % según ubicación (portales especializados)',
+    recuperacion: '18 meses-3 años (según la central)',
   },
 }

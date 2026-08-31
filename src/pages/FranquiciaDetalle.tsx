@@ -22,6 +22,8 @@ const FILAS_CIFRAS: { campo: keyof CifrasClave; label: string; nota: string }[] 
   { campo: 'duracionContrato', label: 'Duración del contrato', nota: 'los años que dura el acuerdo' },
   { campo: 'superficie', label: 'Local habitual', nota: 'el tamaño de local que suelen pedir' },
   { campo: 'poblacionMinima', label: 'Población mínima', nota: 'el tamaño de ciudad donde suelen aceptar' },
+  { campo: 'rentabilidad', label: 'Rentabilidad orientativa', nota: 'lo que suele ganar un franquiciado, según fuentes públicas' },
+  { campo: 'recuperacion', label: 'Plazo de recuperación orientativo', nota: 'el tiempo habitual para recuperar lo invertido, según fuentes públicas' },
 ]
 
 export default function FranquiciaDetalle() {
@@ -142,7 +144,7 @@ export default function FranquiciaDetalle() {
               <section className="mt-10 rounded-2xl border border-border bg-white p-6 shadow-sm sm:p-8">
                 <h2 className="text-lg font-bold text-[#0B2447]">Las cifras que conviene conocer</h2>
                 <p className="mt-1.5 text-sm leading-relaxed text-foreground/65">
-                  Seis datos que dicen mucho de cómo es la relación con la marca, explicados
+                  Ocho datos que dicen mucho de cómo es la relación con la marca, explicados
                   sobre la marcha. Son cifras orientativas recopiladas de directorios del sector.
                 </p>
                 <dl className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2">
@@ -159,7 +161,7 @@ export default function FranquiciaDetalle() {
                             valor ? 'font-bold text-[#0B2447]' : 'italic text-foreground/50'
                           }`}
                         >
-                          {valor ?? 'A consultar con la franquicia'}
+                          {valor ?? 'A consultar con la central'}
                         </dd>
                       </div>
                     )
@@ -257,6 +259,11 @@ export default function FranquiciaDetalle() {
                     </a>
                   </>
                 )}
+                {' '}
+                Cifras orientativas procedentes de fuentes públicas (portales especializados en
+                franquicias y comunicaciones de las centrales), consultadas en agosto de 2026. No
+                constituyen garantía de rentabilidad: el resultado real depende de la ubicación, la
+                gestión y las condiciones del mercado.
               </p>
             </div>
           </Reveal>
