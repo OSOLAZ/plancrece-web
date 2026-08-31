@@ -230,7 +230,7 @@ function Condiciones() {
         <ul className="list-disc space-y-1 pl-5">
           <li>Validación gratuita de la idea: respuesta en hasta 3 días laborables.</li>
           <li>Tras el encargo y el pago, realizamos una entrevista para recoger la información necesaria.</li>
-          <li>El plazo de entrega se confirma por escrito al contratar (habitualmente [PLAZO HABITUAL, p. ej. 7-10 días laborables]).</li>
+          <li>El plazo de entrega se confirma por escrito al contratar.</li>
           <li>Antes de la entrega final, contrastamos el plan contigo y lo cerramos solo cuando lo des por bueno.</li>
         </ul>
       </Seccion>
