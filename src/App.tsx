@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation, useNavigate } from 'react-router'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Precios from './pages/Precios'
@@ -15,11 +16,30 @@ import Comunidad from './pages/Comunidad'
 import QuienesSomos from './pages/QuienesSomos'
 import Hilo from './pages/Hilo'
 import Legal from './pages/Legal'
+import NotFound from './pages/NotFound'
 import { ChatWidget } from './components/ChatWidget'
+
+// Compatibilidad con URLs antiguas de la época de HashRouter,
+// tipo plancrece.com/#/precios: las reescribe a su ruta limpia
+// equivalente sin recargar la página.
+function HashCompatRedirect() {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (location.hash.startsWith('#/')) {
+      const destino = location.hash.slice(1)
+      navigate(destino, { replace: true })
+    }
+  }, [location.hash, navigate])
+
+  return null
+}
 
 export default function App() {
   return (
     <>
+      <HashCompatRedirect />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -38,7 +58,7 @@ export default function App() {
           <Route path="/comunidad/:slug" element={<Hilo />} />
           <Route path="/legal/:pagina" element={<Legal />} />
           <Route path="/legal" element={<Legal />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <ChatWidget />
