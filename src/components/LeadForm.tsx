@@ -247,8 +247,8 @@ export default function LeadForm({ variant = 'home', id }: LeadFormProps) {
             ¿Tu idea vale la pena? Te lo decimos en hasta 3 días laborables. Gratis.
           </h2>
           <p className="mt-2 text-[15px] leading-relaxed text-foreground">
-            Más de 3.000 emprendedores ya han validado su idea con nosotros. Cuéntanosla en 2
-            minutos: 3 pasos y nuestro equipo la analizará.
+            Los consultores que colaboran con PlanCrece han elaborado más de 3.000 planes.
+            Cuéntanos tu idea en 2 minutos: 3 pasos y nuestro equipo la analizará.
           </p>
           <ul className="mt-3 flex flex-col gap-1.5 text-[13px] text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-4">
             <li className="flex items-center gap-1.5">

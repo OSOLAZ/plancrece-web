@@ -269,6 +269,19 @@ export const PERFILES_POR_ID: Record<string, PerfilForo> = Object.fromEntries(
   [...PERFILES, EQUIPO].map((p) => [p.id, p])
 )
 
+// Roles editoriales visibles. Los perfiles internos alimentan el motor del
+// foro (fechas y coherencia), pero en pantalla solo se muestran estos roles;
+// el banner de transparencia de /comunidad explica el motivo.
+const ROL_VISIBLE: Record<RolForo, { alias: string; initials: string }> = {
+  emprendedor: { alias: 'Emprendedor/a', initials: 'EM' },
+  miembro: { alias: 'Emprendedor/a', initials: 'EM' },
+  miembro_activo: { alias: 'Emprendedor/a', initials: 'EM' },
+  consultor: { alias: 'Consultor/a colaborador/a', initials: 'CO' },
+  equipo: { alias: 'Equipo PlanCrece', initials: 'PC' },
+}
+
 export function getPerfil(id: string): PerfilForo {
-  return PERFILES_POR_ID[id] ?? PERFILES[0]
+  const p = PERFILES_POR_ID[id] ?? PERFILES[0]
+  const v = ROL_VISIBLE[p.rol]
+  return { ...p, alias: v.alias, initials: v.initials }
 }

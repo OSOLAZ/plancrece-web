@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router'
 import {
-  ArrowLeft, Eye, ThumbsUp, MessageSquare, BadgeCheck, MapPin, ArrowRight, ShieldCheck,
+  ArrowLeft, BadgeCheck, ArrowRight, ShieldCheck, Info,
 } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import { CATEGORIAS_FORO } from '../data/foroContenido'
@@ -33,12 +33,8 @@ function BadgeRol({ autorId }: { autorId: string }) {
   }
   const etiqueta =
     p.rol === 'consultor'
-      ? 'Consultor'
-      : p.rol === 'emprendedor'
-        ? 'Emprendedor/a'
-        : p.rol === 'miembro_activo'
-          ? 'Miembro activo'
-          : 'Miembro'
+      ? 'Consultor/a colaborador/a'
+      : 'Emprendedor/a'
   return (
     <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
       {etiqueta}
@@ -112,24 +108,16 @@ export default function Hilo() {
           </h1>
           <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-foreground/60">
             <span>{formatRelativo(h.fecha)}</span>
-            <span className="inline-flex items-center gap-1">
-              <Eye className="h-4 w-4" aria-hidden="true" />
-              {h.vistas.toLocaleString('es-ES')} lecturas
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <ThumbsUp className="h-4 w-4" aria-hidden="true" />
-              {h.utiles} útiles
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <MessageSquare className="h-4 w-4" aria-hidden="true" />
-              {h.respuestas.length} respuestas
-            </span>
           </div>
           <p className="mt-4 inline-flex items-center gap-2 rounded-lg border border-border bg-slate-50 px-3.5 py-2 text-xs text-foreground/60">
             <ShieldCheck className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
             Por las normas de la comunidad no se mencionan marcas comerciales
             (bancos, franquicias, gestorías): las experiencias se cuentan sin
             nombres de empresa.
+          </p>
+          <p className="mt-3 flex items-start gap-2.5 rounded-lg border border-primary/20 bg-primary/[0.05] px-3.5 py-2.5 text-xs leading-relaxed text-[#0B2447]">
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+            Este foro muestra conversaciones ilustrativas basadas en situaciones reales planteadas por clientes. Los perfiles se presentan como roles editoriales para proteger la confidencialidad.
           </p>
         </Reveal>
 
@@ -144,13 +132,8 @@ export default function Hilo() {
                   <BadgeRol autorId={h.autorId} />
                 </div>
                 <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-foreground/60">
-                  <span className="inline-flex items-center gap-1">
-                    <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-                    {autor.zona}
-                  </span>
                   <span>Etapa: {h.etapa}</span>
                   {h.presupuesto && <span>Presupuesto: {h.presupuesto}</span>}
-                  <span>En la comunidad desde {autor.alta}</span>
                 </div>
               </div>
             </header>
@@ -165,7 +148,7 @@ export default function Hilo() {
         {/* Respuestas */}
         <div className="mt-8">
           <h2 className="text-lg font-bold text-[#0B2447]">
-            {h.respuestas.length} respuestas
+            Respuestas
           </h2>
           <div className="mt-4 flex flex-col gap-3.5">
             {h.respuestas.map((r, i) => {
@@ -192,14 +175,7 @@ export default function Hilo() {
                             {formatRelativo(r.fecha)}
                           </span>
                         </div>
-                        <p className="mt-0.5 text-xs text-foreground/55">
-                          {ra.zona} · desde {ra.alta}
-                        </p>
                       </div>
-                      <span className="inline-flex shrink-0 items-center gap-1 text-xs text-foreground/50">
-                        <ThumbsUp className="h-3.5 w-3.5" aria-hidden="true" />
-                        {r.util}
-                      </span>
                     </header>
                     <p className="mt-3 text-sm leading-relaxed text-foreground/85">
                       {r.texto}

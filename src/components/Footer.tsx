@@ -14,7 +14,7 @@ export default function Footer() {
             </div>
             <p className="mt-3 text-sm">Planes de negocio que abren puertas.</p>
             <p className="mt-4 text-sm text-slate-400">
-              Más de 10 años ayudando a empresas españolas a conseguir financiación.
+              Consultores con experiencia desde 2008 para ayudarte a impulsar tu proyecto.
             </p>
           </div>
 
