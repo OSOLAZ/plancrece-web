@@ -58,6 +58,7 @@ export function ChatWidget() {
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const minimizeTimerRef = useRef<number | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -71,6 +72,15 @@ export function ChatWidget() {
       inputRef.current?.focus();
     }
   }, [isOpen, messages]);
+
+  // Limpieza del temporizador de auto-minimizado al desmontar.
+  useEffect(() => {
+    return () => {
+      if (minimizeTimerRef.current !== null) {
+        window.clearTimeout(minimizeTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Escape' && isOpen) {
@@ -148,6 +158,16 @@ export function ChatWidget() {
         }
       };
       requestAnimationFrame(() => scrollToForm(20));
+
+      // Tras llevar al usuario al formulario, minimizamos el widget para
+      // no taparlo. La conversación se conserva y se ve al reabrir.
+      if (minimizeTimerRef.current !== null) {
+        window.clearTimeout(minimizeTimerRef.current);
+      }
+      minimizeTimerRef.current = window.setTimeout(() => {
+        minimizeTimerRef.current = null;
+        setIsOpen(false);
+      }, 1600);
       return;
     }
     sendMessage(action.message);
