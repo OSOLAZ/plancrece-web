@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import type { FormEvent, KeyboardEvent } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -57,6 +58,8 @@ export function ChatWidget() {
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -120,7 +123,7 @@ export function ChatWidget() {
   const handleQuickAction = (action: QuickAction) => {
     if (action.isPrimary) {
       // Respuesta local inmediata, sin llamar a la API.
-      // La app usa HashRouter: la ruta real está en location.hash y
+      // Con BrowserRouter la ruta real está en location.pathname y
       // navegar no recarga la página, así que el mensaje persiste.
       const userMessage: Message = { role: 'user', content: action.message };
       const assistantMessage: Message = {
@@ -130,10 +133,9 @@ export function ChatWidget() {
       };
       setMessages((prev) => [...prev, userMessage, assistantMessage].slice(-6));
 
-      const hash = window.location.hash;
-      const isHome = hash === '' || hash === '#' || hash === '#/';
+      const isHome = location.pathname === '/';
       if (!isHome) {
-        window.location.hash = '#/';
+        navigate('/');
       }
 
       // Tras el render, scroll suave al formulario (reintentos acotados, sin recarga)
