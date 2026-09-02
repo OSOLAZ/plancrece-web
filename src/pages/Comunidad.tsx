@@ -1,12 +1,9 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router'
-import { Search, MessageSquare, Eye, ThumbsUp, Users, ShieldCheck, Info } from 'lucide-react'
+import { Search, ShieldCheck, Info } from 'lucide-react'
 import Reveal from '../components/Reveal'
 import { CATEGORIAS_FORO, type CategoriaForo } from '../data/foroContenido'
-import {
-  HILOS, CONTEOS, formatRelativo, estadoLabel, getPerfil,
-  type HiloForo,
-} from '../data/foro'
+import { HILOS, formatRelativo, estadoLabel, getPerfil, type HiloForo } from '../data/foro'
 
 const PAGE_SIZE = 15
 
@@ -59,19 +56,6 @@ function FilaHilo({ h, delay = 0 }: { h: HiloForo; delay?: number }) {
           <p className="mt-1 line-clamp-1 text-sm text-foreground/70">{h.cuerpo[0]}</p>
           <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-foreground/60">
             <span className="font-medium text-foreground/75">{autor.alias}</span>
-            <span>{autor.zona}</span>
-            <span className="inline-flex items-center gap-1">
-              <MessageSquare className="h-3.5 w-3.5" aria-hidden="true" />
-              {h.respuestas.length}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <ThumbsUp className="h-3.5 w-3.5" aria-hidden="true" />
-              {h.utiles}
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Eye className="h-3.5 w-3.5" aria-hidden="true" />
-              {h.vistas.toLocaleString('es-ES')}
-            </span>
           </div>
         </div>
       </Link>
@@ -98,10 +82,6 @@ export default function Comunidad() {
   }, [filtro, busqueda])
 
   const lista = filtrados.slice(0, visibles)
-  const totalRespuestas = useMemo(
-    () => HILOS.reduce((acc, h) => acc + h.respuestas.length, 0),
-    []
-  )
 
   return (
     <div className="flex flex-col">
@@ -117,19 +97,9 @@ export default function Comunidad() {
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-white/80">
               Hilos desde 2014 sobre capitalizar el paro, ayudas, financiación,
-              franquicias y planes de negocio. Sin humo: dudas reales,
-              respuestas de primera mano y algún que otro desacuerdo.
+              franquicias y planes de negocio. Casos y dudas habituales sobre
+              emprender, financiación, franquicias y planes de negocio.
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-white/70">
-              <span className="inline-flex items-center gap-2">
-                <Users className="h-4 w-4" aria-hidden="true" />
-                {HILOS.length} hilos abiertos
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <MessageSquare className="h-4 w-4" aria-hidden="true" />
-                {totalRespuestas.toLocaleString('es-ES')} respuestas
-              </span>
-            </div>
           </Reveal>
         </div>
       </section>
@@ -154,12 +124,12 @@ export default function Comunidad() {
               aria-label="Buscar en la comunidad"
             />
           </div>
-          {/* Aviso de mantenimiento */}
-            <div className="mx-auto max-w-4xl rounded-xl border border-amber-200 bg-amber-50 px-4 py-3.5 ring-1 ring-amber-100 mb-6">
-              <p className="flex items-start gap-2.5 text-sm leading-relaxed text-amber-900">
-                <Info className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" aria-hidden="true" />
+          {/* Banner de transparencia (texto aprobado, no modificar) */}
+            <div className="mx-auto max-w-4xl rounded-xl border border-primary/20 bg-primary/[0.05] px-4 py-3.5 ring-1 ring-primary/10 mb-6">
+              <p className="flex items-start gap-2.5 text-sm leading-relaxed text-[#0B2447]">
+                <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                 <span>
-                  <strong>Foro en modo lectura.</strong> Nuevos registros y publicaciones en pausa temporal por tareas de mantenimiento programado. Estamos mejorando la experiencia de la comunidad.
+                  Este foro muestra conversaciones ilustrativas basadas en situaciones reales planteadas por clientes. Los perfiles se presentan como roles editoriales para proteger la confidencialidad.
                 </span>
               </p>
             </div>
@@ -192,7 +162,7 @@ export default function Comunidad() {
                   : 'bg-slate-100 text-foreground/70 hover:bg-slate-200'
               }`}
             >
-              Todos ({HILOS.length})
+              Todos
             </button>
             {CATEGORIAS_FORO.map((c) => (
               <button
@@ -207,7 +177,7 @@ export default function Comunidad() {
                     : 'bg-slate-100 text-foreground/70 hover:bg-slate-200'
                 }`}
               >
-                {c.label} ({CONTEOS[c.id] ?? 0})
+                {c.label}
               </button>
             ))}
           </div>

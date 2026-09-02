@@ -9,7 +9,6 @@ import CTAButton from '../components/CTAButton'
 import ConsultantTip from '../components/ConsultantTip'
 import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
-import CountUp from '../components/CountUp'
 import ProjectionVisual from '../components/ProjectionVisual'
 
 const CASOS = [
@@ -109,7 +108,7 @@ export default function Home() {
               <p className="mb-4 text-[15px] leading-relaxed text-slate-700">
                 <strong className="text-[#2563EB]">No necesariamente.</strong>{' '}
                 Según tu proyecto y perfil, puede haber vías de financiación que quizá no
-                conoces. El equipo de PlanCrece combina experiencia asesorando a emprendedores
+                conoces. Los consultores que colaboran con PlanCrece combinan experiencia asesorando a emprendedores
                 desde 2008 con especialistas seleccionados según el sector, la ubicación, la
                 vía de financiación y la fase de cada proyecto.
               </p>
@@ -149,24 +148,26 @@ export default function Home() {
               Tu idea. Tu nombre. Tu plan. — el documento se entrega sin marca de PlanCrece, listo para presentar como tuyo.
             </p>
 
-            {/* CAMBIO 5: Badges actualizados a 2008 */}
+            {/* Tarjetas de confianza: cifras atribuidas a los consultores colaboradores */}
             <dl className="mt-9 grid grid-cols-3 divide-x divide-border rounded-2xl bg-white shadow-sm ring-1 ring-border">
               <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
                 <dt className="sr-only">años de experiencia</dt>
-                <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl"><CountUp end={17} suffix="+" decimals={0} /></dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">Asesorando desde 2008</dd>
+                <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Consultores con experiencia desde 2008</dd>
               </div>
               <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
                 <dt className="sr-only">planes elaborados</dt>
-                <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl"><CountUp end={3000} suffix="+" decimals={0} /></dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">+3.000 planes</dd>
+                <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Más de 3.000 planes</dd>
+                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">Experiencia acumulada de los consultores que colaboran con PlanCrece</dd>
               </div>
               <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
-                <dt className="sr-only">valoración media</dt>
-                <dd className="text-2xl font-extrabold text-[#0B2447] sm:text-3xl"><CountUp end={4.9} suffix="/5" decimals={1} /></dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">Valoración media</dd>
+                <dt className="sr-only">confidencialidad</dt>
+                <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Confidencial por escrito (NDA)</dd>
+                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">desde el primer contacto</dd>
               </div>
             </dl>
+            <p className="mt-2 max-w-xl text-[11px] leading-snug text-muted-foreground sm:text-xs">
+              Las cifras reflejan la experiencia profesional acumulada de los consultores colaboradores, incluidos trabajos realizados antes de su colaboración con PlanCrece.
+            </p>
 
             <Reveal delay={200} className="mt-8 hidden lg:block"><ProjectionVisual /></Reveal>
             <Reveal delay={280} className="mt-6">
@@ -363,7 +364,7 @@ export default function Home() {
           </div>
         </div>
         {/* CAMBIO 4: Sección IA actualizada a 2008 */}
-        <p className="mt-6 border-l-4 border-primary bg-secondary px-4 py-3 text-[15px] font-medium leading-relaxed text-[#0B2447]">La inteligencia artificial puede ayudarte a empezar. Un plan que debes defender necesita criterio, contexto y una voz propia. El equipo combina experiencia profesional desde 2008 con criterio, contexto y una voz propia, mucho antes de que existiera la IA generativa.</p>
+        <p className="mt-6 border-l-4 border-primary bg-secondary px-4 py-3 text-[15px] font-medium leading-relaxed text-[#0B2447]">La inteligencia artificial puede ayudarte a empezar. Un plan que debes defender necesita criterio, contexto y una voz propia. Los consultores que colaboran con PlanCrece combinan experiencia profesional desde 2008, mucho antes de que existiera la IA generativa.</p>
       </div></Section>
 
       <Section alt><H2>Ellos ya presentaron su plan.</H2>
@@ -385,7 +386,7 @@ export default function Home() {
         <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm"><span className="h-px w-8 bg-primary" aria-hidden="true" />Quiénes somos</p>
         <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">Detrás de cada plan hay más que un documento. Hay criterio.</h2>
         {/* CAMBIO 3: Quiénes somos actualizado */}
-        <p className="mt-4 text-[15px] leading-relaxed text-foreground">PlanCrece combina experiencia en asesoramiento a emprendedores desde 2008 con una red flexible de especialistas seleccionados según el sector, la ubicación, la vía de financiación y la fase de cada proyecto. Esta colaboración aporta conocimiento profesional aplicado y criterios actualizados sobre mercados, financiación, ayudas y requisitos relevantes para cada caso. El plan que recibes no lleva nuestra marca: lleva tu nombre.</p>
+        <p className="mt-4 text-[15px] leading-relaxed text-foreground">PlanCrece trabaja con consultores con experiencia en asesoramiento a emprendedores desde 2008 y una red flexible de especialistas seleccionados según el sector, la ubicación, la vía de financiación y la fase de cada proyecto. Esta colaboración aporta conocimiento profesional aplicado y criterios actualizados sobre mercados, financiación, ayudas y requisitos relevantes para cada caso. El plan que recibes no lleva nuestra marca: lleva tu nombre.</p>
         <p className="mt-5"><Link to="/quienes-somos" className="inline-flex items-center gap-2 text-[15px] font-semibold text-primary underline-offset-4 hover:underline">Conoce cómo trabajamos<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></p>
       </div></Section>
 

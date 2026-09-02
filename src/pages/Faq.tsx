@@ -28,7 +28,7 @@ const CATEGORIAS = [
       },
       {
         q: '¿Trabajáis con mi sector?',
-        a: 'Sí. Más de 10 años y +3.000 planes en tecnología, hostelería, comercio, salud, industria y más.',
+        a: 'Sí. Los consultores que colaboran con PlanCrece acumulan experiencia desde 2008 y más de 3.000 planes elaborados en tecnología, hostelería, comercio, salud, industria y más.',
       },
       {
         q: '¿Y si soy autónomo, no empresa?',

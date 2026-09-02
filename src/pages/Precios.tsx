@@ -36,7 +36,7 @@ const PLANES = [
     destacado: true,
     precio: '149 € + IVA',
     precioAntes: '249 € + IVA',
-    oferta: 'Celebramos 3.000 planes creados: el Avanzado a precio de Estándar hasta el 31 de diciembre de 2026',
+    oferta: 'Los consultores que colaboran con PlanCrece han elaborado más de 3.000 planes: celebramos la cifra con el Avanzado a precio de Estándar hasta el 31 de diciembre de 2026',
     para: 'El plan y todo lo que necesitas para ir a por la financiación.',
     items: [
       'Informe de ayudas y subvenciones, valorado en 65 € — incluido: según tu edad, estado civil, situación familiar, zona geográfica y tipo de negocio, investigamos qué ayudas son compatibles contigo',
@@ -90,11 +90,6 @@ export default function Precios() {
                       <span className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
                         Más elegido
                       </span>
-                      {plan.oferta && (
-                        <span className="rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-emerald-700 ring-1 ring-emerald-300">
-                          3.000 planes creados
-                        </span>
-                      )}
                     </span>
                   )}
                   <h2 className={`text-xl font-bold text-[#0B2447] ${plan.destacado ? 'mt-6' : ''}`}>
