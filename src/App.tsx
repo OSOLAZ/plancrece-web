@@ -16,6 +16,7 @@ import Comunidad from './pages/Comunidad'
 import QuienesSomos from './pages/QuienesSomos'
 import Hilo from './pages/Hilo'
 import Legal from './pages/Legal'
+import CapitalizarParo from './pages/CapitalizarParo'
 import NotFound from './pages/NotFound'
 import { ChatWidget } from './components/ChatWidget'
 
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="/comunidad/:slug" element={<Hilo />} />
           <Route path="/legal/:pagina" element={<Legal />} />
           <Route path="/legal" element={<Legal />} />
+          <Route path="/capitalizar-paro" element={<CapitalizarParo />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
