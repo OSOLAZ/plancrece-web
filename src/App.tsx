@@ -19,6 +19,7 @@ import Legal from './pages/Legal'
 import CapitalizarParo from './pages/CapitalizarParo'
 import NotFound from './pages/NotFound'
 import { ChatWidget } from './components/ChatWidget'
+import { useSeo } from './hooks/useSeo'
 
 // Compatibilidad con URLs antiguas de la época de HashRouter,
 // tipo plancrece.com/#/precios: las reescribe a su ruta limpia
@@ -38,6 +39,8 @@ function HashCompatRedirect() {
 }
 
 export default function App() {
+  useSeo()
+
   return (
     <>
       <HashCompatRedirect />
