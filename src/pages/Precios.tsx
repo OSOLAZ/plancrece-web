@@ -1,51 +1,79 @@
 import { Link } from 'react-router'
-import { Check, Lock, ArrowRight, FileSearch, MapPin, Flag, ClipboardList, MessageSquare, Bell } from 'lucide-react'
+import {
+  Check,
+  Lock,
+  ArrowRight,
+  FileSearch,
+  MapPin,
+  Flag,
+  ClipboardList,
+  MessageSquare,
+  Bell,
+  Megaphone,
+  TrendingUp,
+  Network,
+  Scale,
+  Calculator,
+  Gauge,
+  MonitorPlay,
+  Landmark,
+  FileText,
+  FileEdit,
+  FileSliders,
+} from 'lucide-react'
 import ConsultantTip from '../components/ConsultantTip'
 import Reveal from '../components/Reveal'
 import useCheckSequence from '../components/useCheckSequence'
 import { pagoUrl } from '../data/pagos'
 
+// Contenido del plan de empresa: módulo compacto icono + etiqueta.
 const PLAN_EMPRESA = [
-  'Presentación',
-  'Plan de marketing',
-  'Inversiones',
-  'Plan de organización y gestión',
-  'Plan jurídico-fiscal',
-  'Plan económico-financiero',
-  'Valoración',
+  { icon: ClipboardList, label: 'Presentación del proyecto' },
+  { icon: Megaphone, label: 'Plan de marketing' },
+  { icon: TrendingUp, label: 'Inversiones' },
+  { icon: Network, label: 'Plan de organización y gestión' },
+  { icon: Scale, label: 'Plan jurídico-fiscal' },
+  { icon: Calculator, label: 'Plan económico-financiero' },
+  { icon: Gauge, label: 'Valoración' },
 ]
 
-const PLANES = [
+const FORMATOS_ESTANDAR = [
+  { icon: FileText, label: 'PDF' },
+  { icon: FileEdit, label: 'Word' },
+]
+
+const FORMATOS_AVANZADO = [
+  { icon: FileText, label: 'PDF' },
+  { icon: FileEdit, label: 'Word' },
+  { icon: FileSliders, label: 'PowerPoint' },
+]
+
+// Extras del Plan Avanzado: lead en negrita (texto exacto ya existente hasta
+// los dos puntos) + descripción completa sin acortar.
+const EXTRAS_AVANZADO = [
   {
-    id: 'estandar' as const,
-    nombre: 'Plan Estándar',
-    destacado: false,
-    precio: '149 € + IVA',
-    precioAntes: null as string | null,
-    oferta: null as string | null,
-    para: 'Tu plan de empresa completo, listo para presentar.',
-    items: [
-      'Validación previa de tu idea incluida',
-      'Entrega en PDF y Word editable',
-      'Documento a tu nombre, sin marca de PlanCrece',
-    ],
+    icon: FileSearch,
+    lead: 'Informe de ayudas y subvenciones, valorado en 65 € — incluido:',
+    resto:
+      ' según tu edad, estado civil, situación familiar, zona geográfica y tipo de negocio, investigamos qué ayudas son compatibles contigo',
   },
   {
-    id: 'avanzado' as const,
-    nombre: 'Plan Avanzado',
-    destacado: true,
-    precio: '149 € + IVA',
-    precioAntes: '249 € + IVA',
-    oferta: 'Los consultores que colaboran con PlanCrece han elaborado más de 3.000 planes: celebramos la cifra con el Avanzado a precio de Estándar hasta el 31 de diciembre de 2026',
-    para: 'El plan y todo lo que necesitas para ir a por la financiación.',
-    items: [
-      'Informe de ayudas y subvenciones, valorado en 65 € — incluido: según tu edad, estado civil, situación familiar, zona geográfica y tipo de negocio, investigamos qué ayudas son compatibles contigo',
-      'Presentación personalizada en PowerPoint con guion: las partes clave de tu plan y una guía de qué decir en cada una, para practicar en casa antes de ir al banco, a un socio potencial o a tu ayuntamiento',
-      'Guía orientativa de entidades y líneas de financiación según tu caso: no es lo mismo pedir 10.000 € que 30.000 €, ni comprar un camión para una empresa de transporte que reformar un local — te indicamos qué tipo de entidades y productos suelen encajar con tu inversión y qué condiciones mirar al comparar',
-      'Entrega en PDF, Word y PowerPoint editables',
-      'Documento a tu nombre, sin marca de PlanCrece',
-    ],
+    icon: MonitorPlay,
+    lead: 'Presentación personalizada en PowerPoint con guion:',
+    resto:
+      ' las partes clave de tu plan y una guía de qué decir en cada una, para practicar en casa antes de ir al banco, a un socio potencial o a tu ayuntamiento',
   },
+  {
+    icon: Landmark,
+    lead: 'Guía orientativa de entidades y líneas de financiación según tu caso:',
+    resto:
+      ' no es lo mismo pedir 10.000 € que 30.000 €, ni comprar un camión para una empresa de transporte que reformar un local — te indicamos qué tipo de entidades y productos suelen encajar con tu inversión y qué condiciones mirar al comparar',
+  },
+]
+
+const INCLUYE_ESTANDAR = [
+  'Validación previa de tu idea incluida',
+  'Documento a tu nombre, sin marca de PlanCrece',
 ]
 
 const INFORME_ITEMS = [
@@ -56,6 +84,46 @@ const INFORME_ITEMS = [
   { icon: MessageSquare, text: 'Asesoramiento para la solicitud' },
   { icon: Bell, text: 'Seguimiento de convocatorias' },
 ]
+
+function GrupoTitulo({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="border-t border-border pt-5 text-xs font-bold uppercase tracking-wider text-[#0B2447]">
+      {children}
+    </h3>
+  )
+}
+
+function ModuloPlan() {
+  return (
+    <ol className="mt-3 grid gap-2.5 sm:grid-cols-2">
+      {PLAN_EMPRESA.map(({ icon: Icon, label }) => (
+        <li
+          key={label}
+          className="flex items-center gap-2.5 rounded-lg bg-secondary/70 px-3 py-2.5 text-[13.5px] font-medium text-foreground"
+        >
+          <Icon className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+          {label}
+        </li>
+      ))}
+    </ol>
+  )
+}
+
+function ChipsFormatos({ formatos }: { formatos: { icon: typeof FileText; label: string }[] }) {
+  return (
+    <ul className="mt-3 flex flex-wrap gap-2">
+      {formatos.map(({ icon: Icon, label }) => (
+        <li
+          key={label}
+          className="flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-semibold text-[#0B2447] ring-1 ring-border"
+        >
+          <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+          {label}
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 export default function Precios() {
   const checksRef = useCheckSequence<HTMLDivElement>()
@@ -76,83 +144,117 @@ export default function Precios() {
       <section className="bg-secondary py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div ref={checksRef} className="check-seq grid gap-5 lg:grid-cols-2 lg:items-stretch">
-            {PLANES.map((plan, i) => (
-              <Reveal key={plan.nombre} delay={i * 110}>
-                <article
-                  className={`relative h-full rounded-2xl bg-white p-6 transition-all duration-250 hover:-translate-y-1 sm:p-8 ${
-                    plan.destacado
-                      ? 'sheen border-t-[6px] border-t-primary shadow-xl ring-1 ring-primary/20'
-                      : 'shadow-md ring-1 ring-border hover:shadow-lg'
-                  }`}
-                >
-                  {plan.destacado && (
-                    <span className="absolute left-6 top-4 flex flex-wrap items-center gap-2 sm:left-8">
-                      <span className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
-                        Más elegido
-                      </span>
-                    </span>
-                  )}
-                  <h2 className={`text-xl font-bold text-[#0B2447] ${plan.destacado ? 'mt-6' : ''}`}>
-                    {plan.nombre}
-                  </h2>
-                  <p className="mt-4 flex items-baseline gap-3">
-                    <span
-                      className={`font-extrabold text-[#0B2447] ${
-                        plan.destacado ? 'text-5xl' : 'text-4xl'
-                      }`}
-                    >
-                      {plan.precio}
-                    </span>
-                    {plan.precioAntes && (
-                      <span className="text-2xl font-bold text-foreground/40 line-through">
-                        {plan.precioAntes}
-                      </span>
-                    )}
-                  </p>
-                  {plan.oferta ? (
-                    <p className="mt-2 text-sm font-semibold text-emerald-700">
-                      {plan.oferta}
-                    </p>
-                  ) : null}
-                  <p className="mt-2 text-sm font-medium text-primary">{plan.para}</p>
-                  <ul className="mt-6 space-y-3">
-                    {plan.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-[15px] text-foreground">
-                        <Check className="check-icon mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 rounded-xl bg-secondary/70 p-4">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#0B2447]">
-                      Plan de empresa completo
-                    </p>
-                    <ol className="mt-2.5 space-y-1.5">
-                      {PLAN_EMPRESA.map((apartado, j) => (
-                        <li key={apartado} className="flex items-baseline gap-2.5 text-[13.5px] text-foreground">
-                          <span className="text-xs font-bold text-primary">{j + 1}.</span>
-                          {apartado}
+            {/* ---------------- Plan Estándar ---------------- */}
+            <Reveal>
+              <article className="relative h-full rounded-2xl bg-white p-6 shadow-md ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-lg sm:p-8">
+                <h2 className="text-xl font-bold text-[#0B2447]">Plan Estándar</h2>
+                <p className="mt-4 flex items-baseline gap-3">
+                  <span className="text-4xl font-extrabold text-[#0B2447]">149 € + IVA</span>
+                </p>
+                <p className="mt-2 text-sm font-medium text-primary">
+                  Tu plan de empresa completo, listo para presentar.
+                </p>
+
+                <div className="mt-6 space-y-6">
+                  <div>
+                    <GrupoTitulo>Contenido del plan</GrupoTitulo>
+                    <ModuloPlan />
+                  </div>
+
+                  <div>
+                    <GrupoTitulo>Incluye</GrupoTitulo>
+                    <ul className="mt-3 space-y-3">
+                      {INCLUYE_ESTANDAR.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-[15px] text-foreground">
+                          <Check className="check-icon mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
+                          {item}
                         </li>
                       ))}
-                    </ol>
+                    </ul>
                   </div>
-                  <Link
-                    to={pagoUrl(plan.id)}
-                    className={`btn-press group mt-8 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-[10px] text-base font-semibold transition-all duration-250 hover:-translate-y-0.5 ${
-                      plan.destacado
-                        ? 'bg-primary text-white shadow-md hover:bg-[#1a45c0] hover:shadow-lg'
-                        : 'bg-secondary text-[#0B2447] ring-1 ring-border hover:bg-slate-200'
-                    }`}
-                  >
-                    Solicita tu plan
-                    <ArrowRight
-                      className="h-5 w-5 transition-transform duration-250 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </article>
-              </Reveal>
-            ))}
+
+                  <div>
+                    <GrupoTitulo>Formatos de entrega</GrupoTitulo>
+                    <ChipsFormatos formatos={FORMATOS_ESTANDAR} />
+                  </div>
+                </div>
+
+                <Link
+                  to={pagoUrl('estandar')}
+                  className="btn-press group mt-8 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-[10px] bg-secondary text-base font-semibold text-[#0B2447] ring-1 ring-border transition-all duration-250 hover:-translate-y-0.5 hover:bg-slate-200"
+                >
+                  Solicita tu plan
+                  <ArrowRight
+                    className="h-5 w-5 transition-transform duration-250 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </article>
+            </Reveal>
+
+            {/* ---------------- Plan Avanzado ---------------- */}
+            <Reveal delay={110}>
+              <article className="sheen relative h-full rounded-2xl border-t-[6px] border-t-primary bg-white p-6 shadow-xl ring-1 ring-primary/20 transition-all duration-250 hover:-translate-y-1 sm:p-8">
+                <h2 className="text-xl font-bold text-[#0B2447]">Plan Avanzado</h2>
+                <p className="mt-4 flex items-baseline gap-3">
+                  <span className="text-5xl font-extrabold text-[#0B2447]">149 € + IVA</span>
+                  <span className="text-2xl font-bold text-foreground/40 line-through">
+                    249 € + IVA
+                  </span>
+                </p>
+                <p className="mt-2 text-sm font-semibold text-emerald-700">
+                  Los consultores que colaboran con PlanCrece han elaborado más de 3.000 planes:
+                  celebramos la cifra con el Avanzado a precio de Estándar hasta el 31 de
+                  diciembre de 2026
+                </p>
+                <p className="mt-2 text-sm font-medium text-primary">
+                  El plan y todo lo que necesitas para ir a por la financiación.
+                </p>
+
+                <div className="mt-6 space-y-6">
+                  <p className="rounded-lg bg-primary/5 px-4 py-3 text-sm font-semibold text-primary">
+                    Todo lo del Plan Estándar, más:
+                  </p>
+
+                  <div>
+                    <GrupoTitulo>Extras del Plan Avanzado</GrupoTitulo>
+                    <ul className="mt-3 space-y-4">
+                      {EXTRAS_AVANZADO.map(({ icon: Icon, lead, resto }) => (
+                        <li key={lead} className="flex items-start gap-2.5">
+                          <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                          <p className="text-[15px] leading-relaxed text-foreground">
+                            <strong className="font-semibold text-[#0B2447]">{lead}</strong>
+                            {resto}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <GrupoTitulo>Formatos de entrega</GrupoTitulo>
+                    <ChipsFormatos formatos={FORMATOS_AVANZADO} />
+                    <ul className="mt-4 space-y-3">
+                      <li className="flex items-start gap-2.5 text-[15px] text-foreground">
+                        <Check className="check-icon mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
+                        Documento a tu nombre, sin marca de PlanCrece
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <Link
+                  to={pagoUrl('avanzado')}
+                  className="btn-press group mt-8 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-[10px] bg-primary text-base font-semibold text-white shadow-md transition-all duration-250 hover:-translate-y-0.5 hover:bg-[#1a45c0] hover:shadow-lg"
+                >
+                  Solicita tu plan
+                  <ArrowRight
+                    className="h-5 w-5 transition-transform duration-250 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </article>
+            </Reveal>
           </div>
 
           {/* Nota presentación ejecutiva */}
