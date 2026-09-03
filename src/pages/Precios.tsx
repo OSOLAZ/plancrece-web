@@ -73,7 +73,7 @@ const EXTRAS_AVANZADO = [
 
 const INCLUYE_ESTANDAR = [
   'Validación previa de tu idea incluida',
-  'Entrega en PDF y Word editable',
+  'PDF listo para presentar y Word editable para actualizarlo',
   'Documento a tu nombre, sin marca de PlanCrece',
 ]
 
@@ -238,7 +238,7 @@ export default function Precios() {
                     <ul className="mt-4 space-y-3">
                       <li className="flex items-start gap-2.5 text-[15px] text-foreground">
                         <Check className="check-icon mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                        Entrega en PDF, Word y PowerPoint editables
+                        PDF listo para presentar, más Word y PowerPoint editables para actualizarlos
                       </li>
                       <li className="flex items-start gap-2.5 text-[15px] text-foreground">
                         <Check className="check-icon mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
