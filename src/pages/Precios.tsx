@@ -22,6 +22,7 @@ import {
   FileSliders,
 } from 'lucide-react'
 import ConsultantTip from '../components/ConsultantTip'
+import InfoHint from '../components/InfoHint'
 import Reveal from '../components/Reveal'
 import useCheckSequence from '../components/useCheckSequence'
 import { pagoUrl } from '../data/pagos'
@@ -168,7 +169,22 @@ export default function Precios() {
                       {INCLUYE_ESTANDAR.map((item) => (
                         <li key={item} className="flex items-start gap-2.5 text-[15px] text-foreground">
                           <Check className="check-icon mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />
-                          {item}
+                          <span>
+                            {item}
+                            {item === 'Validación previa de tu idea incluida' && (
+                              <InfoHint label="Más información sobre la validación previa">
+                                Antes de elaborar el plan, revisamos tu idea y te decimos con
+                                sinceridad si la vemos viable. Si no la vemos clara, te lo contamos
+                                primero.
+                              </InfoHint>
+                            )}
+                            {item === 'Documento a tu nombre, sin marca de PlanCrece' && (
+                              <InfoHint label="Más información sobre el documento a tu nombre">
+                                El plan va a tu nombre, sin logo de PlanCrece: puedes presentarlo
+                                como documento propio ante el banco o el SEPE.
+                              </InfoHint>
+                            )}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -225,6 +241,12 @@ export default function Precios() {
                           <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
                           <p className="text-[15px] leading-relaxed text-foreground">
                             <strong className="font-semibold text-[#0B2447]">{lead}</strong>
+                            {lead.startsWith('Informe de ayudas') && (
+                              <InfoHint label="Más información sobre el informe de ayudas">
+                                Investigamos qué ayudas y subvenciones encajan con tu edad, zona y
+                                tipo de negocio. Solo está incluido en el Plan Avanzado.
+                              </InfoHint>
+                            )}
                             {resto}
                           </p>
                         </li>
