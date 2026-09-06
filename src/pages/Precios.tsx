@@ -135,12 +135,22 @@ export default function Precios() {
       <section className="hero-bg py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h1 className="text-3xl font-extrabold tracking-tight text-[#0B2447] sm:text-4xl">
-            Inversión clara, sin sorpresas.
+            Un plan de empresa para emprender con criterio
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-foreground sm:text-lg">
-            Elige según tu objetivo. Todos incluyen validación de tu idea y garantía
-            de satisfacción.
+            Ordena tu idea, anticipa costes y riesgos, y toma decisiones con más claridad antes de
+            invertir tiempo y dinero.
           </p>
+          <ul className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm font-medium text-foreground">
+            <li className="flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
+              Validación previa incluida
+            </li>
+            <li className="flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-[#15803D]" aria-hidden="true" />
+              Garantía de satisfacción
+            </li>
+          </ul>
           <div className="mt-8 max-w-3xl rounded-2xl border-l-4 border-primary/60 bg-white p-6 shadow-sm ring-1 ring-border sm:p-7">
             <p className="text-base font-medium leading-relaxed text-[#0B2447]">
               Un plan de empresa no solo sirve para pedir un préstamo. También puede ser
