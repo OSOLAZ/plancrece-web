@@ -22,6 +22,7 @@ import {
   FileSliders,
 } from 'lucide-react'
 import ConsultantTip from '../components/ConsultantTip'
+import CTAButton from '../components/CTAButton'
 import InfoHint from '../components/InfoHint'
 import Reveal from '../components/Reveal'
 import useCheckSequence from '../components/useCheckSequence'
@@ -140,6 +141,18 @@ export default function Precios() {
             Elige según tu objetivo. Todos incluyen validación de tu idea y garantía
             de satisfacción.
           </p>
+          <div className="mt-8 max-w-3xl rounded-2xl border-l-4 border-primary/60 bg-white p-6 shadow-sm ring-1 ring-border sm:p-7">
+            <p className="text-base font-medium leading-relaxed text-[#0B2447]">
+              Un plan de empresa no solo sirve para pedir un préstamo. También puede ser
+              documentación de apoyo para capitalizar el paro, cuando proceda, o para presentar
+              tu proyecto a un socio o inversor potencial.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-foreground/60">
+              Y si necesitas más que el documento, el Plan Avanzado añade la orientación de
+              PlanCrece: un informe de ayudas y subvenciones según tu perfil y tu proyecto, y una
+              guía sobre qué vías de financiación pueden encajar mejor contigo.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -155,6 +168,10 @@ export default function Precios() {
                 </p>
                 <p className="mt-2 text-sm font-medium text-primary">
                   Tu plan de empresa completo, listo para presentar.
+                </p>
+                <p className="mt-2 text-sm font-medium text-foreground">
+                  Para capitalizar el paro, solicitar financiación o presentar tu proyecto a
+                  socios e inversores.
                 </p>
 
                 <div className="mt-6 space-y-6">
@@ -225,7 +242,8 @@ export default function Precios() {
                   diciembre de 2026
                 </p>
                 <p className="mt-2 text-sm font-medium text-primary">
-                  El plan y todo lo que necesitas para ir a por la financiación.
+                  El plan, la presentación con guion y la orientación de PlanCrece sobre ayudas y
+                  financiación para tu caso.
                 </p>
 
                 <div className="mt-6 space-y-6">
@@ -295,6 +313,29 @@ export default function Precios() {
                 las partes clave de tu plan y qué decir en cada una, para practicar en casa antes
                 de ir al banco, a un socio potencial o a tu ayuntamiento. Si contratas el Estándar
                 y la necesitas, puedes añadirla como extra — te lo proponemos tras la validación.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Segunda acción de bajo riesgo: validación gratuita */}
+          <Reveal delay={120}>
+            <div className="mt-8 rounded-2xl bg-primary/5 p-6 text-center ring-1 ring-primary/15 sm:p-8">
+              <h2 className="text-lg font-bold text-[#0B2447] sm:text-xl">
+                ¿Todavía no sabes si tu idea está preparada?
+              </h2>
+              <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-foreground">
+                Cuéntanos tu idea gratis y te diremos si vemos puntos que conviene revisar antes
+                de decidir si necesitas un plan.
+              </p>
+              <div className="mt-5 flex justify-center">
+                <CTAButton
+                  label="Validar mi idea gratis"
+                  full={false}
+                  className="!bg-white !text-primary !shadow-none ring-1 ring-primary hover:!bg-primary/5"
+                />
+              </div>
+              <p className="mt-3 text-sm text-foreground/60">
+                Sin compromiso. Primero te ayudamos a orientarte.
               </p>
             </div>
           </Reveal>
