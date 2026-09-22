@@ -2,14 +2,13 @@ import { Link } from 'react-router'
 import {
   Landmark, Clock, Building2, FileText, RefreshCw, Briefcase, CheckCircle2, X,
   BarChart3, Calculator, Target, FileCheck, Lightbulb, Rocket, Store, Building,
-  ClipboardList, Check, ChevronDown, ArrowRight, ShieldCheck, FileSignature, EyeOff, Leaf,
+  ClipboardList, Check, ChevronDown, ArrowRight, ShieldCheck,
 } from 'lucide-react'
 import { useRef, useState } from 'react'
 import CTAButton from '../components/CTAButton'
 import ConsultantTip from '../components/ConsultantTip'
 import LeadForm from '../components/LeadForm'
 import Reveal from '../components/Reveal'
-import ProjectionVisual from '../components/ProjectionVisual'
 
 const CASOS = [
   { icon: Lightbulb, label: 'Emprendedores con una idea', img: '/negocios/cafeteria.jpg', alt: 'Interior de una cafetería de barrio' },
@@ -35,8 +34,6 @@ const INCLUYE = [
   { icon: Target, title: 'Estrategia clara', text: 'Propuesta de valor, canales, precios y hoja de ruta.' },
   { icon: FileCheck, title: 'Documento profesional', text: 'Impecable en forma y fondo, listo para presentar.' },
 ]
-
-const SECTORES = ['Tecnología', 'Hostelería', 'Comercio', 'Ecommerce', 'Salud', 'Industria', 'Servicios', 'Agroalimentario', 'Franquicias']
 
 const TESTIMONIOS = [
   { cita: 'yo venia con la idea dandome vueltas en la cabeza desde hace un año largo pero de numeros ni idea, eso de las previsiones me sonaba a chino. Hice lo de la valoracion gratis casi por probar y me dijeron cosas muy concretas de mi proyecto, no cosas genericas. Al final pille el plan entero y con eso fui a dos bancos. En el segundo ya llevaba las respuestas preparadas jeje.', nombre: 'Cafetería de especialidad', detalle: 'Financiación bancaria · Andalucía · 2024 · Plan Estándar' },
@@ -76,6 +73,7 @@ export default function Home() {
 
   return (
     <>
+      {/* 1 · HERO estilo referencia: titular + badges a la izquierda, formulario a la derecha */}
       <section className="hero-bg pb-10 pt-10 sm:pb-16 sm:pt-16">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-x-14 lg:gap-y-0">
           <div>
@@ -89,101 +87,100 @@ export default function Home() {
             <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground sm:text-lg">
               Elaboramos tu plan de negocio con el rigor que exigen bancos, ENISA, inversores y convocatorias públicas.
             </p>
-          </div>
-          <div id="formulario" className="scroll-mt-24 lg:row-span-2">
-            <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="mt-6 grid grid-cols-2 gap-3 max-w-xl">
               <div className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span className="text-xs sm:text-sm text-slate-700 font-medium">Validación gratuita previa</span></div>
               <div className="flex items-start gap-2"><Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span className="text-xs sm:text-sm text-slate-700 font-medium">Entrega en 7 días con penalización</span></div>
               <div className="flex items-start gap-2"><ShieldCheck className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span className="text-xs sm:text-sm text-slate-700 font-medium">Cláusula de confidencialidad incluida</span></div>
               <div className="flex items-start gap-2"><FileText className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" /><span className="text-xs sm:text-sm text-slate-700 font-medium">Documento 100% sin nuestra marca</span></div>
             </div>
-            <LeadForm variant="home" />
-          </div>
-          <div>
-            {/* CAMBIO 2: Bloque "sin ahorros" COMPLETO Y NUEVO */}
-            <div className="mt-5 max-w-xl rounded-xl border-l-4 border-primary bg-white/80 px-4 py-3.5 shadow-sm ring-1 ring-border">
-              <h3 className="mb-4 text-xl font-extrabold tracking-tight text-[#0B2447] md:text-2xl">
-                ¿Crees que sin ahorros no puedes empezar?
-              </h3>
-              <p className="mb-4 text-[15px] leading-relaxed text-slate-700">
-                <strong className="text-[#2563EB]">No necesariamente.</strong>{' '}
-                Según tu proyecto y perfil, puede haber vías de financiación que quizá no
-                conoces. Los consultores que colaboran con PlanCrece combinan experiencia asesorando a emprendedores
-                desde 2008 con especialistas seleccionados según el sector, la ubicación, la
-                vía de financiación y la fase de cada proyecto.
-              </p>
-              <ul className="mb-5 space-y-3">
-                <li className="flex items-start gap-3 text-[15px] text-slate-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-600">✓</span>
-                  <span><strong className="text-[#0B2447]">Ayudas y subvenciones públicas:</strong> cuando tu proyecto y ubicación cumplan los requisitos.</span>
-                </li>
-                <li className="flex items-start gap-3 text-[15px] text-slate-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-600">✓</span>
-                  <span><strong className="text-[#0B2447]">Financiación basada en la viabilidad:</strong> algunas vías no exigen las mismas garantías que un préstamo tradicional.</span>
-                </li>
-                <li className="flex items-start gap-3 text-[15px] text-slate-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-600">✓</span>
-                  <span><strong className="text-[#0B2447]">Socios o inversión privada:</strong> una vía a valorar si el modelo y el potencial del proyecto lo justifican.</span>
-                </li>
-                <li className="flex items-start gap-3 text-[15px] text-slate-700">
-                  <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-600">✓</span>
-                  <span><strong className="text-[#0B2447]">Capitalización del paro:</strong> puede ser una opción si cumples los requisitos del SEPE.</span>
-                </li>
-              </ul>
-              <div className="mb-4 rounded-r-lg border-l-4 border-[#2563EB] bg-blue-50 p-4">
-                <p className="text-[15px] font-medium leading-relaxed text-[#0B2447]">
-                  El primer paso es entender qué opciones encajan con tu caso.
-                  <span className="mt-1 block text-[14px] font-normal text-slate-600">
-                    Cuéntanos tu situación. Te orientamos sin coste ni compromiso.
-                  </span>
-                </p>
-              </div>
-              <p className="text-center text-[15px] font-medium italic text-slate-600">
-                Si no vemos una vía realista para tu caso, te lo diremos con claridad.
-              </p>
-            </div>
-
-            <p className="mt-3 flex max-w-xl items-start gap-2 text-sm font-medium leading-snug text-[#0B2447]">
+            <p className="mt-5 flex max-w-xl items-start gap-2 text-sm font-medium leading-snug text-[#0B2447]">
               <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
               Tu idea. Tu nombre. Tu plan. — el documento se entrega sin marca de PlanCrece, listo para presentar como tuyo.
             </p>
-
-            {/* Tarjetas de confianza: cifras atribuidas a los consultores colaboradores */}
-            <dl className="mt-9 grid grid-cols-3 divide-x divide-border rounded-2xl bg-white shadow-sm ring-1 ring-border">
-              <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
-                <dt className="sr-only">años de experiencia</dt>
-                <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Consultores con experiencia desde 2008</dd>
-              </div>
-              <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
-                <dt className="sr-only">planes elaborados</dt>
-                <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Más de 3.000 planes</dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">Experiencia acumulada de los consultores que colaboran con PlanCrece</dd>
-              </div>
-              <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
-                <dt className="sr-only">confidencialidad</dt>
-                <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Confidencial por escrito (NDA)</dd>
-                <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">desde el primer contacto</dd>
-              </div>
-            </dl>
-            <p className="mt-2 max-w-xl text-[11px] leading-snug text-muted-foreground sm:text-xs">
-              Las cifras reflejan la experiencia profesional acumulada de los consultores colaboradores, incluidos trabajos realizados antes de su colaboración con PlanCrece.
-            </p>
-
-            <Reveal delay={200} className="mt-8 hidden lg:block"><ProjectionVisual /></Reveal>
-            <Reveal delay={280} className="mt-6">
-              <div className="relative max-w-xl overflow-hidden rounded-2xl shadow-md ring-1 ring-border">
-                <video className="block aspect-video w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/hero-negocios.jpg" aria-hidden="true">
-                  <source src="/hero-negocios.mp4" type="video/mp4" />
-                </video>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B2447]/45 via-transparent to-transparent" aria-hidden="true" />
-                <p className="absolute bottom-3 left-4 right-4 text-[13px] font-medium leading-snug text-white drop-shadow">Negocios como el tuyo, cada mañana, en cada barrio de España.</p>
-              </div>
-            </Reveal>
           </div>
+          <div id="formulario" className="scroll-mt-24">
+            <LeadForm variant="home" />
+          </div>
+        </div>
+        {/* Vídeo preservado al 100%, a todo el ancho bajo el hero */}
+        <div className="mx-auto mt-10 max-w-6xl px-4 sm:px-6">
+          <Reveal delay={200}>
+            <div className="relative overflow-hidden rounded-2xl shadow-md ring-1 ring-border">
+              <video className="block aspect-video w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/hero-negocios.jpg" aria-hidden="true">
+                <source src="/hero-negocios.mp4" type="video/mp4" />
+              </video>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B2447]/45 via-transparent to-transparent" aria-hidden="true" />
+              <p className="absolute bottom-3 left-4 right-4 text-[13px] font-medium leading-snug text-white drop-shadow sm:bottom-4 sm:left-6 sm:text-sm">Negocios como el tuyo, cada mañana, en cada barrio de España.</p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* El resto del archivo se mantiene exactamente igual que el original para no romper nada */}
+      {/* 2 · Bifurcador: segmentación temprana */}
+      <Section><div className="mx-auto max-w-4xl">
+        <H2>¿Por dónde quieres empezar?</H2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <a href="#formulario" className="group h-full rounded-xl bg-white p-6 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><Lightbulb className="h-5 w-5 text-primary" aria-hidden="true" /></span>
+            <h3 className="mt-3 text-base font-bold text-[#0B2447]">Ya tengo una idea de negocio</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground">Cuéntanosla en 2 minutos y te diremos gratis si la vemos viable antes de que inviertas en un plan.</p>
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">Validar mi idea gratis<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" /></span>
+          </a>
+          <Link to="/franquicias" className="group h-full rounded-xl bg-white p-6 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><Store className="h-5 w-5 text-primary" aria-hidden="true" /></span>
+            <h3 className="mt-3 text-base font-bold text-[#0B2447]">Aún no tengo una idea clara</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground">Explora franquicias con marca y método ya probados, y comprueba gratis si tu perfil y tu inversión encajan.</p>
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">Explorar franquicias<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" /></span>
+          </Link>
+        </div>
+      </div></Section>
+
+      {/* 3 · Proceso en 3 pasos como tarjetas numeradas (estilo referencia) */}
+      <Section alt><H2>De tu idea a una reunión ganada.</H2>
+        <ol className="mt-8 grid gap-4 sm:grid-cols-3">
+          {[['Cuéntanos tu idea', 'Formulario de 2 minutos. Te decimos en hasta 3 días laborables si es viable, gratis.'], ['Si es viable, construimos tu plan', 'Solo si tu idea supera la validación: investigamos, calculamos y redactamos.'], ['Preséntalo con seguridad', 'Entrega en 7 días. No se cierra hasta que lo des por bueno.']].map(([title, text], i) => (
+            <Reveal key={title} delay={i * 120}>
+              <li className="h-full rounded-xl bg-white p-6 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-base font-bold text-white shadow-md ring-4 ring-primary/15">{i + 1}</span>
+                <h3 className="mt-4 text-base font-bold text-[#0B2447]">{title}</h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-foreground">{text}</p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+        <div className="mt-8"><CTAButton /></div>
+        <p className="mt-3 text-sm"><Link to="/como-funciona" className="font-medium text-primary underline-offset-4 hover:underline">Ver el proceso completo</Link></p>
+      </Section>
+
+      {/* 4 · Banda de cifras (claims verificables propios) */}
+      <Section className="!py-10 sm:!py-12"><div className="mx-auto max-w-4xl">
+        <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-0 sm:divide-x sm:divide-border sm:rounded-2xl sm:bg-white sm:shadow-sm sm:ring-1 sm:ring-border">
+          <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
+            <dt className="sr-only">años de experiencia</dt>
+            <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Consultores con experiencia desde 2008</dd>
+          </div>
+          <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
+            <dt className="sr-only">planes elaborados</dt>
+            <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Más de 3.000 planes</dd>
+            <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">Experiencia acumulada de los consultores que colaboran con PlanCrece</dd>
+          </div>
+          <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
+            <dt className="sr-only">plazo de entrega</dt>
+            <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Entrega en 7 días</dd>
+            <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">o te devolvemos el 20 %</dd>
+          </div>
+          <div className="px-3 py-4 text-center sm:px-4 sm:py-5">
+            <dt className="sr-only">confidencialidad</dt>
+            <dd className="text-base font-extrabold leading-snug text-[#0B2447] sm:text-lg">Confidencial por escrito (NDA)</dd>
+            <dd className="mt-1 text-[11px] leading-tight text-muted-foreground sm:text-sm text-center">desde el primer contacto</dd>
+          </div>
+        </dl>
+        <p className="mt-2 text-[11px] leading-snug text-muted-foreground sm:text-xs">
+          Las cifras reflejan la experiencia profesional acumulada de los consultores colaboradores, incluidos trabajos realizados antes de su colaboración con PlanCrece.
+        </p>
+      </div></Section>
+
+      {/* 5 · Casos (tarjetas con foto, slot visual de la referencia) */}
       <Section alt><H2>Trabajamos con quien está en tu situación.</H2>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {CASOS.map(({ icon: Icon, label, img, alt }, i) => (
@@ -198,55 +195,7 @@ export default function Home() {
         <p className="mt-6 text-[15px] leading-relaxed text-foreground">Sea cual sea tu caso, el objetivo es el mismo: llegar a la mesa de decisión con un trabajo sólido.</p>
       </Section>
 
-      <Section><div className="mx-auto max-w-3xl">
-        <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm"><span className="h-px w-8 bg-primary" aria-hidden="true" />Primero validamos, luego construimos</p>
-        <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">No todas las ideas están listas para presentarse. Y eso es bueno para ti.</h2>
-        <p className="mt-6 text-[15px] leading-relaxed text-foreground">Por experiencia, sabemos que una parte importante de los proyectos necesita madurar antes de invertir en un plan de negocio completo. En nuestra trayectoria profesional, cerca de 4 de cada 10 proyectos necesitaban replantearse o reforzarse antes de estar listos.</p>
-        <p className="mt-4 text-[15px] leading-relaxed text-foreground">No te venderemos un documento si todavía no puede ayudarte. Primero analizamos si tu idea tiene una base suficiente, qué puntos conviene reforzar y qué camino puede tener más sentido.</p>
-        <p className="mt-4 text-[15px] font-medium leading-relaxed text-[#0B2447]">Si creemos que aún no es el momento, te diremos por qué — y qué hacer para que lo sea. Gratis.</p>
-        <p className="mt-6 border-l-4 border-primary bg-secondary px-4 py-3 text-[15px] font-medium leading-relaxed text-[#0B2447]">Nuestro objetivo no es redactar muchos planes de negocio. Es ser la semilla de muchos negocios que funcionan.</p>
-      </div></Section>
-
-      <Section><H2>Pedir financiación sin un buen plan es llegar desarmado.</H2>
-        <ul className="mt-6 space-y-3">{['Números que no resisten una pregunta', 'Estructura que no sigue los criterios del banco', 'Una idea buena que no parece tan buena sobre el papel'].map((item) => (
-          <li key={item} className="flex items-start gap-3 text-[15px] text-foreground"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-destructive" aria-hidden="true" />{item}</li>
-        ))}</ul>
-        <p className="mt-6 text-[15px] leading-relaxed text-foreground">Nosotros preparamos tu proyecto para ese momento: <strong className="text-[#0B2447]">un plan que se defiende solo.</strong></p>
-        <div className="mt-7"><CTAButton /></div>
-      </Section>
-
-      <Section alt><H2>Un plan, preparado para cada puerta.</H2>
-        <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-foreground">No hay dos fuentes de financiación que pidan lo mismo. Adaptamos estructura, ratios y enfoque a los criterios de la vía que encaje contigo.</p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {VIAS_FINANCIACION.map(({ icon: Icon, title, text, info }, idx) => (
-            <div key={title} className="relative rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-shadow hover:shadow-md">
-              <div className="flex items-start justify-between gap-2">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><Icon className="h-5 w-5 text-primary" aria-hidden="true" /></span>
-                <button type="button" onClick={() => setViaInfo(viaInfo === idx ? null : idx)} aria-expanded={viaInfo === idx} aria-label={`Qué es: ${title}`} className="btn-press flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-primary ring-1 ring-border transition-colors hover:bg-primary hover:text-white">i</button>
-              </div>
-              <h3 className="mt-3 text-base font-bold text-[#0B2447]">{title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-foreground">{text}</p>
-              <div className={`grid transition-all duration-300 ease-out ${viaInfo === idx ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                <div className="overflow-hidden"><p className="mt-3 rounded-lg bg-secondary/70 p-3.5 text-[13px] leading-relaxed text-foreground ring-1 ring-border">{info}</p></div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-7"><CTAButton /></div>
-      </Section>
-
-      <Section className="!py-10 sm:!py-12"><div className="mx-auto max-w-3xl space-y-4">
-        {['¿Sabías que si estás en el paro puedes cobrarlo de una sola vez para iniciar tu negocio?', '¿Sabías que con una buena idea puedes pedir préstamos sin avales y sin entrada?'].map((frase, i) => (
-          <Reveal key={frase} delay={i * 100}>
-            <div className="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-primary/15 sm:p-6">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10"><Lightbulb className="h-5 w-5 text-primary" aria-hidden="true" /></span>
-              <p className="text-[15px] font-semibold leading-relaxed text-[#0B2447] sm:text-base">{frase}</p>
-            </div>
-          </Reveal>
-        ))}
-        <p className="pt-1 text-center text-sm text-muted-foreground">Hay más vías de las que crees. Saber cuál encaja contigo es nuestro trabajo.</p>
-      </div></Section>
-
+      {/* 6 · Navy: los cuatro caminos (bloque oscuro de contraste, literal) */}
       <section className="navy-bg py-14 sm:py-20"><div className="mx-auto max-w-4xl px-4 sm:px-6">
         <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-[#6d9bff] sm:text-sm"><span className="h-px w-8 bg-[#6d9bff]" aria-hidden="true" />La objeción que nadie dice en voz alta</p>
         <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-white sm:text-4xl">No necesitas una hipoteca para empezar.</h2>
@@ -265,33 +214,7 @@ export default function Home() {
         <div className="mt-8"><CTAButton /></div>
       </div></section>
 
-      <Section alt className="!py-10 sm:!py-12"><div className="mx-auto max-w-3xl">
-        <ConsultantTip title="Lo vemos a diario">
-          <p>Hay ayudas para emprender en prácticamente todas las comunidades autónomas y muchos ayuntamientos. Las que encajan contigo dependen de tu sector, tu ubicación y tu perfil.</p>
-          <p>Al validar tu idea te orientamos sobre qué convocatorias suelen encajar en casos como el tuyo.</p>
-        </ConsultantTip>
-      </div></Section>
-
-      <Section><H2>Qué lleva un plan que convence.</H2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {INCLUYE.map(({ icon: Icon, title, text }, i) => (
-            <Reveal key={title} delay={i * 70}>
-              <div className="h-full rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><Icon className="h-5 w-5 text-primary" aria-hidden="true" /></span>
-                <h3 className="mt-3 text-base font-bold text-[#0B2447]">{title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-foreground">{text}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section alt><H2>Más de 17 años junto a empresas españolas.</H2>
-        <p className="mt-4 text-[15px] leading-relaxed text-foreground">Hemos elaborado planes para proyectos de todos los tamaños, en toda España.</p>
-        <div className="mt-5 flex flex-wrap gap-2">{SECTORES.map((s) => (<span key={s} className="rounded-full bg-white px-4 py-2 text-sm font-medium text-[#0B2447] ring-1 ring-border">{s}</span>))}</div>
-        <p className="mt-6 text-[15px] font-medium text-[#0B2447]">Esa experiencia está en cada página de tu plan.</p>
-      </Section>
-
+      {/* 7 · Franquicias (literal) */}
       <Section><div className="grid items-center gap-8 lg:grid-cols-2">
         <Reveal><div>
           <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary"><span className="h-px w-8 bg-primary" aria-hidden="true" />¿Sin idea propia?</p>
@@ -309,41 +232,48 @@ export default function Home() {
         </div></Reveal>
       </div></Section>
 
-      <Section><H2>De tu idea a una reunión ganada.</H2>
-        <ol className="mt-8 space-y-6">
-          {[['Cuéntanos tu idea', 'Formulario de 2 minutos. Te decimos en hasta 3 días laborables si es viable, gratis.'], ['Si es viable, construimos tu plan', 'Solo si tu idea supera la validación: investigamos, calculamos y redactamos.'], ['Preséntalo con seguridad', 'Entrega en 7 días. No se cierra hasta que lo des por bueno.']].map(([title, text], i) => (
-            <Reveal key={title} delay={i * 120}>
-              <li className="flex gap-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-white shadow-md ring-4 ring-primary/15">{i + 1}</span>
-                <div><h3 className="text-base font-bold text-[#0B2447]">{title}</h3><p className="mt-1 text-[15px] text-foreground">{text}</p></div>
-              </li>
+      {/* 8 · Qué lleva un plan + vías (fusionadas, textos literales) */}
+      <Section alt><H2>Qué lleva un plan que convence.</H2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {INCLUYE.map(({ icon: Icon, title, text }, i) => (
+            <Reveal key={title} delay={i * 70}>
+              <div className="h-full rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><Icon className="h-5 w-5 text-primary" aria-hidden="true" /></span>
+                <h3 className="mt-3 text-base font-bold text-[#0B2447]">{title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-foreground">{text}</p>
+              </div>
             </Reveal>
           ))}
-        </ol>
-        <div className="mt-8"><CTAButton /></div>
-        <p className="mt-3 text-sm"><Link to="/como-funciona" className="font-medium text-primary underline-offset-4 hover:underline">Ver el proceso completo</Link></p>
+        </div>
+
+        <h3 className="mt-12 text-xl font-bold tracking-tight text-[#0B2447] sm:text-2xl">Un plan, preparado para cada puerta.</h3>
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-foreground">No hay dos fuentes de financiación que pidan lo mismo. Adaptamos estructura, ratios y enfoque a los criterios de la vía que encaje contigo.</p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {VIAS_FINANCIACION.map(({ icon: Icon, title, text, info }, idx) => (
+            <div key={title} className="relative rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-shadow hover:shadow-md">
+              <div className="flex items-start justify-between gap-2">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><Icon className="h-5 w-5 text-primary" aria-hidden="true" /></span>
+                <button type="button" onClick={() => setViaInfo(viaInfo === idx ? null : idx)} aria-expanded={viaInfo === idx} aria-label={`Qué es: ${title}`} className="btn-press flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-primary ring-1 ring-border transition-colors hover:bg-primary hover:text-white">i</button>
+              </div>
+              <h4 className="mt-3 text-base font-bold text-[#0B2447]">{title}</h4>
+              <p className="mt-1.5 text-sm leading-relaxed text-foreground">{text}</p>
+              <div className={`grid transition-all duration-300 ease-out ${viaInfo === idx ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden"><p className="mt-3 rounded-lg bg-secondary/70 p-3.5 text-[13px] leading-relaxed text-foreground ring-1 ring-border">{info}</p></div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mx-auto mt-8 max-w-3xl">
+          <ConsultantTip title="Lo vemos a diario">
+            <p>Hay ayudas para emprender en prácticamente todas las comunidades autónomas y muchos ayuntamientos. Las que encajan contigo dependen de tu sector, tu ubicación y tu perfil.</p>
+            <p>Al validar tu idea te orientamos sobre qué convocatorias suelen encajar en casos como el tuyo.</p>
+          </ConsultantTip>
+        </div>
+        <div className="mt-7"><CTAButton /></div>
+        <p className="mt-3 text-sm"><Link to="/precios" className="font-medium text-primary underline-offset-4 hover:underline">Ver planes y precios</Link></p>
       </Section>
 
-      <Section alt><div className="mx-auto max-w-4xl">
-        <H2>Un plan de negocio no es un trámite de 600 €.</H2>
-        <p className="mt-4 text-[15px] leading-relaxed text-foreground">Una gestoría te cobra eso por redactar un plan básico, sin profundidad. Nosotros hemos hecho justo lo contrario: especializarnos en analizar ideas y decirte la verdad.</p>
-        <div className="mt-7 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl bg-white p-6 ring-1 ring-border">
-            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Una gestoría</p>
-            <ul className="mt-4 space-y-3">{['Redacta un plan básico sin profundidad', 'El mismo redactor para todos los sectores', 'Te entrega un documento y hasta aquí'].map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-[15px] text-muted-foreground"><X className="mt-0.5 h-5 w-5 shrink-0 text-slate-400" aria-hidden="true" />{item}</li>
-            ))}</ul>
-          </div>
-          <div className="rounded-2xl bg-white p-6 shadow-md ring-2 ring-primary/20">
-            <p className="text-xs font-bold uppercase tracking-widest text-primary">PlanCrece</p>
-            <ul className="mt-4 space-y-3">{['Validamos tu idea antes de redactar nada', 'Consultores especializados por sector', 'Te decimos la verdad sobre tu viabilidad, aunque no te guste'].map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-[15px] font-medium text-[#0B2447]"><Check className="mt-0.5 h-5 w-5 shrink-0 text-[#15803D]" aria-hidden="true" />{item}</li>
-            ))}</ul>
-          </div>
-        </div>
-        <p className="mt-6 border-l-4 border-primary bg-white px-4 py-3 text-[15px] font-medium leading-relaxed text-[#0B2447]">Un consultor de hostelería no debería valorar la viabilidad de una clínica dental. Por eso cada idea la analiza quien conoce ese sector — y si la tendencia del mercado dice que es mal momento, también te lo diremos.</p>
-      </div></Section>
-
+      {/* 9 · Comparativa IA vs PlanCrece (literal) */}
       <Section><div className="mx-auto max-w-4xl">
         <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm"><span className="h-px w-8 bg-primary" aria-hidden="true" />La pregunta de moda</p>
         <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">¿Y si le pido el plan a una inteligencia artificial?</h2>
@@ -363,10 +293,10 @@ export default function Home() {
             ))}</ul>
           </div>
         </div>
-        {/* CAMBIO 4: Sección IA actualizada a 2008 */}
         <p className="mt-6 border-l-4 border-primary bg-secondary px-4 py-3 text-[15px] font-medium leading-relaxed text-[#0B2447]">La inteligencia artificial puede ayudarte a empezar. Un plan que debes defender necesita criterio, contexto y una voz propia. Los consultores que colaboran con PlanCrece combinan experiencia profesional desde 2008, mucho antes de que existiera la IA generativa.</p>
       </div></Section>
 
+      {/* 10 · Testimonios (literal) */}
       <Section alt><H2>Ellos ya presentaron su plan.</H2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/70">Cada testimonio pertenece a un cliente real que autorizó compartir su experiencia. No publicamos nombres, negocios ni datos que permitan identificarlos: es la misma discreción con la que trataremos tu proyecto.</p>
         <div className="mt-6 touch-pan-y sm:hidden" onTouchStart={(e) => { swipeStart.current = e.touches[0].clientX }} onTouchEnd={(e) => { if (swipeStart.current === null) return; const delta = e.changedTouches[0].clientX - swipeStart.current; if (Math.abs(delta) > 50) { setTestimonio((t) => delta < 0 ? Math.min(t + 1, TESTIMONIOS.length - 1) : Math.max(t - 1, 0)); } swipeStart.current = null }}>
@@ -382,53 +312,8 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section><div className="mx-auto max-w-3xl">
-        <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm"><span className="h-px w-8 bg-primary" aria-hidden="true" />Quiénes somos</p>
-        <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">Detrás de cada plan hay más que un documento. Hay criterio.</h2>
-        {/* CAMBIO 3: Quiénes somos actualizado */}
-        <p className="mt-4 text-[15px] leading-relaxed text-foreground">PlanCrece trabaja con consultores con experiencia en asesoramiento a emprendedores desde 2008 y una red flexible de especialistas seleccionados según el sector, la ubicación, la vía de financiación y la fase de cada proyecto. Esta colaboración aporta conocimiento profesional aplicado y criterios actualizados sobre mercados, financiación, ayudas y requisitos relevantes para cada caso. El plan que recibes no lleva nuestra marca: lleva tu nombre.</p>
-        <p className="mt-5"><Link to="/quienes-somos" className="inline-flex items-center gap-2 text-[15px] font-semibold text-primary underline-offset-4 hover:underline">Conoce cómo trabajamos<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link></p>
-      </div></Section>
-
-      <Section><div className="mx-auto max-w-4xl">
-        <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm"><span className="h-px w-8 bg-primary" aria-hidden="true" />Confidencialidad</p>
-        <h2 className="mt-4 text-2xl font-bold tracking-tight text-[#0B2447] sm:text-3xl">Tu idea es tuya. Punto.</h2>
-        <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-foreground">Cada negocio es único, y tratarlo como tal empieza por no contarlo. A diferencia de otras consultoras, nunca revelaremos tu idea, tus cifras ni tu estrategia: ni a otros clientes, ni en nuestra web, ni en nuestro portfolio.</p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          <Reveal><div className="h-full rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><FileSignature className="h-5 w-5 text-primary" aria-hidden="true" /></span>
-            <h3 className="mt-3 text-base font-bold text-[#0B2447]">Confidencial desde el primer contacto</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-foreground">Lo que nos cuentes en la valoración gratuita solo se usa para valorar tu proyecto: no se comparte, no se publica, no se reutiliza. Si contratas, la confidencialidad queda además por escrito en las condiciones del servicio.</p>
-          </div></Reveal>
-          <Reveal delay={90}><div className="h-full rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><EyeOff className="h-5 w-5 text-primary" aria-hidden="true" /></span>
-            <h3 className="mt-3 text-base font-bold text-[#0B2447]">El plan no lleva nuestro logo</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-foreground">El documento es 100 % tuyo: sin nuestra marca, sin nuestro nombre, sin rastro. Cuando lo presentes al banco o a un inversor, parecerá elaborado por ti — porque quien debe brillar en esa mesa eres tú.</p>
-          </div></Reveal>
-          <Reveal delay={180}><div className="h-full rounded-xl bg-white p-5 shadow-sm ring-1 ring-border transition-all duration-250 hover:-translate-y-1 hover:shadow-md">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" aria-hidden="true" /></span>
-            <h3 className="mt-3 text-base font-bold text-[#0B2447]">Tu idea nunca se reutiliza</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-foreground">Ni la vendemos, ni la compartimos, ni la convertimos en "caso de éxito" sin tu permiso. Tu ventaja competitiva sigue siendo solo tuya.</p>
-          </div></Reveal>
-        </div>
-        <Reveal delay={120}><div className="mt-10 grid items-center gap-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-border sm:p-8 lg:grid-cols-[auto_1fr]">
-          <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#15803D]/10 lg:mx-0"><Leaf className="h-8 w-8 text-[#15803D]" aria-hidden="true" /></span>
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-primary">Un ejemplo real de lo que hacemos</p>
-            <p className="mt-3 font-serif text-[17px] italic leading-relaxed text-[#0B2447]">"Un emprendedor, jardinero de profesión, soñaba con montar un restaurante de tapas típicas de distintas zonas de España. Nosotros creemos que el pasado siempre cuenta: le propusimos usar su talento para que el restaurante fuera una experiencia verde — lleno de plantas de interior, con la sensación de entrar en un jardín. Ese factor diferencial, suyo desde el primer día, fue lo que hizo único el proyecto."</p>
-            <p className="mt-4 text-[15px] leading-relaxed text-foreground">Un plan de negocio lleva mucho tiempo crearlo. Nuestra experiencia y nuestra red de consultores nos permiten ir más rápido — estrategia económica, inversiones, tendencias, información actualizada de cada sector — y dedicar el tiempo a lo importante: encontrar y potenciar <strong>tu</strong> factor diferencial, tu perfil, tu historia.</p>
-          </div>
-        </div></Reveal>
-      </div></Section>
-
-      <Section><H2>Todo por escrito. Sin letra pequeña.</H2>
-        <ul className="mt-6 space-y-4">{[['Confidencialidad', 'desde la valoración gratuita, y por escrito al contratar'], ['Marca blanca', 'el plan no lleva nuestro logo: es 100 % tuyo'], ['Entrega en 7 días', 'o te devolvemos el 20 %'], ['Satisfacción', 'no se cierra hasta que des el plan por bueno']].map(([title, desc]) => (
-          <li key={title} className="flex items-start gap-3"><CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-[#15803D]" aria-hidden="true" /><span className="text-[15px] text-foreground"><strong className="text-[#0B2447]">{title}</strong> {desc}</span></li>
-        ))}</ul>
-        <div className="mt-8"><CTAButton /></div>
-      </Section>
-
-      <Section alt><H2>Lo que todos preguntan.</H2>
+      {/* 11 · FAQ (literal) */}
+      <Section><H2>Lo que todos preguntan.</H2>
         <div className="mt-6 space-y-3">
           {FAQ_HOME.map((item, i) => (
             <div key={item.q} className="rounded-xl bg-white ring-1 ring-border">
@@ -445,11 +330,14 @@ export default function Home() {
         <p className="mt-4 text-sm"><Link to="/faq" className="font-medium text-primary underline-offset-4 hover:underline">Ver todas las preguntas</Link></p>
       </Section>
 
-      <section className="navy-bg py-14 sm:py-20"><div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Tu proyecto merece llegar bien preparado.</h2>
-        <p className="mt-4 text-[15px] leading-relaxed text-slate-300 sm:text-base">Valida tu idea gratis: en hasta 3 días laborables sabrás si es viable. Y si no lo es, te diremos por qué — también gratis.</p>
-        <div className="mt-8 flex justify-center"><CTAButton full={false} className="w-full sm:w-auto" /></div>
-        <p className="mt-4 text-sm text-slate-400">Validación gratuita · Respuesta en hasta 3 días laborables · Confidencial</p>
+      {/* 12 · CTA final navy + segundo formulario (variant="contact" para IDs únicos) */}
+      <section className="navy-bg py-14 sm:py-20"><div className="mx-auto max-w-2xl px-4 sm:px-6">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Tu proyecto merece llegar bien preparado.</h2>
+          <p className="mt-4 text-[15px] leading-relaxed text-slate-300 sm:text-base">Valida tu idea gratis: en hasta 3 días laborables sabrás si es viable. Y si no lo es, te diremos por qué — también gratis.</p>
+        </div>
+        <div className="mt-8"><LeadForm variant="contact" /></div>
+        <p className="mt-4 text-center text-sm text-slate-400">Validación gratuita · Respuesta en hasta 3 días laborables · Confidencial</p>
       </div></section>
     </>
   )
